@@ -6,6 +6,9 @@ plugins {
 android {
     namespace 'com.example.doseloop'
     compileSdk 32
+    buildFeatures {
+        dataBinding true
+    }
 
     defaultConfig {
         applicationId "com.example.doseloop"
