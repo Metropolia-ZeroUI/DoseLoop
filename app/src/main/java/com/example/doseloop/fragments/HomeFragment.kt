@@ -23,6 +23,8 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>() {
 
         addViewModel(HomeFragmentViewModel())
 
+
+
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
 
