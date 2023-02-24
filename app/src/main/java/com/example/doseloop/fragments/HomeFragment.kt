@@ -15,7 +15,7 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    override fun fragmentOnCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,6 +28,7 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>() {
 
         return view
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

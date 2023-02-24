@@ -13,7 +13,7 @@ import com.example.doseloop.viewmodel.MessageFragmentViewModel
  */
 class MessageFragment : AbstractFragment<MessageFragmentViewModel>() {
 
-    override fun fragmentOnCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,6 +25,4 @@ class MessageFragment : AbstractFragment<MessageFragmentViewModel>() {
 
     }
 
-    // Use this if needed
-    override fun fragmentOnCreate(savedInstanceState: Bundle?) {}
 }
