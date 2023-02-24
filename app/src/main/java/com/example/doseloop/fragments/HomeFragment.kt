@@ -12,23 +12,17 @@ import com.example.doseloop.databinding.FragmentHomeBinding
 
 class HomeFragment : AbstractFragment<HomeFragmentViewModel>() {
 
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+
     override fun fragmentOnCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-class HomeFragment : Fragment() {
-
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
         addViewModel(HomeFragmentViewModel())
 
-        return inflater.inflate(R.layout.fragment_home, container, false)
-    ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
 
