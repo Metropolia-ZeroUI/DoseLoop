@@ -1,6 +1,5 @@
 package com.example.doseloop.viewmodel
 
-
 /**
  * Example usage of AbstractViewModel.
  */
