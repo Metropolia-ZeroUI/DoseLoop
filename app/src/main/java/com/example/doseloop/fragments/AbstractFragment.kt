@@ -9,10 +9,12 @@ import com.example.doseloop.viewmodel.AbstractViewModel
 
 /**
  * Fragment parent class. Common fragment functionality can be added here, if needed.
+ * ViewModel type must be declared when inheriting this.
  */
 abstract class AbstractFragment<T: AbstractViewModel?> : Fragment() {
 
     protected var viewModel : T? = null
+        private set
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,12 +35,14 @@ abstract class AbstractFragment<T: AbstractViewModel?> : Fragment() {
                               savedInstanceState: Bundle?) : View
 
     /**
-     * Gets called on the onCreate, override this and put onCreate logic here
+     * Gets called on the onCreate, use this and put onCreate logic here if needed.
      */
-    abstract fun fragmentOnCreate(savedInstanceState: Bundle?)
+    open fun fragmentOnCreate(savedInstanceState: Bundle?) {
+
+    }
 
     /**
-     * Adds the given ViewModel.
+     * Use this to add a ViewModel of the declared type.
      */
     fun addViewModel(viewModel: T) {
         this.viewModel = viewModel
