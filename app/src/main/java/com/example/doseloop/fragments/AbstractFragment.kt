@@ -1,5 +1,6 @@
 package com.example.doseloop.fragments
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
