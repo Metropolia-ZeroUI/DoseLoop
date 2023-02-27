@@ -50,6 +50,8 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
 
     var visible = false
 
+    // Layout's default values set everything correctly if drawer is on the left side of the screen. If it's on the right side, we just swap the places of some elements
+
     private var menuSide: String = "left"
         set(value) {
             field = value
@@ -126,7 +128,6 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
             val side = typedArray.getString(R.styleable.DrawerMenu_menuSide) ?: "left"
             // Side can be null
             menuSide = if (side == null) "left" else side.toString()
-            Log.d("SIDE", menuSide)
 
             menuText = resources.getText(
                 typedArray.getResourceId(
@@ -170,10 +171,8 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
             typedArray.recycle()
         }
 
-        /**
-         * Here we utilize the ObjectAnimator to move the DrawerMenu outside of the screen before rendering.
-         * We then add an onClickListener to use ObjectAnimator to move the menu back and forth.
-         */
+        /* We utilize the ObjectAnimator to move the DrawerMenu outside of the screen before rendering.
+         * We then add an onClickListener to use ObjectAnimator to move the menu back and forth. */
 
         val offSet = if (menuSide == "left") VALUE_LEFT else VALUE_RIGHT
 

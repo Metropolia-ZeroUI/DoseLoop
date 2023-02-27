@@ -52,7 +52,7 @@ class DrawerExampleFragment : Fragment() {
         binding.backToHomeButton.setOnClickListener {
             it.findNavController().navigate(R.id.action_drawerExampleFragment_to_homeFragment)
         }
-        
+
         return view
     }
 
