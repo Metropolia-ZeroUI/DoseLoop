@@ -125,9 +125,7 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
 
         attrs?.let {
             val typedArray = context.obtainStyledAttributes(it, R.styleable.DrawerMenu)
-            val side = typedArray.getString(R.styleable.DrawerMenu_menuSide) ?: "left"
-            // Side can be null
-            menuSide = if (side == null) "left" else side.toString()
+            menuSide = typedArray.getString(R.styleable.DrawerMenu_menuSide) ?: "left"
 
             menuText = resources.getText(
                 typedArray.getResourceId(
