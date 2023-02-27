@@ -31,8 +31,8 @@ import com.example.doseloop.databinding.DrawerMenuBinding
  * DrawerExampleFragment has multiple examples on how to utilize the DrawerMenu component and also on how to add onClick functionality to the buttons.
  */
 
-const val VALUE_LEFT = -800F
-const val VALUE_RIGHT = 800F
+const val OFFSET_VALUE_LEFT = -800F
+const val OFFSET_VALUE_RIGHT = 800F
 const val ANIMATION_SPEED = 500L
 
 class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0, defStyleRes: Int = 0): LinearLayout (context, attrs, defStyle, defStyleRes) {
@@ -174,7 +174,7 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
         /* We utilize the ObjectAnimator to move the DrawerMenu outside of the screen before rendering.
          * We then add an onClickListener to use ObjectAnimator to move the menu back and forth. */
 
-        val offSet = if (menuSide == "left") VALUE_LEFT else VALUE_RIGHT
+        val offSet = if (menuSide == "left") OFFSET_VALUE_LEFT else OFFSET_VALUE_RIGHT
 
         ObjectAnimator.ofFloat(this, "translationX", offSet).apply {
             duration = 1
