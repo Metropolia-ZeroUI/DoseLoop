@@ -11,7 +11,7 @@ import com.example.doseloop.viewmodel.MessageFragmentViewModel
 /**
  * Example usage of AbstractFragment. Add ViewModel type to the diamond brackets, as displayed below.
  */
-class MessageFragment : AbstractFragment<MessageFragmentViewModel>() {
+class MessageFragment : AbstractFragment<MessageFragmentViewModel>(MessageFragmentViewModel()) {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -19,10 +19,6 @@ class MessageFragment : AbstractFragment<MessageFragmentViewModel>() {
         savedInstanceState: Bundle?
     ): View {
 
-        addViewModel(MessageFragmentViewModel())
-
         return inflater.inflate(R.layout.fragment_message, container, false)
-
     }
-
 }

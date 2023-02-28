@@ -1,25 +1,14 @@
 package com.example.doseloop.fragments
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.doseloop.viewmodel.AbstractViewModel
 
 /**
  * Fragment parent class. Common fragment functionality can be added here, if needed.
  * ViewModel type must be declared when inheriting this.
+ *
+ * How to access the ViewModel: viewModel.
  */
-abstract class AbstractFragment<T: AbstractViewModel?> : Fragment() {
+abstract class AbstractFragment<T: AbstractViewModel?>(protected val viewModel : T? = null) : Fragment() {
 
-    protected var viewModel : T? = null
-        private set
-
-    /**
-     * Use this to add a ViewModel of the declared type.
-     */
-    fun addViewModel(viewModel: T) {
-        this.viewModel = viewModel
-    }
 }
