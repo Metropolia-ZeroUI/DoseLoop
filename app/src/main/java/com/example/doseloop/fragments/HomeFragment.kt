@@ -1,5 +1,6 @@
 package com.example.doseloop.fragments
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,8 +20,11 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
         savedInstanceState: Bundle?
     ): View {
 
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        binding.navigateToDrawerExampleButton.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_drawerExampleFragment)
+        }
 
         return binding.root
     }
