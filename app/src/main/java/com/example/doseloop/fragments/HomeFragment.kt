@@ -1,10 +1,11 @@
 package com.example.doseloop.fragments
 
-import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import com.example.doseloop.R
 import com.example.doseloop.viewmodel.HomeFragmentViewModel
 import com.example.doseloop.databinding.FragmentHomeBinding
 
