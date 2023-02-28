@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DrawerMenu">
+        <attr name="menuCardColorRef" format="reference" />
+        <attr name="menuText" format="string" />
+        <attr name="menuTextColorRef" format="reference" />
+        <attr name="menuImageRef" format="reference" />
+        <attr name="menuImageColorRef" format="reference" />
+        <attr name="menuButtonRef" format="reference" />
+        <attr name="menuButtonColorRef" format="reference" />
+        <attr name="menuSide" format="string" />
+    </declare-styleable>
+</resources>
