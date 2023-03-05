@@ -31,14 +31,14 @@
             app:menuImageColorRef="@color/purple_500"
             app:menuTextColorRef="@color/white"
             app:menuSide="right"/>
-        <Button
-            android:id="@+id/back_to_home_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/search_drawer"
-            android:padding="30dp"
-            android:layout_centerHorizontal="true"
-            android:text="Back to home"/>
+<!--        <Button-->
+<!--            android:id="@+id/back_to_home_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/search_drawer"-->
+<!--            android:padding="30dp"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:text="Back to home"/>-->
 
     </RelativeLayout>
 </layout>

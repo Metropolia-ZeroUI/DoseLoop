@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Home"
+        android:icon="@drawable/ic_home"
+        android:id="@+id/homeFragment"/>
+
+    <item android:title="Example"
+        android:icon="@drawable/ic_menu"
+        android:id="@+id/drawerExampleFragment"/>
+
+    <item android:title="Voice control"
+        android:icon="@drawable/ic_mic" />
+    <!-- android:id="@+id/name_of_the_Fragment" -->
+</menu>

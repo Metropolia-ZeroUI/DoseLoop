@@ -20,13 +20,13 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
+        // Initialization of binding
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        binding.navigateToDrawerExampleButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_drawerExampleFragment)
-        }
-
+//        binding.navigateToDrawerExampleButton.setOnClickListener {
+//            it.findNavController().navigate(R.id.action_homeFragment_to_drawerExampleFragment)
+//        }
+       // Inflate the layout for this fragment
         return binding.root
     }
 

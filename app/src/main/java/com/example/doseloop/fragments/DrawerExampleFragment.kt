@@ -49,9 +49,9 @@ class DrawerExampleFragment : Fragment() {
             toast.show()
         }
 
-        binding.backToHomeButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_drawerExampleFragment_to_homeFragment)
-        }
+//        binding.backToHomeButton.setOnClickListener {
+//            it.findNavController().navigate(R.id.action_drawerExampleFragment_to_homeFragment)
+//        }
 
         return view
     }
