@@ -24,8 +24,6 @@ enum class AlarmMessage(override val code: Int, override var payload: String = "
     BUTTON_PRESS(121),
     FIRE_WATER_ALARM(122),
     MISSED_FOOD(123);
-
-    val DISABLE = ""
 }
 
 
@@ -39,7 +37,6 @@ enum class PhoneNumberMessage(override val code: Int, override var payload: Stri
 }
 
 
-
 class PhoneNumber(private val number: String) : Destination {
     private fun getFinnishPhone(): String {
         // TODO: DO SOME REAL STUFF
@@ -49,7 +46,6 @@ class PhoneNumber(private val number: String) : Destination {
     fun normalize(): String = getFinnishPhone()
     override fun getAddress(): String = normalize()
 }
-
 
 
 
