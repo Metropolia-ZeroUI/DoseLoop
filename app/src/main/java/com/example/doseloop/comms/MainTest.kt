@@ -14,8 +14,7 @@ fun main() {
     val phone1 = Message.PHONE_SET_1.withPayload(PhoneNumber("0204521350"))
     val phone2 = Message.PHONE_SET_2.withPayload(PhoneNumber("0504525780"))
 
-    val phoneAlarm = Message.ALARM_FOR_PHONES.withPayload(1).and(2).and(3)
-    val phoneAlarm2 = Message.ALARM_FOR_PHONES.withPayload(listOf(1, 2, 3)).and(4);
+    val phoneAlarm = Message.ALARM_FOR_PHONES.withPayload(listOf(1, 2, 3)).and(4).and(5);
 
     val meds1 = Message.TIME_FOR_MEDS_1
         .withPayload(TimeOfDay24(11, 30))

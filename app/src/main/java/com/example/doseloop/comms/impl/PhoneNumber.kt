@@ -9,4 +9,8 @@ class PhoneNumber(private val number: String) : Destination {
     }
     fun normalize(): String = getFinnishPhone()
     override fun getAddress(): String = normalize()
+
+    override fun toString(): String {
+        return normalize()
+    }
 }
