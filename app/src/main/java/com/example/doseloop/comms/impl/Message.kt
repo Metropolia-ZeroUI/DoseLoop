@@ -152,26 +152,17 @@ enum class Message(private val code: Int, private var payload: String = "")  {
     ADMIN_BATTERY_LIFE(36);
 
     /**
-     * Set multiple strings as a payload for this message.
-     * Strings are separated by comma.
+     * Sets multiple objects as a payload for this message.
+     * Objects' String representations are separated by comma.
      *
      * @param payloads Iterable<String>
      * @return this object
      */
-    fun withPayload(payloads: Iterable<String>): Message {
-        payloads.forEach { this.withPayload(it) }
-        return this;
-    }
-
-    /**
-     * Set multiple integer as a payload for this message.
-     * Integers are separated by comma.
-     *
-     * @param payloads Iterable<Int>
-     * @return this object.
-     */
-    fun withPayload(payloads: Iterable<Int>): Message {
-        payloads.forEach { this.withPayload(it) }
+    fun withPayload(payloads: Iterable<Any>): Message {
+        payloads.forEach {
+            if (this.payload.isEmpty()) this.withPayload(it)
+            else this.and(it)
+        }
         return this;
     }
 
@@ -181,62 +172,21 @@ enum class Message(private val code: Int, private var payload: String = "")  {
      * @param payload Int
      * @return this object
      */
-    fun withPayload(payload: Int): Message {
-        this.payload = "$payload"
+    fun withPayload(payload: Any): Message {
+        this.payload += "$payload"
         return this
     }
 
     /**
-     * Set a string as a payload for this message.
-     *
-     * @param payload String
-     * @return this object.
-     */
-    fun withPayload(payload: String): Message {
-        this.payload = payload
-        return this
-    }
-
-    /**
-     * Set time of day as a payload for this message.
-     *
-     * @param time TimeOfDay24
-     * @return this object
-     */
-    fun withPayload(time: TimeOfDay24): Message {
-        this.payload += time
-        return this
-    }
-
-    /**
-     * Set phone number as a payload for this message.
-     *
-     * @param phone PhoneNumber
-     * @return this object
-     */
-    fun withPayload(phone: PhoneNumber) : Message {
-        this.payload = phone.normalize()
-        return this
-    }
-
-    /**
-     * Append String to message payload, separated by comma.
+     * Append Object to message payload, separated by comma.
      *
      * @param payload Value
      * @return this object
      */
-    fun and(payload: String): Message {
-        this.payload = "${this.payload},$payload"
-        return this
-    }
-
-    /**
-     * Append integer to message payload, separated by comma.
-     *
-     * @param payload Value
-     * @return this object
-     */
-    fun and(payload: Int): Message {
+    fun and(payload: Any): Message {
+        if (this.payload.isEmpty()) {
+            throw IllegalStateException("Empty base payload.")
+        }
         this.payload = "${this.payload},$payload"
         return this
     }
