@@ -1,20 +1,22 @@
 package com.example.doseloop.components
 
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.Log
+import android.view.GestureDetector
+import android.view.GestureDetector.OnGestureListener
 import android.view.LayoutInflater
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.view.MotionEvent
+import android.view.View.OnTouchListener
+import android.widget.*
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.cardview.widget.CardView
 import com.example.doseloop.R
 import com.example.doseloop.databinding.DrawerMenuBinding
+import kotlin.math.abs
 
 /**
  * Custom component for the DrawerMenu. Has the following attributes:
@@ -34,7 +36,9 @@ import com.example.doseloop.databinding.DrawerMenuBinding
 const val OFFSET_DIVIDER = 4
 const val ANIMATION_SPEED = 500L
 
-class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0, defStyleRes: Int = 0): LinearLayout (context, attrs, defStyle, defStyleRes) {
+@SuppressLint("ClickableViewAccessibility")
+class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0, defStyleRes: Int = 0):
+    LinearLayout (context, attrs, defStyle, defStyleRes), OnGestureListener {
 
     private var _binding: DrawerMenuBinding? = null
     val binding get() = _binding!!
@@ -47,10 +51,14 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
     private var menuLayoutHidden: RelativeLayout
     private var menuLayoutVisible: RelativeLayout
 
+    private val gestureDetector: GestureDetector = GestureDetector(this)
+
     var visible = false
 
     private val screenWidth = context.resources.displayMetrics.widthPixels
     private val offset = screenWidth - (screenWidth / OFFSET_DIVIDER)
+    private var chosenOffSet : Float = 0f
+    private var curPos = 0f
 
     private val leftOffset = -offset.toFloat()
     private val rightOffset = offset.toFloat()
@@ -128,6 +136,9 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
         menuLayoutVisible = findViewById(R.id.drawer_menu_visible)
         menuLayoutHidden = findViewById(R.id.drawer_menu_hidden)
 
+        val gestureListener = OnTouchListener { _, event -> gestureDetector.onTouchEvent(event) }
+        this.setOnTouchListener(gestureListener)
+
         attrs?.let {
             val typedArray = context.obtainStyledAttributes(it, R.styleable.DrawerMenu)
             menuSide = typedArray.getString(R.styleable.DrawerMenu_menuSide) ?: "left"
@@ -177,26 +188,93 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
         /* We utilize the ObjectAnimator to move the DrawerMenu outside of the screen before rendering.
          * We then add an onClickListener to use ObjectAnimator to move the menu back and forth. */
 
-        val offSet = if (menuSide == "left") leftOffset else rightOffset
+        chosenOffSet = if (menuSide == "left") leftOffset else rightOffset
+        curPos = chosenOffSet
 
-        ObjectAnimator.ofFloat(this, "translationX", offSet).apply {
+        ObjectAnimator.ofFloat(this, "translationX", chosenOffSet).apply {
             duration = 1
             start()
         }
 
-        this.setOnClickListener {
+        menuLayoutVisible.setOnClickListener {
             if (visible) {
-                ObjectAnimator.ofFloat(it, "translationX", offSet).apply {
+                ObjectAnimator.ofFloat(this, "translationX", chosenOffSet).apply {
                     duration = ANIMATION_SPEED
                     start()
                 }
             } else {
-                ObjectAnimator.ofFloat(it, "translationX", 0F).apply {
+                ObjectAnimator.ofFloat(this, "translationX", 0F).apply {
                     duration = ANIMATION_SPEED
                     start()
                 }
             }
             visible = !visible
+        }
+    }
+
+    override fun onDown(p0: MotionEvent?): Boolean {
+        Log.d("gesture", "onDown")
+        return true
+    }
+
+    override fun onShowPress(p0: MotionEvent?) {
+        Log.d("gesture", "onShowPress")
+    }
+
+    override fun onSingleTapUp(p0: MotionEvent?): Boolean {
+        Log.d("gesture", "onSingleTapUp")
+        return true
+    }
+
+    override fun onScroll(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean {
+        Log.d("gesture", "onScroll, ${p0?.x}, ${p1?.x}")
+
+        val target = curPos.minus(p0?.x?.minus(p1?.x ?: 0f) ?: 0f)
+        val drawRange = if (menuSide == "left") chosenOffSet..0f
+        else 0f..chosenOffSet
+
+        if (target in drawRange) {
+            ObjectAnimator.ofFloat(this, "translationX", target).apply {
+                duration = 0
+                start()
+                curPos = target
+            }
+        }
+        return true
+    }
+
+    override fun onLongPress(p0: MotionEvent?) {
+        Log.d("gesture", "onLongPress")
+    }
+
+    override fun onFling(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean {
+        Log.d("gesture", "onFling")
+
+        val diff = abs(p0?.x?.minus(p1?.x ?: 0f) ?: 0f)
+        val tolerance = screenWidth / 3
+
+        if (diff > tolerance) {
+            if (menuSide == "left") {
+                move(chosenOffSet)
+            } else {
+                move(0f)
+            }
+        } else {
+            if (menuSide == "left") {
+                move(0f)
+            } else {
+                move(chosenOffSet)
+            }
+        }
+
+        return true
+    }
+
+    private fun move(target: Float = 0f, duration: Long = 0L) {
+        ObjectAnimator.ofFloat(this, "translationX", target).apply {
+            this.duration = duration
+            start()
+            curPos = target
         }
     }
 }
