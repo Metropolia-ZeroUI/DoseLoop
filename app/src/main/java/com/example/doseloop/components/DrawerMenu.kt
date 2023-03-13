@@ -213,16 +213,10 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
     }
 
     override fun onDown(p0: MotionEvent?): Boolean {
-        Log.d("gesture", "onDown")
         return true
     }
-
-    override fun onShowPress(p0: MotionEvent?) {
-        Log.d("gesture", "onShowPress")
-    }
-
+    override fun onShowPress(p0: MotionEvent?) {}
     override fun onSingleTapUp(p0: MotionEvent?): Boolean {
-        Log.d("gesture", "onSingleTapUp")
         return true
     }
 
@@ -243,34 +237,32 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
         return true
     }
 
-    override fun onLongPress(p0: MotionEvent?) {
-        Log.d("gesture", "onLongPress")
-    }
+    override fun onLongPress(p0: MotionEvent?) {}
 
     override fun onFling(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean {
         Log.d("gesture", "onFling")
 
         val diff = abs(p0?.x?.minus(p1?.x ?: 0f) ?: 0f)
-        val tolerance = screenWidth / 3
+        var tolerance = screenWidth / 3
 
         if (diff > tolerance) {
             if (menuSide == "left") {
-                move(chosenOffSet)
+                moveDrawer(chosenOffSet)
             } else {
-                move(0f)
+                moveDrawer(0f)
             }
         } else {
             if (menuSide == "left") {
-                move(0f)
+                moveDrawer(0f)
             } else {
-                move(chosenOffSet)
+                moveDrawer(chosenOffSet)
             }
         }
 
         return true
     }
 
-    private fun move(target: Float = 0f, duration: Long = 0L) {
+    private fun moveDrawer(target: Float = 0f, duration: Long = 0L) {
         ObjectAnimator.ofFloat(this, "translationX", target).apply {
             this.duration = duration
             start()
