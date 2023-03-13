@@ -24,12 +24,11 @@ class InitialFragment : AbstractFragment<InitialFragmentViewModel>(InitialFragme
 
     private var _binding: FragmentInitialBinding? = null
     private val binding get() = _binding!!
-    private val pref = SharedPreferencesRepository.instance
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (pref.getFromPrefs(INITIAL_LAUNCH, false)) {
+        if (viewModel?.getFromPrefs(INITIAL_LAUNCH, false) == true) {
             this.findNavController().navigate(R.id.action_initialFragment_to_homeFragment)
         }
     }
@@ -41,8 +40,8 @@ class InitialFragment : AbstractFragment<InitialFragmentViewModel>(InitialFragme
 
         binding.initialSubmitButton.setOnClickListener {
             val phoneNumber = binding.editTextPhone.text.toString()
-            pref.saveToPrefs(DEVICE_PHONE_NUMBER, phoneNumber)
-            pref.saveToPrefs(INITIAL_LAUNCH, true)
+            viewModel?.saveToPrefs(DEVICE_PHONE_NUMBER, phoneNumber)
+            viewModel?.saveToPrefs(INITIAL_LAUNCH, true)
             it.findNavController().navigate(R.id.action_initialFragment_to_homeFragment)
         }
 
