@@ -11,12 +11,12 @@ import android.view.GestureDetector.OnGestureListener
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View.OnTouchListener
+import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.cardview.widget.CardView
 import com.example.doseloop.R
 import com.example.doseloop.databinding.DrawerMenuBinding
-import kotlin.math.abs
 
 /**
  * Custom component for the DrawerMenu. Has the following attributes:
@@ -50,6 +50,7 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
 
     private var menuLayoutHidden: RelativeLayout
     private var menuLayoutVisible: RelativeLayout
+    private var scrolling = false
 
     private val gestureDetector: GestureDetector = GestureDetector(this)
 
@@ -84,6 +85,7 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
             field = value
             menuCardView.setCardBackgroundColor(value)
         }
+
 
     private var menuText: String = ""
         set(value) {
@@ -136,7 +138,16 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
         menuLayoutVisible = findViewById(R.id.drawer_menu_visible)
         menuLayoutHidden = findViewById(R.id.drawer_menu_hidden)
 
-        val gestureListener = OnTouchListener { _, event -> gestureDetector.onTouchEvent(event) }
+        val gestureListener = OnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_UP) {
+                if (scrolling) {
+                    Log.d("gesture", "scrolling ended")
+                    handleScrollEnded()
+                    scrolling = false
+                }
+            }
+            gestureDetector.onTouchEvent(event)
+        }
         this.setOnTouchListener(gestureListener)
 
         attrs?.let {
@@ -190,79 +201,68 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
 
         chosenOffSet = if (menuSide == "left") leftOffset else rightOffset
         curPos = chosenOffSet
-
-        ObjectAnimator.ofFloat(this, "translationX", chosenOffSet).apply {
-            duration = 1
-            start()
-        }
+        moveDrawer(chosenOffSet)
 
         menuLayoutVisible.setOnClickListener {
             if (visible) {
-                ObjectAnimator.ofFloat(this, "translationX", chosenOffSet).apply {
-                    duration = ANIMATION_SPEED
-                    start()
-                }
+                moveDrawer(chosenOffSet, ANIMATION_SPEED)
             } else {
-                ObjectAnimator.ofFloat(this, "translationX", 0F).apply {
-                    duration = ANIMATION_SPEED
-                    start()
-                }
+                moveDrawer(0f, ANIMATION_SPEED)
             }
             visible = !visible
         }
     }
 
+    override fun onShowPress(p0: MotionEvent?) {}
+    override fun onLongPress(p0: MotionEvent?) {}
+    override fun onSingleTapUp(p0: MotionEvent?): Boolean {
+        return true
+    }
     override fun onDown(p0: MotionEvent?): Boolean {
         return true
     }
-    override fun onShowPress(p0: MotionEvent?) {}
-    override fun onSingleTapUp(p0: MotionEvent?): Boolean {
+    override fun onFling(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean {
         return true
     }
 
     override fun onScroll(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean {
-        Log.d("gesture", "onScroll, ${p0?.x}, ${p1?.x}")
+        scrolling = true
 
         val target = curPos.minus(p0?.x?.minus(p1?.x ?: 0f) ?: 0f)
         val drawRange = if (menuSide == "left") chosenOffSet..0f
         else 0f..chosenOffSet
 
         if (target in drawRange) {
-            ObjectAnimator.ofFloat(this, "translationX", target).apply {
-                duration = 0
-                start()
-                curPos = target
-            }
+            moveDrawer(target)
         }
         return true
     }
 
-    override fun onLongPress(p0: MotionEvent?) {}
+    private fun handleScrollEnded() {
 
-    override fun onFling(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean {
-        Log.d("gesture", "onFling")
+        val visibleTolerance = screenWidth / 5
+        val hiddenTolerance = screenWidth / 1.5
 
-        val diff = abs(p0?.x?.minus(p1?.x ?: 0f) ?: 0f)
-        var tolerance = screenWidth / 3
-
-        if (diff > tolerance) {
-            if (menuSide == "left") {
-                moveDrawer(chosenOffSet)
+        if (visible) {
+            visible = if ((curPos < -visibleTolerance && menuSide == "left") || (curPos > visibleTolerance && menuSide == "right")) {
+                moveDrawer(chosenOffSet, ANIMATION_SPEED)
+                false
             } else {
-                moveDrawer(0f)
+                moveDrawer(0f, ANIMATION_SPEED)
+                true
             }
         } else {
-            if (menuSide == "left") {
-                moveDrawer(0f)
+            visible = if ((curPos > -hiddenTolerance && menuSide == "left") || (curPos < hiddenTolerance && menuSide == "right")) {
+                moveDrawer(0f, ANIMATION_SPEED)
+                true
             } else {
-                moveDrawer(chosenOffSet)
+                moveDrawer(chosenOffSet, ANIMATION_SPEED)
+                false
             }
         }
-
-        return true
     }
 
-    private fun moveDrawer(target: Float = 0f, duration: Long = 0L) {
+    private fun moveDrawer(target: Float = 0f, duration: Long = 0) {
         ObjectAnimator.ofFloat(this, "translationX", target).apply {
             this.duration = duration
             start()
