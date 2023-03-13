@@ -7,7 +7,7 @@ class PhoneNumber(private val number: String) : Destination {
         // TODO: DO SOME REAL STUFF
         return "+358${number.substring(1, number.length)}"
     }
-    fun normalize(): String = getFinnishPhone()
+    private fun normalize(): String = getFinnishPhone()
     override fun getAddress(): String = normalize()
 
     override fun toString(): String {
