@@ -10,6 +10,7 @@
         <com.example.doseloop.components.DrawerMenu
             android:id="@+id/status_drawer"
             android:layout_width="wrap_content"
+            app:cardStyle="2"
             android:layout_height="wrap_content" />
         <com.example.doseloop.components.DrawerMenu
             android:id="@+id/reminder_drawer"
@@ -17,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/status_drawer"
             app:menuButtonRef="@drawable/ic_send"
-            app:menuCardColorRef="@color/teal_200"
+            app:cardStyle="0"
             app:menuText="@string/donec"
             app:menuImageRef="@drawable/ic_alarm"/>
         <com.example.doseloop.components.DrawerMenu
@@ -26,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/reminder_drawer"
             app:menuImageRef="@drawable/ic_search"
-            app:menuCardColorRef="@color/purple_700"
+            app:cardStyle="1"
             app:menuButtonColorRef="@color/purple_500"
             app:menuImageColorRef="@color/purple_500"
             app:menuTextColorRef="@color/white"

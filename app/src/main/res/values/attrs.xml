@@ -9,5 +9,6 @@
         <attr name="menuButtonRef" format="reference" />
         <attr name="menuButtonColorRef" format="reference" />
         <attr name="menuSide" format="string" />
+        <attr name="cardStyle" format="string" />
     </declare-styleable>
 </resources>

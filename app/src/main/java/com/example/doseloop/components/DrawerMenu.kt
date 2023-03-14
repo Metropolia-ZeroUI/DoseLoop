@@ -3,6 +3,7 @@ package com.example.doseloop.components
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.Log
@@ -11,12 +12,14 @@ import android.view.GestureDetector.OnGestureListener
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View.OnTouchListener
-import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.cardview.widget.CardView
+import androidx.core.view.updatePadding
+import com.example.doseloop.DoseLoopApplication
 import com.example.doseloop.R
 import com.example.doseloop.databinding.DrawerMenuBinding
+
 
 /**
  * Custom component for the DrawerMenu. Has the following attributes:
@@ -29,14 +32,16 @@ import com.example.doseloop.databinding.DrawerMenuBinding
  *      menuButtonRef: Sets the image source of the ImageButton on the drawer menu. Expects a drawable reference, e.g. "@drawable/ic_send"
  *      menuButtonColorRef: Sets the color of the ImageButton on the drawer menu. Expects a color reference, e.g. "@color/white"
  *      menuSide: Sets the screen side of the drawer. Expects a string of either "left" or "right". Defaults to "left".
+ *      cardStyle: Sets the style of the card, i.e. color and position of the left or right corner radius
  *
  * DrawerExampleFragment has multiple examples on how to utilize the DrawerMenu component and also on how to add onClick functionality to the buttons.
  */
 
 const val OFFSET_DIVIDER = 4
 const val ANIMATION_SPEED = 500L
+const val DRAWER_AMOUNT = 3
 
-@SuppressLint("ClickableViewAccessibility")
+@SuppressLint("ClickableViewAccessibility", "ResourceType", "InternalInsetResource")
 class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0, defStyleRes: Int = 0):
     LinearLayout (context, attrs, defStyle, defStyleRes), OnGestureListener {
 
@@ -57,9 +62,11 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
     var visible = false
 
     private val screenWidth = context.resources.displayMetrics.widthPixels
+    private val screenHeight = context.resources.displayMetrics.heightPixels
     private val offset = screenWidth - (screenWidth / OFFSET_DIVIDER)
     private var chosenOffSet : Float = 0f
     private var curPos = 0f
+    private var bottomNavHeight = 0
 
     private val leftOffset = -offset.toFloat()
     private val rightOffset = offset.toFloat()
@@ -79,6 +86,7 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
                 menuLayoutVisible.layoutParams = lp
             }
         }
+
 
     private var menuCardColor: Int = R.color.light_green
         set(value) {
@@ -127,6 +135,8 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
             menuButtonView.setColorFilter(value)
         }
 
+    private var cardStyle: String = "0"
+
     init {
         _binding = DrawerMenuBinding.inflate(LayoutInflater.from(context),this, true)
 
@@ -151,8 +161,10 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
         this.setOnTouchListener(gestureListener)
 
         attrs?.let {
+
             val typedArray = context.obtainStyledAttributes(it, R.styleable.DrawerMenu)
             menuSide = typedArray.getString(R.styleable.DrawerMenu_menuSide) ?: "left"
+            cardStyle = typedArray.getString(R.styleable.DrawerMenu_cardStyle) ?: "0"
 
             menuText = resources.getText(
                 typedArray.getResourceId(
@@ -166,12 +178,23 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
                     R.color.black
                 )
             )
+
             menuCardColor = resources.getColor(
                 typedArray.getResourceId(
                     R.styleable.DrawerMenu_menuCardColorRef,
                     R.color.light_green
                 )
             )
+
+            val resourceId: Int =
+                DoseLoopApplication.instance.resources.getIdentifier("navigation_bar_height", "dimen", "android")
+            bottomNavHeight = resources.getDimension(resourceId).toInt()
+
+            this.updatePadding(right = if (menuSide == "left") 50 else 0, left = if (menuSide == "left") 0 else 50)
+            menuCardView.setBackgroundResource(if (menuSide == "left") R.drawable.left_card else R.drawable.right_card)
+            menuCardView.background.level = cardStyle.toInt()
+            menuCardView.layoutParams.height = ((screenHeight - bottomNavHeight) / DRAWER_AMOUNT) - bottomNavHeight / 2
+
             val imageRes = typedArray.getResourceId(R.styleable.DrawerMenu_menuImageRef, -1)
             if (imageRes != -1) {
                 menuImage = AppCompatResources.getDrawable(context, imageRes)

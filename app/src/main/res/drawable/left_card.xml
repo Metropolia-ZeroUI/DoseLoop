@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--    Different variants of the left drawer menu cards    -->
+    <!--    example: app:cardStyle="0"    -->
+    <item android:maxLevel="0">
+        <shape>
+            <corners android:bottomRightRadius="40dp" android:topRightRadius="40dp"/>
+            <solid android:color="@color/teal_200"></solid>
+        </shape>
+    </item>
+
+    <item android:maxLevel="1">
+        <shape>
+            <corners android:bottomRightRadius="40dp" android:topRightRadius="40dp"/>
+            <solid android:color="@color/purple_700"></solid>
+        </shape>
+    </item>
+
+    <item android:maxLevel="2">
+        <shape>
+            <corners android:bottomRightRadius="40dp" android:topRightRadius="40dp"/>
+            <solid android:color="@color/light_green"></solid>
+        </shape>
+    </item>
+</level-list>
