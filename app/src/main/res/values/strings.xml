@@ -6,4 +6,5 @@
     <string name="donec">Donec interdum faucibus mi, eu eleifend tellus. Donec et dui pharetra, laoreet massa a, bibendum ex. Vivamus vehicula justo ac egestas maximus.</string>
     <string name="enter_phone">Lisää laitteen puhelinnumero:</string>
     <string name="submit_button">Jatka</string>
+    <string name="zero">0</string>
 </resources>
