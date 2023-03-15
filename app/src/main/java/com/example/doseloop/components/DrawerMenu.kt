@@ -3,7 +3,6 @@ package com.example.doseloop.components
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.Log
@@ -149,13 +148,7 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
         menuLayoutHidden = findViewById(R.id.drawer_menu_hidden)
 
         val gestureListener = OnTouchListener { _, event ->
-            if (event.action == MotionEvent.ACTION_UP) {
-                if (scrolling) {
-                    Log.d("gesture", "scrolling ended")
-                    handleScrollEnded()
-                    scrolling = false
-                }
-            }
+            if (event.action == MotionEvent.ACTION_UP && scrolling) handleScrollEnded()
             gestureDetector.onTouchEvent(event)
         }
         this.setOnTouchListener(gestureListener)
@@ -226,14 +219,16 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
         curPos = chosenOffSet
         moveDrawer(chosenOffSet)
 
-        menuLayoutVisible.setOnClickListener {
-            if (visible) {
-                moveDrawer(chosenOffSet, ANIMATION_SPEED)
-            } else {
-                moveDrawer(0f, ANIMATION_SPEED)
+        val iconGestureListener = OnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_UP) {
+                moveDrawer(if (visible) chosenOffSet else 0f, ANIMATION_SPEED)
+                visible = !visible
+                if (scrolling) handleScrollEnded()
             }
-            visible = !visible
+            gestureDetector.onTouchEvent(event)
         }
+        menuLayoutVisible.setOnTouchListener(iconGestureListener)
+
     }
 
     override fun onShowPress(p0: MotionEvent?) {}
@@ -283,6 +278,7 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
                 false
             }
         }
+        scrolling = false
     }
 
     private fun moveDrawer(target: Float = 0f, duration: Long = 0) {
