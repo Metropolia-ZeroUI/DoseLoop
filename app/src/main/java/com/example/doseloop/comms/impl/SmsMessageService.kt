@@ -11,7 +11,9 @@ import androidx.core.content.ContextCompat
 import com.example.doseloop.comms.Destination
 import com.example.doseloop.comms.MessageService
 
-class GsmMessageService(private val destination: Destination, private val smsManager: SmsManager): MessageService {
+class SmsMessageService(private val destination: Destination,
+                        context: Context): MessageService {
+    private val smsManager = context.getSystemService(SmsManager::class.java)
 
     override fun sendMessage(msg: Message, onSuccess: (() -> Unit)?) {
             Log.d(this::class.simpleName, "sendMessage: [$msg] -- ${msg.encode()}")
@@ -23,6 +25,7 @@ class GsmMessageService(private val destination: Destination, private val smsMan
     companion object {
         fun checkPermissions(activity: Activity) {
             if (ContextCompat.checkSelfPermission(activity, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                // TODO: something
             } else {
                 ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.SEND_SMS), 100);
             }
