@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.doseloop.comms.impl.SmsMessageService
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
@@ -19,5 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_nav)
         setupWithNavController(bottomNavigation,navController)
+        
+        SmsMessageService.checkPermissions(this);
     }
 }
