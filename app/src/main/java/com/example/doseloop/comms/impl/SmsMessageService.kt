@@ -13,7 +13,7 @@ import com.example.doseloop.comms.MessageService
 
 class SmsMessageService(private val destination: Destination,
                         context: Context): MessageService {
-    private val smsManager = context.getSystemService(SmsManager::class.java)
+    private val smsManager = SmsManager.getDefault()
 
     override fun sendMessage(msg: Message, onSuccess: (() -> Unit)?) {
             Log.d(this::class.simpleName, "sendMessage: [$msg] -- ${msg.encode()}")
