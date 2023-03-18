@@ -7,4 +7,10 @@
     <string name="enter_phone">Lisää laitteen puhelinnumero:</string>
     <string name="submit_button">Jatka</string>
     <string name="zero">0</string>
+    <string name="set_numbers">Aseta puhelinnumerot jotka saavat hälytyksiä</string>
+    <string name="change">Vaihda</string>
+    <string name="error_country_code">Syötä numero ilman maatunnusta! (esim. 040...)</string>
+    <string name="error_too_long_number">Numero on liian pitkä! (max. 10 merkkiä)</string>
+    <string name="error_invalid_first_number">Varmista että ensimmäinen merkki on 0!</string>
+    <string name="error_not_digit">Syötä pelkkiä numeroita!</string>
 </resources>

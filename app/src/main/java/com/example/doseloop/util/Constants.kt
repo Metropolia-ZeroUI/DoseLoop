@@ -1,0 +1,9 @@
+package com.example.doseloop.util
+
+const val INITIAL_LAUNCH = "INITIAL_LAUNCH"
+const val DEVICE_PHONE_NUMBER = "DEVICE_PHONE_NUMBER"
+const val PHONE_NUMBER_1 = "PHONE_NUMBER_1"
+const val PHONE_NUMBER_2 = "PHONE_NUMBER_2"
+const val PHONE_NUMBER_3 = "PHONE_NUMBER_3"
+const val PHONE_NUMBER_4 = "PHONE_NUMBER_4"
+const val PHONE_NUMBER_5 = "PHONE_NUMBER_5"
