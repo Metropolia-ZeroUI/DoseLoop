@@ -42,7 +42,7 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
 
         val screenWidth = requireContext().resources.displayMetrics.widthPixels
 
-        // Programmatically lengthening the TextInputEditText's as their length can't properly be se in the layout xml
+        // Programmatically lengthening the TextInputEditText's as their length can't properly be set in the layout xml
         binding.number1EditText.width = screenWidth / 2
         binding.number2EditText.width = screenWidth / 2
         binding.number3EditText.width = screenWidth / 2
