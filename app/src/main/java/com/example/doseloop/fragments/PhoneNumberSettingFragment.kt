@@ -64,11 +64,11 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
         binding.number5EditText.setText(PhoneNumberSettingViewModel().getFromPrefs(PHONE_NUMBER_5, ""))
 
         // Set submit button listeners for each field
-        addSubmitButtonListener(binding.number1SubmitButton, binding.number1EditText, PHONE_NUMBER_1)
-        addSubmitButtonListener(binding.number2SubmitButton, binding.number2EditText, PHONE_NUMBER_2)
-        addSubmitButtonListener(binding.number3SubmitButton, binding.number3EditText, PHONE_NUMBER_3)
-        addSubmitButtonListener(binding.number4SubmitButton, binding.number4EditText, PHONE_NUMBER_4)
-        addSubmitButtonListener(binding.number5SubmitButton, binding.number5EditText, PHONE_NUMBER_5)
+        addSubmitButtonListener(binding.number1SubmitButton, binding.number1EditText, Message.PHONE_SET_1, PHONE_NUMBER_1)
+        addSubmitButtonListener(binding.number2SubmitButton, binding.number2EditText, Message.PHONE_SET_2, PHONE_NUMBER_2)
+        addSubmitButtonListener(binding.number3SubmitButton, binding.number3EditText, Message.PHONE_SET_3, PHONE_NUMBER_3)
+        addSubmitButtonListener(binding.number4SubmitButton, binding.number4EditText, Message.PHONE_SET_4, PHONE_NUMBER_4)
+        addSubmitButtonListener(binding.number5SubmitButton, binding.number5EditText, Message.PHONE_SET_5, PHONE_NUMBER_5)
 
         binding.phoneNumberBackButton.setOnClickListener {
             this.findNavController().navigate(R.id.action_phoneNumberSettingFragment_to_homeFragment)
@@ -88,13 +88,13 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
         })
     }
 
-    private fun addSubmitButtonListener(submitButton: Button, editText: EditText, numberKey: String) {
+    private fun addSubmitButtonListener(submitButton: Button, editText: EditText, phoneSet: Message, numberKey: String) {
         val deviceNumber = PhoneNumberSettingViewModel().getFromPrefs(DEVICE_PHONE_NUMBER, "")
         val msgService = SmsMessageService(PhoneNumber(deviceNumber!!), requireContext())
 
         submitButton.setOnClickListener {
             val number = editText.text.toString()
-            val msg = Message.PHONE_SET_1.withPayload(PhoneNumber(number))
+            val msg = phoneSet.withPayload(PhoneNumber(number))
             msgService.sendMessage(msg) {
                 Log.d("MESSAGE_SEND", "Message OK")
                 PhoneNumberSettingViewModel().saveToPrefs(numberKey, number)
