@@ -9,18 +9,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.example.doseloop.comms.impl.SmsMessageService
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var navController: NavController
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        navController = navHostFragment.navController
-
-        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_nav)
-        setupWithNavController(bottomNavigation,navController)
-        
         SmsMessageService.checkPermissions(this);
     }
 }
