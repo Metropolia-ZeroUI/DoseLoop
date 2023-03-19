@@ -4,7 +4,6 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
@@ -17,9 +16,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.example.doseloop.comms.impl.SmsMessageService
 import java.util.*
 
@@ -33,12 +29,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        navController = navHostFragment.navController
-
-        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_nav)
-        setupWithNavController(bottomNavigation,navController)
-        
         SmsMessageService.checkPermissions(this);
 
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
@@ -55,11 +45,9 @@ class MainActivity : AppCompatActivity() {
 
         speechRecognizer!!.setRecognitionListener(object : RecognitionListener{
             override fun onReadyForSpeech(p0: Bundle?) {
-                Log.i(TAG,"onreadyforspeech")
             }
 
             override fun onBeginningOfSpeech() {
-                Log.i(TAG,"onbeginningofspeech")
                 editText!!.setText("")
                 editText!!.setHint("Listening")
             }
@@ -71,11 +59,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onEndOfSpeech() {
-                Log.i(TAG,"onendofspeech")
             }
 
             override fun onError(p0: Int) {
-                Log.i(TAG, "onerror$p0")
             }
 
             override fun onResults(bundle: Bundle?) {
@@ -88,7 +74,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onEvent(p0: Int, p1: Bundle?) {
-                Log.i(TAG,"onevent")
             }
         })
 

@@ -2,6 +2,7 @@ package com.example.doseloop.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.doseloop.repository.SharedPreferencesRepository
+import com.example.doseloop.util.DEVICE_PHONE_NUMBER
 
 /**
  * Add common view model logic here, i.e. commonly used repositories, sharedprefs, etc.

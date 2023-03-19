@@ -11,18 +11,8 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_drawerExampleFragment"
-            app:destination="@id/drawerExampleFragment"
-            app:enterAnim="@android:anim/fade_in" />
-    </fragment>
-    <fragment
-        android:id="@+id/drawerExampleFragment"
-        android:name="com.example.doseloop.fragments.DrawerExampleFragment"
-        android:label="fragment_drawer_example"
-        tools:layout="@layout/fragment_drawer_example">
-        <action
-            android:id="@+id/action_drawerExampleFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_homeFragment_to_phoneNumberSettingFragment"
+            app:destination="@id/phoneNumberSettingFragment" />
     </fragment>
     <fragment
         android:id="@+id/initialFragment"
@@ -31,6 +21,15 @@
         tools:layout="@layout/fragment_initial">
         <action
             android:id="@+id/action_initialFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/phoneNumberSettingFragment"
+        android:name="com.example.doseloop.fragments.PhoneNumberSettingFragment"
+        android:label="fragment_phone_number_setting"
+        tools:layout="@layout/fragment_phone_number_setting" >
+        <action
+            android:id="@+id/action_phoneNumberSettingFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>
