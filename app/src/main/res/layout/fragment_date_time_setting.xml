@@ -355,7 +355,7 @@
                     android:layout_alignParentLeft="true"
                     android:padding="5dp"
                     android:textSize="16dp"
-                    android:text="4."/>
+                    android:text="5."/>
 
                 <!-- Input to add time in 24 hours format -->
                 <EditText
@@ -434,7 +434,7 @@
                     android:layout_alignParentLeft="true"
                     android:padding="5dp"
                     android:textSize="16dp"
-                    android:text="4."/>
+                    android:text="6."/>
 
                 <!-- Input to add time in 24 hours format -->
                 <EditText
