@@ -12,8 +12,11 @@
         <com.example.doseloop.components.DrawerMenu
             android:id="@+id/status_drawer"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:menuButtonRef="@drawable/ic_edit"
             app:cardStyle="2"
-            android:layout_height="wrap_content" />
+            app:menuText="@string/set_date_and_time"
+            app:menuImageRef="@drawable/ic_add"/>
         <com.example.doseloop.components.DrawerMenu
             android:id="@+id/reminder_drawer"
             android:layout_width="wrap_content"

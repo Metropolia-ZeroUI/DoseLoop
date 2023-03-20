@@ -13,4 +13,12 @@
     <string name="error_too_long_number">Numero on liian pitkä! (max. 10 merkkiä)</string>
     <string name="error_invalid_first_number">Varmista että ensimmäinen merkki on 0!</string>
     <string name="error_not_digit">Syötä pelkkiä numeroita!</string>
+
+    <!-- Strings for Date and Time Fragment -->
+    <string name="set_date_and_time">Syötä tai muuttaa lääkkeenoton kellonaika ja päivä</string>
+    <string name="set_day">Lääkkeiden otto joko joka päivä "On" tai joka toinen päivä "Off"</string>
+    <string name="sent_button">Lähetä</string>
+    <string name="delete_button">Poista</string>
+    <string name="set_time">00:00</string>
+    <string name="set_right_time">Syötä kellonaika muodossa 00:00</string>
 </resources>

@@ -32,8 +32,7 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
 
         val statusDrawer = binding.statusDrawer.binding
         statusDrawer.drawerMenuButton.setOnClickListener {
-            val toast = Toast.makeText(context, "This is an example!", Toast.LENGTH_SHORT)
-            toast.show()
+            this.findNavController().navigate(R.id.action_homeFragment_to_dateTimeSettingFragment)
         }
 
         val reminderDrawer = binding.reminderDrawer.binding
