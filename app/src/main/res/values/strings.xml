@@ -13,4 +13,8 @@
     <string name="error_too_long_number">Numero on liian pitkä! (max. 10 merkkiä)</string>
     <string name="error_invalid_first_number">Varmista että ensimmäinen merkki on 0!</string>
     <string name="error_not_digit">Syötä pelkkiä numeroita!</string>
+    <string name="aseta_numero">%1$s. Numeron vaihto</string>
+    <string name="peru">Peru</string>
+    <string name="vaihda">Vaihda</string>
+    <string name="uusi_numero">Uusi numero: %1$s</string>
 </resources>
