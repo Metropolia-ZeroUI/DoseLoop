@@ -18,8 +18,7 @@ class ConfirmPhoneNumberChangeActivity : PopupActivity<PhoneNumberSettingViewMod
         binding = ActivityConfirmPhoneNumberChangeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setButtons()
-        binding.confirmWindowTitle.text = getString(R.string.aseta_numero, args.numberKeySimple)
-        binding.confirmWindowNumber.text = getString(R.string.uusi_numero, args.number)
+        binding.confirmWindowTitle.text = getString(R.string.change_number, args.numberKeySimple, args.number)
     }
 
     private fun setButtons() {
