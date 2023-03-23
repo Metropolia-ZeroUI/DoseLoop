@@ -13,5 +13,6 @@ class PhoneNumberSettingViewModel: AbstractViewModel() {
         } catch(e: Exception) {
             Log.d("MESSAGE_SEND", "Send failed: $e")
         }
+        msg.emptyPayload()
     }
 }
