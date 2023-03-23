@@ -18,11 +18,6 @@ import com.example.doseloop.viewmodel.AbstractViewModel
 abstract class PopupActivity<T: AbstractViewModel?>(protected val viewModel : T? = null) : AppCompatActivity() {
 
     /**
-    * Determines the height of the popup window, i.e. 0.5 = 50% window height
-    * */
-    var heightMultiplier: Double = 0.4
-
-    /**
      * Determines the width of the popup window, i.e. 0.9 = 90% window width
      * */
     var widthMultiplier: Double = 0.9
