@@ -52,9 +52,12 @@
                     android:id="@+id/number_1_submit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/change"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_toEndOf="@id/number_1_text_input_layout"
-                    android:layout_margin="10dp" />
+                    android:text="@string/change" />
 
             </RelativeLayout>
             <RelativeLayout

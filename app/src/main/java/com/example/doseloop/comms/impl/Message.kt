@@ -193,6 +193,10 @@ enum class Message(private val code: Int, private var payload: String = "")  {
 
     fun encode(): String = if (this.payload.isNotEmpty()) "!$code=$payload!" else "!$code!"
 
+    fun emptyPayload() {
+        this.payload = ""
+    }
+
     override fun toString(): String = "${this::class.simpleName} - $name";
 
     companion object {
