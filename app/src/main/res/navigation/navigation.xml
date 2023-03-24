@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_phoneNumberSettingFragment_to_confirmWindowActivity"
             app:destination="@id/confirmWindowActivity" />
+        <action
+            android:id="@+id/action_phoneNumberSettingFragment_to_confirmNotificationChangeActivity"
+            app:destination="@id/confirmNotificationChangeActivity" />
     </fragment>
     <activity
         android:id="@+id/confirmWindowActivity"
@@ -52,5 +55,17 @@
         <argument
             android:name="numberKeySimple"
             app:argType="string" />
+        <argument
+            android:name="phoneNumberSettingViewModel"
+            app:argType="com.example.doseloop.viewmodel.PhoneNumberSettingViewModel" />
+    </activity>
+    <activity
+        android:id="@+id/confirmNotificationChangeActivity"
+        android:name="com.example.doseloop.activities.ConfirmNotificationChangeActivity"
+        android:label="activity_confirm_notification_change"
+        tools:layout="@layout/activity_confirm_notification_change" >
+        <argument
+            android:name="phoneNumberSettingViewModel"
+            app:argType="com.example.doseloop.viewmodel.PhoneNumberSettingViewModel" />
     </activity>
 </navigation>

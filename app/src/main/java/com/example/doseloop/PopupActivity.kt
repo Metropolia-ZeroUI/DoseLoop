@@ -15,12 +15,13 @@ import com.example.doseloop.viewmodel.AbstractViewModel
  * (See ConfirmPhoneNumberChangeActivity as an example):
  *      android:theme="@style/Theme.DoseLoop.PopupTheme"
  */
-abstract class PopupActivity<T: AbstractViewModel?>(protected val viewModel : T? = null) : AppCompatActivity() {
+abstract class PopupActivity<T: AbstractViewModel?>(protected var viewModel : T? = null) : AppCompatActivity() {
 
     /**
      * Determines the width of the popup window, i.e. 0.9 = 90% window width
      * */
     var widthMultiplier: Double = 0.9
+    var height = 650
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +31,7 @@ abstract class PopupActivity<T: AbstractViewModel?>(protected val viewModel : T?
         val width = metrics.widthPixels
         window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
         window.attributes.dimAmount = 0.7f
-        window.setLayout((width * widthMultiplier).toInt(), 650)
+        window.setLayout((width * widthMultiplier).toInt(), height)
         window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 }

@@ -178,6 +178,14 @@ enum class Message(private val code: Int, private var payload: String = "")  {
     }
 
     /**
+     * Return Message with emptied payload.
+     */
+    fun withEmptyPayload():Message {
+        this.payload = ""
+        return this
+    }
+
+    /**
      * Append Object to message payload, separated by comma.
      *
      * @param payload Value

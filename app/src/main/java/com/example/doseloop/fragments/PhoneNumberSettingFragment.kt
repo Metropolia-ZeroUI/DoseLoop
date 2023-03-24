@@ -39,7 +39,7 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
     ): View? {
 
         _binding = FragmentPhoneNumberSettingBinding.inflate(inflater, container, false)
-
+        binding.viewModel = viewModel
         val view = binding.root
 
         val screenWidth = requireContext().resources.displayMetrics.widthPixels
@@ -76,6 +76,14 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
             this.findNavController().navigate(R.id.action_phoneNumberSettingFragment_to_homeFragment)
         }
 
+        binding.submitNotifyChanges.setOnClickListener {
+            if (viewModel != null) {
+                val action =
+                    PhoneNumberSettingFragmentDirections.actionPhoneNumberSettingFragmentToConfirmNotificationChangeActivity(viewModel)
+                this.findNavController().navigate(action)
+            }
+        }
+
         return view
     }
 
@@ -95,9 +103,10 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
             val number = editText.text.toString()
             preventButtonClickSpam {
                 if (viewModel != null) {
+                    editText.clearFocus()
                     val action =
                         PhoneNumberSettingFragmentDirections
-                            .actionPhoneNumberSettingFragmentToConfirmWindowActivity(number, numberKey, phoneSet.withPayload(PhoneNumber(number)), numberKeySimple)
+                            .actionPhoneNumberSettingFragmentToConfirmWindowActivity(number, numberKey, phoneSet.withPayload(PhoneNumber(number)), numberKeySimple, viewModel)
                     findNavController().navigate(action)
                 }
             }

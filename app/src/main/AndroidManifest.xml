@@ -18,14 +18,19 @@
         android:theme="@style/Theme.DoseLoop"
         tools:targetApi="31">
         <activity
-            android:name=".ConfirmPhoneNumberChangeActivity"
+            android:name=".activities.ConfirmNotificationChangeActivity"
+            android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.DoseLoop.PopupTheme"
-            android:exported="false" />
+            android:theme="@style/Theme.DoseLoop.PopupTheme"/>
+        <activity
+            android:name=".ConfirmPhoneNumberChangeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.DoseLoop.PopupTheme" />
         <activity
             android:name=".PopupActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"

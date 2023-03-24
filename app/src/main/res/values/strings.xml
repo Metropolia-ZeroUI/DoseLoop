@@ -9,6 +9,7 @@
     <string name="zero">0</string>
     <string name="set_numbers">Aseta puhelinnumerot jotka saavat hälytyksiä</string>
     <string name="change">Vaihda</string>
+    <string name="save">Tallenna</string>
     <string name="error_country_code">Syötä numero ilman maatunnusta! (esim. 040...)</string>
     <string name="error_too_long_number">Numero on liian pitkä! (max. 10 merkkiä)</string>
     <string name="error_invalid_first_number">Varmista että ensimmäinen merkki on 0!</string>
@@ -17,4 +18,13 @@
     <string name="accept">Hyväksy</string>
     <string name="change_number">Olet asettamassa %1$s. numeroksi %2$s. Hyväksy muutos?</string>
     <string name="change_number_info">Muutos maksaa liittymäkohtaisen tekstiviestin hinnan</string>
+    <string name="off">Pois</string>
+    <string name="on">Päällä</string>
+    <string name="number1">1. Numero</string>
+    <string name="number2">2. Numero</string>
+    <string name="number3">3. Numero</string>
+    <string name="number4">4. Numero</string>
+    <string name="number5">5. Numero</string>
+    <string name="notifications">Ilmoitukset</string>
+    <string name="notify_changes">Seuraaville numeroille lisätään ilmoitukset:%1$s\n\nSeuraavilta numeroilta poistetaan ilmoitukset:%2$s</string>
 </resources>
