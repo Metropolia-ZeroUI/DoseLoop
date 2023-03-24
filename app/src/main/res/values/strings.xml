@@ -21,4 +21,8 @@
     <string name="get_battery_level">Vastaanota tieto akun varauksesta</string>
     <string name="get_door_opening_times">Vastaanota tieto kolmesta edellisesta ovenavausajasta</string>
     <string name="check_device_settings">Tarkasta laitteen nykyiset asetukset</string>
+    <string name="cancel">Peru</string>
+    <string name="accept">Hyväksy</string>
+    <string name="change_number">Olet asettamassa %1$s. numeroksi %2$s. Hyväksy muutos?</string>
+    <string name="change_number_info">Muutos maksaa liittymäkohtaisen tekstiviestin hinnan</string>
 </resources>
