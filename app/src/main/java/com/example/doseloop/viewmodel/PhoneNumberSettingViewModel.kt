@@ -22,6 +22,14 @@ class PhoneNumberSettingViewModel: AbstractViewModel(), Parcelable {
     var number4Notification = MutableLiveData(true)
     var number5Notification = MutableLiveData(true)
 
+    init {
+        number1Notification.value = getFromPrefs(PHONE_NUMBER_1_NOTIFICATION, true)
+        number2Notification.value = getFromPrefs(PHONE_NUMBER_2_NOTIFICATION, true)
+        number3Notification.value = getFromPrefs(PHONE_NUMBER_3_NOTIFICATION, true)
+        number4Notification.value = getFromPrefs(PHONE_NUMBER_4_NOTIFICATION, true)
+        number5Notification.value = getFromPrefs(PHONE_NUMBER_5_NOTIFICATION, true)
+    }
+
     fun onPopupConfirm(msg: Message, numberKey: String, number: String) {
         try {
             msgService.sendMessage(msg)
@@ -55,7 +63,6 @@ class PhoneNumberSettingViewModel: AbstractViewModel(), Parcelable {
     }
     fun updateNumber4Notification(buttonView: CompoundButton, b: Boolean) {
         number4Notification.value = b
-        Log.d("sendMessage", "updated n4 $b")
     }
     fun updateNumber5Notification(buttonView: CompoundButton, b: Boolean) {
         number5Notification.value = b
@@ -89,7 +96,6 @@ class PhoneNumberSettingViewModel: AbstractViewModel(), Parcelable {
 
     private fun getNotifyReceiversAsList(): List<String> {
         val l = arrayListOf<String>()
-        Log.d("sendMessage vm", "$this")
         if (number1Notification.value == true) l.add("1")
         if (number2Notification.value == true) l.add("2")
         if (number3Notification.value == true) l.add("3")
@@ -110,6 +116,7 @@ class PhoneNumberSettingViewModel: AbstractViewModel(), Parcelable {
 
     private fun saveNotifyStatusToPrefs() {
         saveToPrefs(PHONE_NUMBER_1_NOTIFICATION, number1Notification.value)
+        Log.d("fromPRefs2", "${getFromPrefs(PHONE_NUMBER_1_NOTIFICATION, true)}")
         saveToPrefs(PHONE_NUMBER_2_NOTIFICATION, number2Notification.value)
         saveToPrefs(PHONE_NUMBER_3_NOTIFICATION, number3Notification.value)
         saveToPrefs(PHONE_NUMBER_4_NOTIFICATION, number4Notification.value)

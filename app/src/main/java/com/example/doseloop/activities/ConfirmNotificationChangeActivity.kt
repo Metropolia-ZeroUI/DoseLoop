@@ -1,6 +1,7 @@
 package com.example.doseloop.activities
 
 import android.os.Bundle
+import android.util.Log
 import androidx.navigation.navArgs
 import com.example.doseloop.PopupActivity
 import com.example.doseloop.R
