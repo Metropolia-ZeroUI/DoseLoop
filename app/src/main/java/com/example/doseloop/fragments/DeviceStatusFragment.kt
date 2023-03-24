@@ -34,13 +34,13 @@ class DeviceStatusFragment : AbstractFragment<DeviceStatusViewModel>(DeviceStatu
 
         val view = binding.root
 
-        setOnButtonPress(binding.statusButtonPhoneNumbers, Message.ADMIN_PHONE_NUMBER_QUERY)
-        setOnButtonPress(binding.statusButtonSmsNumbers, Message.ADMIN_SMS_QUERY)
-        setOnButtonPress(binding.statusButtonSetTime, Message.ADMIN_SET_TIME)
-        setOnButtonPress(binding.statusButtonMedicineTimes, Message.ADMIN_LIST_MEDS)
-        setOnButtonPress(binding.statusButtonSignalStrength, Message.ADMIN_SIGNAL_STRENGTH)
-        setOnButtonPress(binding.statusButtonBatteryLevel, Message.ADMIN_BATTERY_LIFE)
-        setOnButtonPress(binding.statusButtonDoorTimes, Message.ADMIN_DOOR_OPENING_TIMES)
+        setOnButtonPress(binding.statusButtonPhoneNumbers, Message.ADMIN_PHONE_NUMBER_QUERY, getString(R.string.confirm_status_phone_numbers))
+        setOnButtonPress(binding.statusButtonSmsNumbers, Message.ADMIN_SMS_QUERY, getString(R.string.confirm_status_numbers_settings))
+        setOnButtonPress(binding.statusButtonSetTime, Message.ADMIN_SET_TIME, getString(R.string.confirm_status_time_correct))
+        setOnButtonPress(binding.statusButtonMedicineTimes, Message.ADMIN_LIST_MEDS, getString(R.string.confirm_status_medicine_times))
+        setOnButtonPress(binding.statusButtonSignalStrength, Message.ADMIN_SIGNAL_STRENGTH, getString(R.string.confirm_status_signal_strength))
+        setOnButtonPress(binding.statusButtonBatteryLevel, Message.ADMIN_BATTERY_LIFE, getString(R.string.confirm_status_battery))
+        setOnButtonPress(binding.statusButtonDoorTimes, Message.ADMIN_DOOR_OPENING_TIMES, getString(R.string.confirm_status_door_times))
 
         binding.statusBackButton.setOnClickListener {
             this.findNavController().navigate(R.id.action_deviceStatusFragment_to_homeFragment)
@@ -49,12 +49,15 @@ class DeviceStatusFragment : AbstractFragment<DeviceStatusViewModel>(DeviceStatu
         return view
     }
 
-    private fun setOnButtonPress(button: Button, msg: Message) {
-        val deviceNumber = PhoneNumberSettingViewModel().getFromPrefs(DEVICE_PHONE_NUMBER, "")
-        val msgService = SmsMessageService(PhoneNumber(deviceNumber!!), requireContext())
+    private fun setOnButtonPress(button: Button, msg: Message, confirmText: String) {
         button.setOnClickListener {
-            msgService.sendMessage(msg) {
-                Log.d("MESSAGE_SEND", "Message OK")
+            preventButtonClickSpam {
+                if (viewModel != null) {
+                    val action =
+                        DeviceStatusFragmentDirections
+                            .actionDeviceStatusFragmentToConfirmStatusActivity(msg, confirmText)
+                    findNavController().navigate(action)
+                }
             }
         }
     }

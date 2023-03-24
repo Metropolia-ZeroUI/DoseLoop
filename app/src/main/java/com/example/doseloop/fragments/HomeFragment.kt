@@ -25,17 +25,6 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
 
         val view = binding.root
 
-        /**
-         * Example on how to set onClickListener for drawer buttons. Drawers have their own bindings so it's easy to
-         * retrieve components and add functionality to them.
-         */
-
-        val statusDrawer = binding.statusDrawer.binding
-        statusDrawer.drawerMenuButton.setOnClickListener {
-            val toast = Toast.makeText(context, "This is an example!", Toast.LENGTH_SHORT)
-            toast.show()
-        }
-
         val phoneNumberDrawer = binding.phoneNumberDrawer.binding
         phoneNumberDrawer.drawerMenuButton.setOnClickListener {
             this.findNavController().navigate(R.id.action_homeFragment_to_phoneNumberSettingFragment)

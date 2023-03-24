@@ -25,4 +25,11 @@
     <string name="accept">Hyväksy</string>
     <string name="change_number">Olet asettamassa %1$s. numeroksi %2$s. Hyväksy muutos?</string>
     <string name="change_number_info">Muutos maksaa liittymäkohtaisen tekstiviestin hinnan</string>
+    <string name="confirm_status_battery">Haluatko varmasti tarkistaa laitteen akkutason?</string>
+    <string name="confirm_status_phone_numbers">Haluatko varmasti tarkistaa laitteeseen tallennetut puhelinnumerot?</string>
+    <string name="confirm_status_numbers_settings">Haluatko varmasti tarkistaa puhelinnumerot jotka saavat tekstiviestihälytyksiä?</string>
+    <string name="confirm_status_medicine_times">Haluatko varmasti tarkistaa lääkkeiden ottoajat?</string>
+    <string name="confirm_status_signal_strength">Haluatko varmasti tarkistaa signaalin vahvuuden?</string>
+    <string name="confirm_status_door_times">Haluatko varmasti tarkistaa ovenavausajat?</string>
+    <string name="confirm_status_time_correct">Haluatko varmasti asettaa kellonajan?</string>
 </resources>
