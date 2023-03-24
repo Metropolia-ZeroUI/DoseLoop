@@ -39,7 +39,7 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
     ): View? {
 
         _binding = FragmentPhoneNumberSettingBinding.inflate(inflater, container, false)
-        binding.viewModel = viewModel
+        binding.viewModel = this.viewModel
         val view = binding.root
 
         val screenWidth = requireContext().resources.displayMetrics.widthPixels
@@ -77,9 +77,16 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
         }
 
         binding.submitNotifyChanges.setOnClickListener {
-            if (viewModel != null) {
+            if (this.viewModel != null) {
                 val action =
-                    PhoneNumberSettingFragmentDirections.actionPhoneNumberSettingFragmentToConfirmNotificationChangeActivity(viewModel)
+                    PhoneNumberSettingFragmentDirections
+                        .actionPhoneNumberSettingFragmentToConfirmNotificationChangeActivity(
+                            viewModel.number1Notification.value!!,
+                            viewModel.number2Notification.value!!,
+                            viewModel.number3Notification.value!!,
+                            viewModel.number4Notification.value!!,
+                            viewModel.number5Notification.value!!
+                        )
                 this.findNavController().navigate(action)
             }
         }

@@ -33,7 +33,7 @@ class PhoneNumberSettingViewModel: AbstractViewModel(), Parcelable {
         msg.emptyPayload()
     }
 
-    fun updateNotificationReceivers() {
+    fun updateNotificationReceiversToDevice() {
         try {
             val msg = Message.FACTORY_ALARM_FOR_PHONES.withEmptyPayload().withPayload(getNotifyReceiversAsList())
             msgService.sendMessage(msg)
@@ -67,7 +67,6 @@ class PhoneNumberSettingViewModel: AbstractViewModel(), Parcelable {
             r = if (r.isEmpty()) it
             else "$r, $it"
         }
-        Log.d("sendMessage", r)
         return r
     }
 
@@ -80,8 +79,17 @@ class PhoneNumberSettingViewModel: AbstractViewModel(), Parcelable {
         return r
     }
 
+    fun updateNotifyReceivers(n1: Boolean?, n2: Boolean?, n3: Boolean?, n4: Boolean?, n5: Boolean?) {
+        this.number1Notification.value = n1 ?: this.number1Notification.value
+        this.number2Notification.value = n2 ?: this.number2Notification.value
+        this.number3Notification.value = n3 ?: this.number3Notification.value
+        this.number4Notification.value = n4 ?: this.number4Notification.value
+        this.number5Notification.value = n5 ?: this.number5Notification.value
+    }
+
     private fun getNotifyReceiversAsList(): List<String> {
         val l = arrayListOf<String>()
+        Log.d("sendMessage vm", "$this")
         if (number1Notification.value == true) l.add("1")
         if (number2Notification.value == true) l.add("2")
         if (number3Notification.value == true) l.add("3")

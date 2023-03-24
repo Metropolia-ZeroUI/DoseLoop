@@ -26,5 +26,5 @@
     <string name="number4">4. Numero</string>
     <string name="number5">5. Numero</string>
     <string name="notifications">Ilmoitukset</string>
-    <string name="notify_changes">Seuraaville numeroille lisätään ilmoitukset:%1$s\n\nSeuraavilta numeroilta poistetaan ilmoitukset:%2$s</string>
+    <string name="notify_changes">Seuraaville numeroille lisätään ilmoitukset: %1$s\n\nSeuraavilta numeroilta poistetaan ilmoitukset: %2$s</string>
 </resources>

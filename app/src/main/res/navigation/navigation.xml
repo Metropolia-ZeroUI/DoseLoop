@@ -65,7 +65,19 @@
         android:label="activity_confirm_notification_change"
         tools:layout="@layout/activity_confirm_notification_change" >
         <argument
-            android:name="phoneNumberSettingViewModel"
-            app:argType="com.example.doseloop.viewmodel.PhoneNumberSettingViewModel" />
+            android:name="n2"
+            app:argType="boolean" />
+        <argument
+            android:name="n3"
+            app:argType="boolean" />
+        <argument
+            android:name="n4"
+            app:argType="boolean" />
+        <argument
+            android:name="n5"
+            app:argType="boolean" />
+        <argument
+            android:name="n1"
+            app:argType="boolean" />
     </activity>
 </navigation>
