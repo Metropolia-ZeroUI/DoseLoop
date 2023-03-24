@@ -38,7 +38,7 @@ import com.example.doseloop.databinding.DrawerMenuBinding
 
 const val OFFSET_DIVIDER = 4
 const val ANIMATION_SPEED = 500L
-const val DRAWER_AMOUNT = 3
+const val DRAWER_AMOUNT = 4
 
 @SuppressLint("ClickableViewAccessibility", "ResourceType", "InternalInsetResource")
 class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0, defStyleRes: Int = 0):
@@ -65,7 +65,7 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
     private val offset = screenWidth - (screenWidth / OFFSET_DIVIDER)
     private var chosenOffSet : Float = 0f
     private var curPos = 0f
-    private var bottomNavHeight = 0
+    private var bottomMargin = 0
 
     private val leftOffset = -offset.toFloat()
     private val rightOffset = offset.toFloat()
@@ -180,13 +180,13 @@ class DrawerMenu @JvmOverloads constructor(context: Context, attrs: AttributeSet
             )
 
             val resourceId: Int =
-                DoseLoopApplication.instance.resources.getIdentifier("navigation_bar_height", "dimen", "android")
-            bottomNavHeight = resources.getDimension(resourceId).toInt()
+                DoseLoopApplication.instance.resources.getIdentifier("status_bar_height", "dimen", "android")
+            bottomMargin = resources.getDimension(resourceId).toInt()
 
             this.updatePadding(right = if (menuSide == "left") 50 else 0, left = if (menuSide == "left") 0 else 50)
             menuCardView.setBackgroundResource(if (menuSide == "left") R.drawable.left_card else R.drawable.right_card)
             menuCardView.background.level = cardStyle.toInt()
-            menuCardView.layoutParams.height = ((screenHeight - bottomNavHeight) / DRAWER_AMOUNT) - bottomNavHeight / 2
+            menuCardView.layoutParams.height = ((screenHeight - bottomMargin) / DRAWER_AMOUNT)
 
             val imageRes = typedArray.getResourceId(R.styleable.DrawerMenu_menuImageRef, -1)
             if (imageRes != -1) {

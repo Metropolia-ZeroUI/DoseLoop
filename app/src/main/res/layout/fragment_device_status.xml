@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".fragments.DeviceStatusFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_centerInParent="true">
+            <Button
+                android:id="@+id/status_button_phone_numbers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/get_saved_phone_numbers" />
+            <Button
+                android:id="@+id/status_button_sms_numbers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/status_button_phone_numbers"
+                android:text="@string/get_phone_numbers_settings_sms" />
+            <Button
+                android:id="@+id/status_button_set_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/status_button_sms_numbers"
+                android:text="@string/set_time_correct" />
+            <Button
+                android:id="@+id/status_button_medicine_times"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/status_button_set_time"
+                android:text="@string/get_medicine_times" />
+            <Button
+                android:id="@+id/status_button_signal_strength"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/status_button_medicine_times"
+                android:text="@string/get_signal_strength" />
+            <Button
+                android:id="@+id/status_button_battery_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/status_button_signal_strength"
+                android:text="@string/get_battery_level" />
+            <Button
+                android:id="@+id/status_button_door_times"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/status_button_battery_level"
+                android:text="@string/get_door_opening_times" />
+        </RelativeLayout>
+        <ImageButton
+            android:id="@+id/status_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_back"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
+            />
+    </RelativeLayout>
+</layout>

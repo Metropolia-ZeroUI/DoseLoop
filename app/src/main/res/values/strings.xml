@@ -13,4 +13,12 @@
     <string name="error_too_long_number">Numero on liian pitkä! (max. 10 merkkiä)</string>
     <string name="error_invalid_first_number">Varmista että ensimmäinen merkki on 0!</string>
     <string name="error_not_digit">Syötä pelkkiä numeroita!</string>
+    <string name="get_saved_phone_numbers">Vastaanota tallennetut puhelinnumerot</string>
+    <string name="get_phone_numbers_settings_sms">Vastaanota puhelinnumerot joihin lähetetään tekstiviesti</string>
+    <string name="set_time_correct">Aseta kellonaika oikeaksi</string>
+    <string name="get_medicine_times">Vastaanota luettelo lääkkeiden ottoajoista</string>
+    <string name="get_signal_strength">Vastaanota tieto signaalin vahvuudesta</string>
+    <string name="get_battery_level">Vastaanota tieto akun varauksesta</string>
+    <string name="get_door_opening_times">Vastaanota tieto kolmesta edellisesta ovenavausajasta</string>
+    <string name="check_device_settings">Tarkasta laitteen nykyiset asetukset</string>
 </resources>

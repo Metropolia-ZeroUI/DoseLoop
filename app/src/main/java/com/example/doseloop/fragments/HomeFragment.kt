@@ -36,15 +36,14 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
             toast.show()
         }
 
-        val reminderDrawer = binding.reminderDrawer.binding
-        reminderDrawer.drawerMenuButton.setOnClickListener {
+        val phoneNumberDrawer = binding.phoneNumberDrawer.binding
+        phoneNumberDrawer.drawerMenuButton.setOnClickListener {
             this.findNavController().navigate(R.id.action_homeFragment_to_phoneNumberSettingFragment)
         }
 
-        val searchDrawer = binding.searchDrawer.binding
-        searchDrawer.drawerMenuButton.setOnClickListener {
-            val toast = Toast.makeText(context, "This is a third example!", Toast.LENGTH_SHORT)
-            toast.show()
+        val deviceStatusDrawer = binding.deviceStatusDrawer.binding
+        deviceStatusDrawer.drawerMenuButton.setOnClickListener {
+            this.findNavController().navigate(R.id.action_homeFragment_to_deviceStatusFragment)
         }
 
         return view
