@@ -31,5 +31,26 @@
         <action
             android:id="@+id/action_phoneNumberSettingFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_phoneNumberSettingFragment_to_confirmWindowActivity"
+            app:destination="@id/confirmWindowActivity" />
     </fragment>
+    <activity
+        android:id="@+id/confirmWindowActivity"
+        android:name="com.example.doseloop.ConfirmPhoneNumberChangeActivity"
+        android:label="activity_confirm_window"
+        tools:layout="@layout/activity_confirm_phone_number_change" >
+        <argument
+            android:name="number"
+            app:argType="string" />
+        <argument
+            android:name="numberKey"
+            app:argType="string" />
+        <argument
+            android:name="msg"
+            app:argType="com.example.doseloop.comms.impl.Message" />
+        <argument
+            android:name="numberKeySimple"
+            app:argType="string" />
+    </activity>
 </navigation>

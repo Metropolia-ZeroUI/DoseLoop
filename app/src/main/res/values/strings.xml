@@ -13,4 +13,8 @@
     <string name="error_too_long_number">Numero on liian pitkä! (max. 10 merkkiä)</string>
     <string name="error_invalid_first_number">Varmista että ensimmäinen merkki on 0!</string>
     <string name="error_not_digit">Syötä pelkkiä numeroita!</string>
+    <string name="cancel">Peru</string>
+    <string name="accept">Hyväksy</string>
+    <string name="change_number">Olet asettamassa %1$s. numeroksi %2$s. Hyväksy muutos?</string>
+    <string name="change_number_info">Muutos maksaa liittymäkohtaisen tekstiviestin hinnan</string>
 </resources>

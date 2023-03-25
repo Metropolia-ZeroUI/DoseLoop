@@ -23,6 +23,10 @@ class SpeechToText(context: Context, private val listener: SpeechListener) {
         listener.resultsConsumer = consumer
     }
 
+    fun stopListening() {
+        speechRecognizer.stopListening()
+    }
+
     fun clean() {
         this.speechRecognizer.destroy()
     }

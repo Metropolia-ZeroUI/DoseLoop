@@ -1,6 +1,9 @@
 package com.example.doseloop.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.example.doseloop.DoseLoopApplication
+import com.example.doseloop.comms.impl.PhoneNumber
+import com.example.doseloop.comms.impl.SmsMessageService
 import com.example.doseloop.repository.SharedPreferencesRepository
 import com.example.doseloop.util.DEVICE_PHONE_NUMBER
 
@@ -10,6 +13,9 @@ import com.example.doseloop.util.DEVICE_PHONE_NUMBER
 abstract class AbstractViewModel : ViewModel() {
 
     private val sharedPrefsRepository = SharedPreferencesRepository.instance
+    val msgService = SmsMessageService(
+        PhoneNumber(getFromPrefs(DEVICE_PHONE_NUMBER, "") ?: ""),
+        DoseLoopApplication.instance)
 
     fun <T> saveToPrefs(key: String, value: T) {
         when(value) {
