@@ -18,10 +18,15 @@
         android:theme="@style/Theme.DoseLoop"
         tools:targetApi="31">
         <activity
+            android:name=".activities.PhoneNumberSettingUnsavedChangesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.DoseLoop.PopupTheme"  />
+        <activity
             android:name=".activities.ConfirmNotificationChangeActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.DoseLoop.PopupTheme"/>
+            android:theme="@style/Theme.DoseLoop.PopupTheme" />
         <activity
             android:name=".ConfirmPhoneNumberChangeActivity"
             android:exported="false"

@@ -37,6 +37,12 @@
         <action
             android:id="@+id/action_phoneNumberSettingFragment_to_confirmNotificationChangeActivity"
             app:destination="@id/confirmNotificationChangeActivity" />
+        <action
+            android:id="@+id/action_phoneNumberSettingFragment_to_phoneNumberSettingUnsavedChangesActivity"
+            app:destination="@id/phoneNumberSettingUnsavedChangesActivity" />
+        <action
+            android:id="@+id/action_phoneNumberSettingFragment_to_homeFragment2"
+            app:destination="@id/homeFragment" />
     </fragment>
     <activity
         android:id="@+id/confirmWindowActivity"
@@ -79,5 +85,13 @@
         <argument
             android:name="n5"
             app:argType="boolean" />
+    </activity>
+    <activity
+        android:id="@+id/phoneNumberSettingUnsavedChangesActivity"
+        android:name="com.example.doseloop.activities.PhoneNumberSettingUnsavedChangesActivity"
+        android:label="PhoneNumberSettingUnsavedChangesActivity" >
+        <argument
+            android:name="unsavedChanges"
+            app:argType="string" />
     </activity>
 </navigation>

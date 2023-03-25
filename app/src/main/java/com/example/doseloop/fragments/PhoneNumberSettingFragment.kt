@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.activity.OnBackPressedCallback
 import androidx.core.text.isDigitsOnly
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -91,7 +93,35 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
             }
         }
 
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val unsavedChanges = viewModel?.getUnsavedChanges(
+                    binding.number1EditText.text.toString(),
+                    binding.number2EditText.text.toString(),
+                    binding.number3EditText.text.toString(),
+                    binding.number4EditText.text.toString(),
+                    binding.number5EditText.text.toString(),
+                    )
+                if (unsavedChanges!!.isNotEmpty()) {
+                    val action =
+                        PhoneNumberSettingFragmentDirections
+                            .actionPhoneNumberSettingFragmentToPhoneNumberSettingUnsavedChangesActivity(unsavedChanges)
+                    findNavController().navigate(action)
+
+                } else {
+                    findNavController().popBackStack(R.id.homeFragment, false)
+                }
+            }
+        })
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (viewModel?.getFromPrefs(NAVIGATE_TO_HOME_FRAGMENT, false) == true) {
+            findNavController().popBackStack(R.id.homeFragment, false)
+            viewModel?.saveToPrefs(NAVIGATE_TO_HOME_FRAGMENT, false)
+        }
     }
 
     private fun addTextChangedListener(editText: EditText, submitButton: Button, til: TextInputLayout) {

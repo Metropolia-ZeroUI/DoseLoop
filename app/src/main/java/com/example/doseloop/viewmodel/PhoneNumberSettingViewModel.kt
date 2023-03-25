@@ -14,8 +14,6 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 class PhoneNumberSettingViewModel: AbstractViewModel(), Parcelable {
 
-    // TODO: Set these values according to prefs on init
-    // TODO: check if something is not same in prefs when going away from the fragment, make popup for informing of stuff not saved
     var number1Notification = MutableLiveData(true)
     var number2Notification = MutableLiveData(true)
     var number3Notification = MutableLiveData(true)
@@ -94,6 +92,29 @@ class PhoneNumberSettingViewModel: AbstractViewModel(), Parcelable {
         this.number5Notification.value = n5 ?: this.number5Notification.value
     }
 
+    fun getUnsavedChanges(number1: String = "", number2: String = "", number3: String = "",
+                          number4: String = "", number5: String = "",): String {
+        var s = ""
+        if (number1Notification.value !=
+            getFromPrefs(PHONE_NUMBER_1_NOTIFICATION, number1Notification.value!!)) s += "1. Numeron ilmoitus\n"
+        if (number2Notification.value !=
+            getFromPrefs(PHONE_NUMBER_2_NOTIFICATION, number2Notification.value!!)) s += "2. Numeron ilmoitus\n"
+        if (number3Notification.value !=
+            getFromPrefs(PHONE_NUMBER_3_NOTIFICATION, number3Notification.value!!)) s += "3. Numeron ilmoitus\n"
+        if (number4Notification.value !=
+            getFromPrefs(PHONE_NUMBER_4_NOTIFICATION, number4Notification.value!!)) s += "4. Numeron ilmoitus\n"
+        if (number5Notification.value !=
+            getFromPrefs(PHONE_NUMBER_5_NOTIFICATION, number5Notification.value!!)) s += "5. Numeron ilmoitus\n"
+
+        if (number1 != getFromPrefs(PHONE_NUMBER_1, "")) s += "1. Numero muokattu\n"
+        if (number2 != getFromPrefs(PHONE_NUMBER_2, "")) s += "2. Numero muokattu\n"
+        if (number3 != getFromPrefs(PHONE_NUMBER_3, "")) s += "3. Numero muokattu\n"
+        if (number4 != getFromPrefs(PHONE_NUMBER_4, "")) s += "4. Numero muokattu\n"
+        if (number5 != getFromPrefs(PHONE_NUMBER_5, "")) s += "5. Numero muokattu\n"
+
+        return s
+    }
+
     private fun getNotifyReceiversAsList(): List<String> {
         val l = arrayListOf<String>()
         if (number1Notification.value == true) l.add("1")
@@ -116,7 +137,6 @@ class PhoneNumberSettingViewModel: AbstractViewModel(), Parcelable {
 
     private fun saveNotifyStatusToPrefs() {
         saveToPrefs(PHONE_NUMBER_1_NOTIFICATION, number1Notification.value)
-        Log.d("fromPRefs2", "${getFromPrefs(PHONE_NUMBER_1_NOTIFICATION, true)}")
         saveToPrefs(PHONE_NUMBER_2_NOTIFICATION, number2Notification.value)
         saveToPrefs(PHONE_NUMBER_3_NOTIFICATION, number3Notification.value)
         saveToPrefs(PHONE_NUMBER_4_NOTIFICATION, number4Notification.value)
