@@ -5,13 +5,12 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.text.isDigitsOnly
 import androidx.navigation.fragment.findNavController
 import com.example.doseloop.R
@@ -88,35 +87,48 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
 
         // Set record button listeners for each field
         binding.number1RecordButton.tag = "1"
-        addRecordVoiceButtonListener(binding.number1RecordButton, binding.number1EditText, speechToTxt)
+        addRecordVoiceButtonListener(binding.number1RecordButton, binding.number1EditText, speechToTxt, "1")
+        binding.number2RecordButton.tag = "1"
+        addRecordVoiceButtonListener(binding.number2RecordButton, binding.number2EditText, speechToTxt, "2")
 
         return view
     }
 
-    private fun addRecordVoiceButtonListener(recordButton: ImageButton, editText: EditText, speechToText: SpeechToText) {
+    private fun addRecordVoiceButtonListener(recordButton: ImageButton, editText: EditText, speechToText: SpeechToText, position: String) {
         recordButton.setOnClickListener {
             if(recordButton.tag == "2") {
                 speechToText.stopListening()
                 recordButton.setImageResource(R.drawable.ic_mic)
-                editText!!.hint = ""
+                editText.hint = ""
+                editText.setText(viewModel?.getFromPrefs("PHONE_NUMBER_${position}", ""))
                 recordButton.tag = "1"
             }
             else {
+                var userText = ""
                 recordButton.tag = "2"
                 recordButton.setImageResource(R.drawable.ic_mic_record)
-                var userText = ""
-                editText!!.setText("")
-                editText!!.hint = "Listening..."
+                editText.setText("")
+                editText.hint = "Listening..."
 
                 speechToText.tryRecognize(this) {
-                    userText = "$it"
+                    userText = it
+                    Log.i("TEST", it)
                     recordButton.setImageResource(R.drawable.ic_mic)
                     if (userText != "") {
                         userText = userText.replace(" ", "")
-                        editText.setText(userText)
+                        if(userText.trim()[0] == '0') {
+                            editText.setText(userText)
+                            editText.hint = ""
+                        } else {
+                            Toast.makeText(activity, "'$userText' ei ole sopiva puhelinnumero", Toast.LENGTH_LONG).show()
+                            editText!!.hint = ""
+                            editText.setText(viewModel?.getFromPrefs("PHONE_NUMBER_${position}", ""))
+                        }
                         recordButton.setImageResource(R.drawable.ic_mic)
+                        recordButton.tag = "1"
                     }
                 }
+
             }
         }
     }
