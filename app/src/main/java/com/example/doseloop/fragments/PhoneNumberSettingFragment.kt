@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ import com.example.doseloop.speech.SpeechToText
 import com.example.doseloop.util.*
 import com.example.doseloop.viewmodel.PhoneNumberSettingViewModel
 import com.google.android.material.textfield.TextInputLayout
+
 
 /**
  * Fragment for setting the phone numbers the dispenser uses for alerts
@@ -112,7 +114,6 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
 
                 speechToText.tryRecognize(this) {
                     userText = it
-                    Log.i("TEST", it)
                     recordButton.setImageResource(R.drawable.ic_mic)
                     if (userText != "") {
                         userText = userText.replace(" ", "")
@@ -120,7 +121,9 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
                             editText.setText(userText)
                             editText.hint = ""
                         } else {
-                            Toast.makeText(activity, "'$userText' ei ole sopiva puhelinnumero", Toast.LENGTH_LONG).show()
+                            val toast = Toast.makeText(activity, "'$userText' ei ole sopiva puhelinnumero", Toast.LENGTH_LONG)
+                            toast.setGravity(Gravity.CENTER, 0, 0)
+                            toast.show()
                             editText!!.hint = ""
                             editText.setText(viewModel?.getFromPrefs("PHONE_NUMBER_${position}", ""))
                         }
@@ -132,6 +135,7 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
             }
         }
     }
+
     private fun addTextChangedListener(editText: EditText, submitButton: Button, til: TextInputLayout) {
         editText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
