@@ -92,7 +92,12 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
         addRecordVoiceButtonListener(binding.number1RecordButton, binding.number1EditText, speechToTxt, "1")
         binding.number2RecordButton.tag = "1"
         addRecordVoiceButtonListener(binding.number2RecordButton, binding.number2EditText, speechToTxt, "2")
-
+        binding.number3RecordButton.tag = "1"
+        addRecordVoiceButtonListener(binding.number3RecordButton, binding.number3EditText, speechToTxt, "3")
+        binding.number4RecordButton.tag = "1"
+        addRecordVoiceButtonListener(binding.number4RecordButton, binding.number4EditText, speechToTxt, "4")
+        binding.number5RecordButton.tag = "1"
+        addRecordVoiceButtonListener(binding.number5RecordButton, binding.number5EditText, speechToTxt, "5")
         return view
     }
 
