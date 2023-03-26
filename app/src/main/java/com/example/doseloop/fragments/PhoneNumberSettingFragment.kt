@@ -3,6 +3,8 @@ package com.example.doseloop.fragments
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -11,12 +13,16 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat.getSystemService
+import android.widget.ImageButton
+import android.widget.Toast
 import androidx.core.text.isDigitsOnly
 import androidx.navigation.fragment.findNavController
 import com.example.doseloop.R
 import com.example.doseloop.comms.impl.Message
 import com.example.doseloop.comms.impl.PhoneNumber
 import com.example.doseloop.databinding.FragmentPhoneNumberSettingBinding
+import com.example.doseloop.speech.SpeechListener
+import com.example.doseloop.speech.SpeechToText
 import com.example.doseloop.util.*
 import com.example.doseloop.viewmodel.PhoneNumberSettingViewModel
 import com.google.android.material.textfield.TextInputLayout
@@ -41,6 +47,23 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
         _binding = FragmentPhoneNumberSettingBinding.inflate(inflater, container, false)
         binding.viewModel = this.viewModel
         val view = binding.root
+
+        val screenWidth = requireContext().resources.displayMetrics.widthPixels
+
+        // Setup speech to text
+        val speechToTxt = SpeechToText(requireContext(), listener = SpeechListener(
+            onSuccess = { Log.i(SpeechListener::class.simpleName, "Speech got recognized") },
+            onError = { Log.e(SpeechListener::class.simpleName, "Failed to recognize speech") },
+            onReady = { Log.i(SpeechListener::class.simpleName, "Ready") },
+            onEnd = { Log.d(SpeechListener::class.simpleName, "End")}
+        ))
+
+        // Programmatically lengthening the TextInputEditText's as their length can't properly be set in the layout xml
+        binding.number1EditText.width = screenWidth / 2
+        binding.number2EditText.width = screenWidth / 2
+        binding.number3EditText.width = screenWidth / 2
+        binding.number4EditText.width = screenWidth / 2
+        binding.number5EditText.width = screenWidth / 2
 
         // Add EditText error handling
         addTextChangedAndEndIconListener(binding.number1EditText, binding.number1SubmitButton, binding.number1TextInputLayout)
@@ -105,6 +128,17 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
             activity?.onBackPressed()
         }
 
+        // Set record button listeners for each field
+        binding.number1RecordButton.tag = "1"
+        addRecordVoiceButtonListener(binding.number1RecordButton, binding.number1EditText, speechToTxt, "1")
+        binding.number2RecordButton.tag = "1"
+        addRecordVoiceButtonListener(binding.number2RecordButton, binding.number2EditText, speechToTxt, "2")
+        binding.number3RecordButton.tag = "1"
+        addRecordVoiceButtonListener(binding.number3RecordButton, binding.number3EditText, speechToTxt, "3")
+        binding.number4RecordButton.tag = "1"
+        addRecordVoiceButtonListener(binding.number4RecordButton, binding.number4EditText, speechToTxt, "4")
+        binding.number5RecordButton.tag = "1"
+        addRecordVoiceButtonListener(binding.number5RecordButton, binding.number5EditText, speechToTxt, "5")
         return view
     }
 
@@ -117,6 +151,47 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
     }
 
     private fun addTextChangedAndEndIconListener(editText: EditText, submitButton: Button, til: TextInputLayout) {
+    private fun addRecordVoiceButtonListener(recordButton: ImageButton, editText: EditText, speechToText: SpeechToText, position: String) {
+        recordButton.setOnClickListener {
+            if(recordButton.tag == "2") {
+                speechToText.stopListening()
+                recordButton.setImageResource(R.drawable.ic_mic)
+                editText.hint = ""
+                editText.setText(viewModel?.getFromPrefs("PHONE_NUMBER_${position}", ""))
+                recordButton.tag = "1"
+            }
+            else {
+                var userText = ""
+                recordButton.tag = "2"
+                recordButton.setImageResource(R.drawable.ic_mic_record)
+                editText.setText("")
+                editText.hint = "Listening..."
+
+                speechToText.tryRecognize(this) {
+                    userText = it
+                    recordButton.setImageResource(R.drawable.ic_mic)
+                    if (userText != "") {
+                        userText = userText.replace(" ", "")
+                        if(userText.trim()[0] == '0') {
+                            editText.setText(userText)
+                            editText.hint = ""
+                        } else {
+                            val toast = Toast.makeText(activity, "'$userText' ei ole sopiva puhelinnumero", Toast.LENGTH_LONG)
+                            toast.setGravity(Gravity.CENTER, 0, 0)
+                            toast.show()
+                            editText!!.hint = ""
+                            editText.setText(viewModel?.getFromPrefs("PHONE_NUMBER_${position}", ""))
+                        }
+                        recordButton.setImageResource(R.drawable.ic_mic)
+                        recordButton.tag = "1"
+                    }
+                }
+
+            }
+        }
+    }
+
+    private fun addTextChangedListener(editText: EditText, submitButton: Button, til: TextInputLayout) {
         editText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {

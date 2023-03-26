@@ -147,9 +147,17 @@ enum class Message(private val code: Int, private var payload: String = "")  {
      */
     ADMIN_LIST_MEDS(38),
     /**
+     * Query signal strength from the device.
+     */
+    ADMIN_SIGNAL_STRENGTH(30),
+    /**
      * Query battery life (%) from the device.
      */
-    ADMIN_BATTERY_LIFE(36);
+    ADMIN_BATTERY_LIFE(36),
+    /**
+     * Query last three door opening times.
+     */
+    ADMIN_DOOR_OPENING_TIMES(39);
 
     /**
      * Sets multiple objects as a payload for this message.
