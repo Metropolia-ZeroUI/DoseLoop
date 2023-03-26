@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.doseloop.R
 import com.example.doseloop.viewmodel.HomeFragmentViewModel
@@ -25,8 +24,8 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
 
         val view = binding.root
 
-        val statusDrawer = binding.statusDrawer.binding
-        statusDrawer.drawerMenuButton.setOnClickListener {
+        val medicineTimeDrawer = binding.medicineTimeDrawer.binding
+        medicineTimeDrawer.drawerMenuButton.setOnClickListener {
             this.findNavController().navigate(R.id.action_homeFragment_to_dateTimeSettingFragment)
         }
 

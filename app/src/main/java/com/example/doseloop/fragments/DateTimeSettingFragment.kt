@@ -173,6 +173,7 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
                 DateTimeSettingViewModel().saveToPrefs(timeKey, time)
                 // Save switch state in SharedPreferences
                 DateTimeSettingViewModel().saveToPrefs(dayKey, isSwitchChecked)
+                msg.emptyPayload()
             }
         }
     }
