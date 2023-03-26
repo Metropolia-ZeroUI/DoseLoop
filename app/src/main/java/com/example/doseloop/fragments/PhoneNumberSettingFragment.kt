@@ -3,8 +3,6 @@ package com.example.doseloop.fragments
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +10,12 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.activity.OnBackPressedCallback
 import androidx.core.text.isDigitsOnly
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.doseloop.R
 import com.example.doseloop.comms.impl.Message
 import com.example.doseloop.comms.impl.PhoneNumber
-import com.example.doseloop.comms.impl.SmsMessageService
 import com.example.doseloop.databinding.FragmentPhoneNumberSettingBinding
 import com.example.doseloop.util.*
-import com.example.doseloop.viewmodel.AbstractViewModel
 import com.example.doseloop.viewmodel.PhoneNumberSettingViewModel
 import com.google.android.material.textfield.TextInputLayout
 
@@ -44,21 +39,23 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
         binding.viewModel = this.viewModel
         val view = binding.root
 
-        val screenWidth = requireContext().resources.displayMetrics.widthPixels
-
+        // TODO: Remove these
+   //     val screenWidth = requireContext().resources.displayMetrics.widthPixels
         // Programmatically lengthening the TextInputEditText's as their length can't properly be set in the layout xml
-        binding.number1EditText.width = screenWidth / 2
-        binding.number2EditText.width = screenWidth / 2
-        binding.number3EditText.width = screenWidth / 2
-        binding.number4EditText.width = screenWidth / 2
-        binding.number5EditText.width = screenWidth / 2
+   //     binding.number1EditText.width = screenWidth / 2
+   //     binding.number2EditText.width = screenWidth / 2
+   //     binding.number3EditText.width = screenWidth / 2
+   //     binding.number4EditText.width = screenWidth / 2
+   //     binding.number5EditText.width = screenWidth / 2
 
         // Add EditText error handling
-        addTextChangedListener(binding.number1EditText, binding.number1SubmitButton, binding.number1TextInputLayout)
-        addTextChangedListener(binding.number2EditText, binding.number2SubmitButton, binding.number2TextInputLayout)
-        addTextChangedListener(binding.number3EditText, binding.number3SubmitButton, binding.number3TextInputLayout)
-        addTextChangedListener(binding.number4EditText, binding.number4SubmitButton, binding.number4TextInputLayout)
-        addTextChangedListener(binding.number5EditText, binding.number5SubmitButton, binding.number5TextInputLayout)
+        addTextChangedAndEndIconListener(binding.number1EditText, binding.number1SubmitButton, binding.number1TextInputLayout)
+        addTextChangedAndEndIconListener(binding.number2EditText, binding.number2SubmitButton, binding.number2TextInputLayout)
+        addTextChangedAndEndIconListener(binding.number3EditText, binding.number3SubmitButton, binding.number3TextInputLayout)
+        addTextChangedAndEndIconListener(binding.number4EditText, binding.number4SubmitButton, binding.number4TextInputLayout)
+        addTextChangedAndEndIconListener(binding.number5EditText, binding.number5SubmitButton, binding.number5TextInputLayout)
+
+        // TODO: Setup endiconlisteners
 
         // Pre-set current numbers to fields
         binding.number1EditText.setText(viewModel?.getFromPrefs(PHONE_NUMBER_1, ""))
@@ -124,7 +121,7 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
         }
     }
 
-    private fun addTextChangedListener(editText: EditText, submitButton: Button, til: TextInputLayout) {
+    private fun addTextChangedAndEndIconListener(editText: EditText, submitButton: Button, til: TextInputLayout) {
         editText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -133,6 +130,10 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
             }
             override fun afterTextChanged(p0: Editable?) {}
         })
+        til.setEndIconOnClickListener {
+          // TODO: SpeecRecognizer stuff
+
+        }
     }
 
     private fun addSubmitButtonListener(submitButton: Button, editText: EditText, phoneSet: Message, numberKey: String, numberKeySimple: String) {
