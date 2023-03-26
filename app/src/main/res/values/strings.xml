@@ -13,6 +13,15 @@
     <string name="error_too_long_number">Numero on liian pitkä! (max. 10 merkkiä)</string>
     <string name="error_invalid_first_number">Varmista että ensimmäinen merkki on 0!</string>
     <string name="error_not_digit">Syötä pelkkiä numeroita!</string>
+    <!-- Strings for Date and Time Fragment -->
+    <string name="set_date_and_time">Aseta lääkkeenoton kellonaika ja päivä</string>
+    <string name="set_day">Lääkkeiden otto päivä"</string>
+    <string name="sent_button">Lähetä</string>
+    <string name="delete_button">Poista</string>
+    <string name="every_day">Joka päivä</string>
+    <string name="day_after">Joka toinen päivä</string>
+    <string name="set_format">__:__</string>
+    <string name="set_right_time">Syötä kellonaika muodossa 00:00</string>
     <string name="get_saved_phone_numbers">Vastaanota tallennetut puhelinnumerot</string>
     <string name="get_phone_numbers_settings_sms">Vastaanota puhelinnumerot joihin lähetetään tekstiviesti</string>
     <string name="set_time_correct">Aseta kellonaika oikeaksi</string>
