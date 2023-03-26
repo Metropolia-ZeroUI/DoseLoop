@@ -7,7 +7,7 @@
     <string name="enter_phone">Lisää laitteen puhelinnumero:</string>
     <string name="submit_button">Jatka</string>
     <string name="zero">0</string>
-    <string name="set_numbers">Aseta puhelinnumerot jotka saavat hälytyksiä</string>
+    <string name="set_numbers">Puhelinnumeroiden ja ilmoitusten asetus</string>
     <string name="change">Vaihda</string>
     <string name="save">Tallenna</string>
     <string name="error_country_code">Syötä numero ilman maatunnusta! (esim. 040...)</string>
