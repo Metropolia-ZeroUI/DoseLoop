@@ -4,21 +4,26 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.Toast
 import androidx.core.text.isDigitsOnly
 import androidx.navigation.fragment.findNavController
 import com.example.doseloop.R
 import com.example.doseloop.comms.impl.Message
 import com.example.doseloop.comms.impl.PhoneNumber
-import com.example.doseloop.comms.impl.SmsMessageService
 import com.example.doseloop.databinding.FragmentPhoneNumberSettingBinding
+import com.example.doseloop.speech.SpeechListener
+import com.example.doseloop.speech.SpeechToText
 import com.example.doseloop.util.*
 import com.example.doseloop.viewmodel.PhoneNumberSettingViewModel
 import com.google.android.material.textfield.TextInputLayout
+
 
 /**
  * Fragment for setting the phone numbers the dispenser uses for alerts
@@ -42,6 +47,14 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
 
         val screenWidth = requireContext().resources.displayMetrics.widthPixels
 
+        // Setup speech to text
+        val speechToTxt = SpeechToText(requireContext(), listener = SpeechListener(
+            onSuccess = { Log.i(SpeechListener::class.simpleName, "Speech got recognized") },
+            onError = { Log.e(SpeechListener::class.simpleName, "Failed to recognize speech") },
+            onReady = { Log.i(SpeechListener::class.simpleName, "Ready") },
+            onEnd = { Log.d(SpeechListener::class.simpleName, "End")}
+        ))
+
         // Programmatically lengthening the TextInputEditText's as their length can't properly be set in the layout xml
         binding.number1EditText.width = screenWidth / 2
         binding.number2EditText.width = screenWidth / 2
@@ -57,24 +70,75 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
         addTextChangedListener(binding.number5EditText, binding.number5SubmitButton, binding.number5TextInputLayout)
 
         // Pre-set current numbers to fields
-        binding.number1EditText.setText(PhoneNumberSettingViewModel().getFromPrefs(PHONE_NUMBER_1, ""))
-        binding.number2EditText.setText(PhoneNumberSettingViewModel().getFromPrefs(PHONE_NUMBER_2, ""))
-        binding.number3EditText.setText(PhoneNumberSettingViewModel().getFromPrefs(PHONE_NUMBER_3, ""))
-        binding.number4EditText.setText(PhoneNumberSettingViewModel().getFromPrefs(PHONE_NUMBER_4, ""))
-        binding.number5EditText.setText(PhoneNumberSettingViewModel().getFromPrefs(PHONE_NUMBER_5, ""))
+        binding.number1EditText.setText(viewModel?.getFromPrefs(PHONE_NUMBER_1, ""))
+        binding.number2EditText.setText(viewModel?.getFromPrefs(PHONE_NUMBER_2, ""))
+        binding.number3EditText.setText(viewModel?.getFromPrefs(PHONE_NUMBER_3, ""))
+        binding.number4EditText.setText(viewModel?.getFromPrefs(PHONE_NUMBER_4, ""))
+        binding.number5EditText.setText(viewModel?.getFromPrefs(PHONE_NUMBER_5, ""))
 
         // Set submit button listeners for each field
-        addSubmitButtonListener(binding.number1SubmitButton, binding.number1EditText, Message.PHONE_SET_1, PHONE_NUMBER_1)
-        addSubmitButtonListener(binding.number2SubmitButton, binding.number2EditText, Message.PHONE_SET_2, PHONE_NUMBER_2)
-        addSubmitButtonListener(binding.number3SubmitButton, binding.number3EditText, Message.PHONE_SET_3, PHONE_NUMBER_3)
-        addSubmitButtonListener(binding.number4SubmitButton, binding.number4EditText, Message.PHONE_SET_4, PHONE_NUMBER_4)
-        addSubmitButtonListener(binding.number5SubmitButton, binding.number5EditText, Message.PHONE_SET_5, PHONE_NUMBER_5)
+        addSubmitButtonListener(binding.number1SubmitButton, binding.number1EditText, Message.PHONE_SET_1, PHONE_NUMBER_1, "1")
+        addSubmitButtonListener(binding.number2SubmitButton, binding.number2EditText, Message.PHONE_SET_2, PHONE_NUMBER_2, "2")
+        addSubmitButtonListener(binding.number3SubmitButton, binding.number3EditText, Message.PHONE_SET_3, PHONE_NUMBER_3, "3")
+        addSubmitButtonListener(binding.number4SubmitButton, binding.number4EditText, Message.PHONE_SET_4, PHONE_NUMBER_4, "4")
+        addSubmitButtonListener(binding.number5SubmitButton, binding.number5EditText, Message.PHONE_SET_5, PHONE_NUMBER_5, "5")
 
         binding.phoneNumberBackButton.setOnClickListener {
             this.findNavController().navigate(R.id.action_phoneNumberSettingFragment_to_homeFragment)
         }
 
+        // Set record button listeners for each field
+        binding.number1RecordButton.tag = "1"
+        addRecordVoiceButtonListener(binding.number1RecordButton, binding.number1EditText, speechToTxt, "1")
+        binding.number2RecordButton.tag = "1"
+        addRecordVoiceButtonListener(binding.number2RecordButton, binding.number2EditText, speechToTxt, "2")
+        binding.number3RecordButton.tag = "1"
+        addRecordVoiceButtonListener(binding.number3RecordButton, binding.number3EditText, speechToTxt, "3")
+        binding.number4RecordButton.tag = "1"
+        addRecordVoiceButtonListener(binding.number4RecordButton, binding.number4EditText, speechToTxt, "4")
+        binding.number5RecordButton.tag = "1"
+        addRecordVoiceButtonListener(binding.number5RecordButton, binding.number5EditText, speechToTxt, "5")
         return view
+    }
+
+    private fun addRecordVoiceButtonListener(recordButton: ImageButton, editText: EditText, speechToText: SpeechToText, position: String) {
+        recordButton.setOnClickListener {
+            if(recordButton.tag == "2") {
+                speechToText.stopListening()
+                recordButton.setImageResource(R.drawable.ic_mic)
+                editText.hint = ""
+                editText.setText(viewModel?.getFromPrefs("PHONE_NUMBER_${position}", ""))
+                recordButton.tag = "1"
+            }
+            else {
+                var userText = ""
+                recordButton.tag = "2"
+                recordButton.setImageResource(R.drawable.ic_mic_record)
+                editText.setText("")
+                editText.hint = "Listening..."
+
+                speechToText.tryRecognize(this) {
+                    userText = it
+                    recordButton.setImageResource(R.drawable.ic_mic)
+                    if (userText != "") {
+                        userText = userText.replace(" ", "")
+                        if(userText.trim()[0] == '0') {
+                            editText.setText(userText)
+                            editText.hint = ""
+                        } else {
+                            val toast = Toast.makeText(activity, "'$userText' ei ole sopiva puhelinnumero", Toast.LENGTH_LONG)
+                            toast.setGravity(Gravity.CENTER, 0, 0)
+                            toast.show()
+                            editText!!.hint = ""
+                            editText.setText(viewModel?.getFromPrefs("PHONE_NUMBER_${position}", ""))
+                        }
+                        recordButton.setImageResource(R.drawable.ic_mic)
+                        recordButton.tag = "1"
+                    }
+                }
+
+            }
+        }
     }
 
     private fun addTextChangedListener(editText: EditText, submitButton: Button, til: TextInputLayout) {
@@ -88,16 +152,16 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
         })
     }
 
-    private fun addSubmitButtonListener(submitButton: Button, editText: EditText, phoneSet: Message, numberKey: String) {
-        val deviceNumber = PhoneNumberSettingViewModel().getFromPrefs(DEVICE_PHONE_NUMBER, "")
-        val msgService = SmsMessageService(PhoneNumber(deviceNumber!!), requireContext())
-
+    private fun addSubmitButtonListener(submitButton: Button, editText: EditText, phoneSet: Message, numberKey: String, numberKeySimple: String) {
         submitButton.setOnClickListener {
             val number = editText.text.toString()
-            val msg = phoneSet.withPayload(PhoneNumber(number))
-            msgService.sendMessage(msg) {
-                Log.d("MESSAGE_SEND", "Message OK")
-                PhoneNumberSettingViewModel().saveToPrefs(numberKey, number)
+            preventButtonClickSpam {
+                if (viewModel != null) {
+                    val action =
+                        PhoneNumberSettingFragmentDirections
+                            .actionPhoneNumberSettingFragmentToConfirmWindowActivity(number, numberKey, phoneSet.withPayload(PhoneNumber(number)), numberKeySimple)
+                    findNavController().navigate(action)
+                }
             }
         }
     }

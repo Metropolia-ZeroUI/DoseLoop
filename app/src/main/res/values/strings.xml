@@ -13,7 +13,6 @@
     <string name="error_too_long_number">Numero on liian pitkä! (max. 10 merkkiä)</string>
     <string name="error_invalid_first_number">Varmista että ensimmäinen merkki on 0!</string>
     <string name="error_not_digit">Syötä pelkkiä numeroita!</string>
-
     <!-- Strings for Date and Time Fragment -->
     <string name="set_date_and_time">Aseta lääkkeenoton kellonaika ja päivä</string>
     <string name="set_day">Lääkkeiden otto päivä"</string>
@@ -23,4 +22,23 @@
     <string name="day_after">Joka toinen päivä</string>
     <string name="set_format">__:__</string>
     <string name="set_right_time">Syötä kellonaika muodossa 00:00</string>
+    <string name="get_saved_phone_numbers">Vastaanota tallennetut puhelinnumerot</string>
+    <string name="get_phone_numbers_settings_sms">Vastaanota puhelinnumerot joihin lähetetään tekstiviesti</string>
+    <string name="set_time_correct">Aseta kellonaika oikeaksi</string>
+    <string name="get_medicine_times">Vastaanota luettelo lääkkeiden ottoajoista</string>
+    <string name="get_signal_strength">Vastaanota tieto signaalin vahvuudesta</string>
+    <string name="get_battery_level">Vastaanota tieto akun varauksesta</string>
+    <string name="get_door_opening_times">Vastaanota tieto kolmesta edellisesta ovenavausajasta</string>
+    <string name="check_device_settings">Tarkasta laitteen nykyiset asetukset</string>
+    <string name="cancel">Peru</string>
+    <string name="accept">Hyväksy</string>
+    <string name="change_number">Olet asettamassa %1$s. numeroksi %2$s. Hyväksy muutos?</string>
+    <string name="change_number_info">Muutos maksaa liittymäkohtaisen tekstiviestin hinnan</string>
+    <string name="confirm_status_battery">Haluatko varmasti tarkistaa laitteen akkutason?</string>
+    <string name="confirm_status_phone_numbers">Haluatko varmasti tarkistaa laitteeseen tallennetut puhelinnumerot?</string>
+    <string name="confirm_status_numbers_settings">Haluatko varmasti tarkistaa puhelinnumerot jotka saavat tekstiviestihälytyksiä?</string>
+    <string name="confirm_status_medicine_times">Haluatko varmasti tarkistaa lääkkeiden ottoajat?</string>
+    <string name="confirm_status_signal_strength">Haluatko varmasti tarkistaa signaalin vahvuuden?</string>
+    <string name="confirm_status_door_times">Haluatko varmasti tarkistaa ovenavausajat?</string>
+    <string name="confirm_status_time_correct">Haluatko varmasti asettaa kellonajan?</string>
 </resources>
