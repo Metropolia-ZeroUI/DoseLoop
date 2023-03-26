@@ -197,7 +197,7 @@ enum class Message(private val code: Int, private var payload: String = "")  {
 
     companion object {
         const val ALARM_DISABLE = ""
-        const val MEDS_EVERY_DAY = 1
-        const val MEDS_EVERY_OTHER_DAY = 0
+        const val MEDS_EVERY_DAY = 0
+        const val MEDS_EVERY_OTHER_DAY = 1
     }
 }

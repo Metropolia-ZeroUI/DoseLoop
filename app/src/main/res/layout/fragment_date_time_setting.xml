@@ -18,85 +18,78 @@
                 android:id="@+id/date_time_description_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/set_date_and_time"
-                android:layout_centerHorizontal="true"/>
+                android:layout_centerHorizontal="true"
+                android:text="@string/set_date_and_time" />
 
             <!-- Input one -->
             <RelativeLayout
                 android:id="@+id/time_1_input_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:layout_below="@+id/date_time_description_text"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 android:gravity="center_horizontal">
 
                 <TextView
                     android:id="@+id/time_1_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
                     android:layout_alignParentLeft="true"
+                    android:layout_marginTop="20dp"
                     android:padding="5dp"
-                    android:textSize="16dp"
-                    android:text="1."/>
+                    android:text="1."
+                    android:textSize="16sp" />
 
                 <!-- Input to add time in 24 hours format -->
-                <EditText
-                    android:id="@+id/time_edit_text"
-                    android:layout_width="60dp"
+
+                <!-- Slider -->
+                <TextView
+                    android:id="@+id/time_1_edit_text"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_toRightOf="@+id/time_1_text"
                     android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:textSize="16dp"
-                    android:hint="@string/set_time"
-                    android:inputType="time"
+                    android:layout_marginTop="22dp"
+                    android:layout_toRightOf="@+id/time_1_text"
+                    android:clickable="true"
+                    android:hint="@string/set_format"
+                    android:textSize="20sp"
                     android:timePickerMode="spinner"
                     app:errorEnabled="true" />
 
-                <!-- Slider -->
-                <SeekBar
+                <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/day_slider"
-                    android:layout_width="80dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/time_edit_text"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="32dp"
-                    android:min="0"
-                    android:max="1"
-                    android:progress="0"
-                    android:padding="10dp"/>
-
-                <TextView
-                    android:id="@+id/set_day_text"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="56dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_toRightOf="@+id/day_slider"
-
-                    android:textSize="14dp"
-                    android:text="@string/set_day"/>
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_toRightOf="@+id/time_1_edit_text"
+                    android:checked="false"
+                    android:textOff="@string/every_day"
+                    android:textOn="@string/day_after"
+                    app:showText="true" />
 
                 <Button
                     android:id="@+id/time_1_submit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_slider"
+                    android:layout_alignParentLeft="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_toRightOf="@+id/day_slider"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/change" />
+                    android:layout_marginStart="62dp"
+                    android:text="@string/sent_button" />
 
                 <Button
                     android:id="@+id/time_1_delete_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_slider"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginStart="28dp"
                     android:layout_toRightOf="@+id/time_1_submit_button"
-                    android:layout_marginStart="10dp"
+                    android:backgroundTint="@color/bottom_nav_color"
                     android:text="@string/delete_button" />
 
             </RelativeLayout>
@@ -105,77 +98,69 @@
                 android:id="@+id/time_2_input_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:layout_below="@+id/time_1_input_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 android:gravity="center_horizontal">
 
                 <TextView
                     android:id="@+id/time_2_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
                     android:layout_alignParentLeft="true"
+                    android:layout_marginTop="20dp"
                     android:padding="5dp"
-                    android:textSize="16dp"
-                    android:text="2."/>
+                    android:text="2."
+                    android:textSize="16sp" />
 
                 <!-- Input to add time in 24 hours format -->
-                <EditText
+                <TextView
                     android:id="@+id/time_2_edit_text"
-                    android:layout_width="60dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_toRightOf="@+id/time_2_text"
                     android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:textSize="16dp"
-                    android:hint="@string/set_time"
-                    android:inputType="time"
+                    android:layout_marginTop="22dp"
+                    android:layout_toRightOf="@+id/time_2_text"
+                    android:clickable="true"
+                    android:hint="@string/set_format"
+                    android:textSize="20sp"
                     android:timePickerMode="spinner"
                     app:errorEnabled="true" />
 
                 <!-- Slider -->
-                <SeekBar
+                <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/day_2_slider"
-                    android:layout_width="80dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/time_2_edit_text"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="32dp"
-                    android:min="0"
-                    android:max="1"
-                    android:progress="0"
-                    android:padding="10dp"/>
-
-                <TextView
-                    android:id="@+id/set_day_2_text"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="56dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_toRightOf="@+id/day_2_slider"
-
-                    android:textSize="14dp"
-                    android:text="@string/set_day"/>
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_toRightOf="@+id/time_2_edit_text"
+                    android:checked="false"
+                    android:textOff="@string/every_day"
+                    android:textOn="@string/day_after"
+                    app:showText="true" />
 
                 <Button
                     android:id="@+id/time_2_submit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_2_slider"
+                    android:layout_alignParentLeft="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_toRightOf="@+id/day_2_slider"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/change" />
+                    android:layout_marginStart="62dp"
+                    android:text="@string/sent_button" />
 
                 <Button
                     android:id="@+id/time_2_delete_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_2_slider"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginStart="28dp"
                     android:layout_toRightOf="@+id/time_2_submit_button"
-                    android:layout_marginStart="10dp"
+                    android:backgroundTint="@color/bottom_nav_color"
                     android:text="@string/delete_button" />
 
             </RelativeLayout>
@@ -184,77 +169,69 @@
                 android:id="@+id/time_3_input_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:layout_below="@+id/time_2_input_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 android:gravity="center_horizontal">
 
                 <TextView
                     android:id="@+id/time_3_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
                     android:layout_alignParentLeft="true"
+                    android:layout_marginTop="20dp"
                     android:padding="5dp"
-                    android:textSize="16dp"
-                    android:text="3."/>
+                    android:text="3."
+                    android:textSize="16sp" />
 
                 <!-- Input to add time in 24 hours format -->
-                <EditText
+                <TextView
                     android:id="@+id/time_3_edit_text"
-                    android:layout_width="60dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_toRightOf="@+id/time_3_text"
                     android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:textSize="16dp"
-                    android:hint="@string/set_time"
-                    android:inputType="time"
+                    android:layout_marginTop="22dp"
+                    android:layout_toRightOf="@+id/time_3_text"
+                    android:clickable="true"
+                    android:hint="@string/set_format"
+                    android:textSize="20sp"
                     android:timePickerMode="spinner"
                     app:errorEnabled="true" />
 
                 <!-- Slider -->
-                <SeekBar
+                <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/day_3_slider"
-                    android:layout_width="80dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/time_3_edit_text"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="32dp"
-                    android:min="0"
-                    android:max="1"
-                    android:progress="0"
-                    android:padding="10dp"/>
-
-                <TextView
-                    android:id="@+id/set_day_3_text"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="56dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_toRightOf="@+id/day_3_slider"
-
-                    android:textSize="14dp"
-                    android:text="@string/set_day"/>
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_toRightOf="@+id/time_3_edit_text"
+                    android:checked="false"
+                    android:textOff="@string/every_day"
+                    android:textOn="@string/day_after"
+                    app:showText="true" />
 
                 <Button
                     android:id="@+id/time_3_submit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_3_slider"
+                    android:layout_alignParentLeft="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_toRightOf="@+id/day_3_slider"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/change" />
+                    android:layout_marginStart="62dp"
+                    android:text="@string/sent_button" />
 
                 <Button
                     android:id="@+id/time_3_delete_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_3_slider"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginStart="28dp"
                     android:layout_toRightOf="@+id/time_3_submit_button"
-                    android:layout_marginStart="10dp"
+                    android:backgroundTint="@color/bottom_nav_color"
                     android:text="@string/delete_button" />
 
             </RelativeLayout>
@@ -263,77 +240,70 @@
                 android:id="@+id/time_4_input_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:layout_below="@+id/time_3_input_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 android:gravity="center_horizontal">
 
                 <TextView
                     android:id="@+id/time_4_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_alignParentLeft="true"
                     android:padding="5dp"
-                    android:textSize="16dp"
-                    android:text="4."/>
+                    android:text="4."
+                    android:textSize="16dp" />
 
                 <!-- Input to add time in 24 hours format -->
-                <EditText
+                <TextView
                     android:id="@+id/time_4_edit_text"
-                    android:layout_width="60dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_toRightOf="@+id/time_4_text"
                     android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:textSize="16dp"
-                    android:hint="@string/set_time"
-                    android:inputType="time"
+                    android:layout_marginTop="22dp"
+                    android:layout_toRightOf="@+id/time_4_text"
+                    android:clickable="true"
+                    android:hint="@string/set_format"
+                    android:textSize="20sp"
                     android:timePickerMode="spinner"
                     app:errorEnabled="true" />
 
                 <!-- Slider -->
-                <SeekBar
+                <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/day_4_slider"
-                    android:layout_width="80dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/time_4_edit_text"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="32dp"
-                    android:min="0"
-                    android:max="1"
-                    android:progress="0"
-                    android:padding="10dp"/>
-
-                <TextView
-                    android:id="@+id/set_day_4_text"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="56dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_toRightOf="@+id/day_4_slider"
-
-                    android:textSize="14dp"
-                    android:text="@string/set_day"/>
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_toRightOf="@+id/time_4_edit_text"
+                    android:checked="false"
+                    android:textOff="@string/every_day"
+                    android:textOn="@string/day_after"
+                    app:showText="true" />
 
                 <Button
                     android:id="@+id/time_4_submit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_4_slider"
+                    android:layout_alignParentLeft="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_toRightOf="@+id/day_4_slider"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/change" />
+                    android:layout_marginStart="62dp"
+                    android:text="@string/sent_button" />
 
                 <Button
                     android:id="@+id/time_4_delete_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_4_slider"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginStart="28dp"
                     android:layout_toRightOf="@+id/time_4_submit_button"
-                    android:layout_marginStart="10dp"
+                    android:backgroundTint="@color/bottom_nav_color"
                     android:text="@string/delete_button" />
 
             </RelativeLayout>
@@ -342,77 +312,70 @@
                 android:id="@+id/time_5_input_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:layout_below="@+id/time_4_input_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 android:gravity="center_horizontal">
 
                 <TextView
                     android:id="@+id/time_5_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_alignParentLeft="true"
                     android:padding="5dp"
-                    android:textSize="16dp"
-                    android:text="5."/>
+                    android:text="5."
+                    android:textSize="16dp" />
 
                 <!-- Input to add time in 24 hours format -->
-                <EditText
+                <TextView
                     android:id="@+id/time_5_edit_text"
-                    android:layout_width="60dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_toRightOf="@+id/time_5_text"
                     android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:textSize="16dp"
-                    android:hint="@string/set_time"
-                    android:inputType="time"
+                    android:layout_marginTop="22dp"
+                    android:layout_toRightOf="@+id/time_5_text"
+                    android:clickable="true"
+                    android:hint="@string/set_format"
+                    android:textSize="20sp"
                     android:timePickerMode="spinner"
                     app:errorEnabled="true" />
 
                 <!-- Slider -->
-                <SeekBar
+                <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/day_5_slider"
-                    android:layout_width="80dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/time_5_edit_text"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="32dp"
-                    android:min="0"
-                    android:max="1"
-                    android:progress="0"
-                    android:padding="10dp"/>
-
-                <TextView
-                    android:id="@+id/set_day_5_text"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="56dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_toRightOf="@+id/day_5_slider"
-
-                    android:textSize="14dp"
-                    android:text="@string/set_day"/>
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_toRightOf="@+id/time_5_edit_text"
+                    android:checked="false"
+                    android:textOff="@string/every_day"
+                    android:textOn="@string/day_after"
+                    app:showText="true" />
 
                 <Button
                     android:id="@+id/time_5_submit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_5_slider"
+                    android:layout_alignParentLeft="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_toRightOf="@+id/day_5_slider"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/change" />
+                    android:layout_marginStart="62dp"
+                    android:text="@string/sent_button" />
 
                 <Button
                     android:id="@+id/time_5_delete_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_5_slider"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginStart="28dp"
                     android:layout_toRightOf="@+id/time_5_submit_button"
-                    android:layout_marginStart="10dp"
+                    android:backgroundTint="@color/bottom_nav_color"
                     android:text="@string/delete_button" />
 
             </RelativeLayout>
@@ -421,77 +384,70 @@
                 android:id="@+id/time_6_input_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:layout_below="@+id/time_5_input_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 android:gravity="center_horizontal">
 
                 <TextView
                     android:id="@+id/time_6_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_alignParentLeft="true"
                     android:padding="5dp"
-                    android:textSize="16dp"
-                    android:text="6."/>
+                    android:text="6."
+                    android:textSize="16dp" />
 
                 <!-- Input to add time in 24 hours format -->
-                <EditText
+                <TextView
                     android:id="@+id/time_6_edit_text"
-                    android:layout_width="60dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_toRightOf="@+id/time_6_text"
                     android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:textSize="16dp"
-                    android:hint="@string/set_time"
-                    android:inputType="time"
+                    android:layout_marginTop="22dp"
+                    android:layout_toRightOf="@+id/time_6_text"
+                    android:clickable="true"
+                    android:hint="@string/set_format"
+                    android:textSize="20sp"
                     android:timePickerMode="spinner"
                     app:errorEnabled="true" />
 
                 <!-- Slider -->
-                <SeekBar
+                <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/day_6_slider"
-                    android:layout_width="80dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/time_6_edit_text"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="32dp"
-                    android:min="0"
-                    android:max="1"
-                    android:progress="0"
-                    android:padding="10dp"/>
-
-                <TextView
-                    android:id="@+id/set_day_6_text"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="56dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_toRightOf="@+id/day_6_slider"
-
-                    android:textSize="14dp"
-                    android:text="@string/set_day"/>
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_toRightOf="@+id/time_6_edit_text"
+                    android:checked="false"
+                    android:textOff="@string/every_day"
+                    android:textOn="@string/day_after"
+                    app:showText="true" />
 
                 <Button
                     android:id="@+id/time_6_submit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_6_slider"
+                    android:layout_alignParentLeft="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_toRightOf="@+id/day_6_slider"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/change" />
+                    android:layout_marginStart="62dp"
+                    android:text="@string/sent_button" />
 
                 <Button
                     android:id="@+id/time_6_delete_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_6_slider"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginStart="28dp"
                     android:layout_toRightOf="@+id/time_6_submit_button"
-                    android:layout_marginStart="10dp"
+                    android:backgroundTint="@color/bottom_nav_color"
                     android:text="@string/delete_button" />
 
             </RelativeLayout>
