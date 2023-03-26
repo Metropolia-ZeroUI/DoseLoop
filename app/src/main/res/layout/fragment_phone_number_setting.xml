@@ -247,13 +247,7 @@
                             android:inputType="phone" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-                <ImageButton
-                    android:id="@+id/number_3_record_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_mic"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/number_3_submit_button"/>
+
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/number_3_submit_button"
                         android:layout_width="0dp"
@@ -317,13 +311,7 @@
                             android:inputType="phone" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-                <ImageButton
-                    android:id="@+id/number_4_record_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_mic"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/number_4_submit_button"/>
+
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/number_4_submit_button"
                         android:layout_width="0dp"

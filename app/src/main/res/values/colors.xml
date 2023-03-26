@@ -10,7 +10,7 @@
     <color name="light_green">#80BE8A</color>
     <color name="light_gray">#696969</color>
     <color name="dark_gray">#3B3B3B</color>
-
+    <color name="wine_red">#750000</color>
 
     <!-- Custom colors -->
     <color name="bottom_nav_color">#4185EA</color>

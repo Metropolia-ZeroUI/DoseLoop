@@ -1,19 +1,18 @@
 package com.example.doseloop.fragments
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.OnBackPressedCallback
-import androidx.core.content.ContextCompat.getSystemService
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.text.isDigitsOnly
 import androidx.navigation.fragment.findNavController
@@ -66,11 +65,11 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
         binding.number5EditText.width = screenWidth / 2
 
         // Add EditText error handling
-        addTextChangedAndEndIconListener(binding.number1EditText, binding.number1SubmitButton, binding.number1TextInputLayout)
-        addTextChangedAndEndIconListener(binding.number2EditText, binding.number2SubmitButton, binding.number2TextInputLayout)
-        addTextChangedAndEndIconListener(binding.number3EditText, binding.number3SubmitButton, binding.number3TextInputLayout)
-        addTextChangedAndEndIconListener(binding.number4EditText, binding.number4SubmitButton, binding.number4TextInputLayout)
-        addTextChangedAndEndIconListener(binding.number5EditText, binding.number5SubmitButton, binding.number5TextInputLayout)
+        addTextChangedListener(binding.number1EditText, binding.number1SubmitButton, binding.number1TextInputLayout)
+        addTextChangedListener(binding.number2EditText, binding.number2SubmitButton, binding.number2TextInputLayout)
+        addTextChangedListener(binding.number3EditText, binding.number3SubmitButton, binding.number3TextInputLayout)
+        addTextChangedListener(binding.number4EditText, binding.number4SubmitButton, binding.number4TextInputLayout)
+        addTextChangedListener(binding.number5EditText, binding.number5SubmitButton, binding.number5TextInputLayout)
 
         // Pre-set current numbers to fields
         binding.number1EditText.setText(viewModel?.getFromPrefs(PHONE_NUMBER_1, ""))
@@ -129,16 +128,16 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
         }
 
         // Set record button listeners for each field
-        binding.number1RecordButton.tag = "1"
-        addRecordVoiceButtonListener(binding.number1RecordButton, binding.number1EditText, speechToTxt, "1")
-        binding.number2RecordButton.tag = "1"
-        addRecordVoiceButtonListener(binding.number2RecordButton, binding.number2EditText, speechToTxt, "2")
-        binding.number3RecordButton.tag = "1"
-        addRecordVoiceButtonListener(binding.number3RecordButton, binding.number3EditText, speechToTxt, "3")
-        binding.number4RecordButton.tag = "1"
-        addRecordVoiceButtonListener(binding.number4RecordButton, binding.number4EditText, speechToTxt, "4")
-        binding.number5RecordButton.tag = "1"
-        addRecordVoiceButtonListener(binding.number5RecordButton, binding.number5EditText, speechToTxt, "5")
+        binding.number1TextInputLayout.tag = "1"
+        addRecordVoiceButtonListener(binding.number1TextInputLayout, binding.number1EditText, speechToTxt, "1")
+        binding.number2TextInputLayout.tag = "1"
+        addRecordVoiceButtonListener(binding.number2TextInputLayout, binding.number2EditText, speechToTxt, "2")
+        binding.number3TextInputLayout.tag = "1"
+        addRecordVoiceButtonListener(binding.number3TextInputLayout, binding.number3EditText, speechToTxt, "3")
+        binding.number4TextInputLayout.tag = "1"
+        addRecordVoiceButtonListener(binding.number4TextInputLayout, binding.number4EditText, speechToTxt, "4")
+        binding.number5TextInputLayout.tag = "1"
+        addRecordVoiceButtonListener(binding.number5TextInputLayout, binding.number5EditText, speechToTxt, "5")
         return view
     }
 
@@ -147,47 +146,6 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
         if (viewModel?.getFromPrefs(NAVIGATE_TO_HOME_FRAGMENT, false) == true) {
             findNavController().popBackStack(R.id.homeFragment, false)
             viewModel?.saveToPrefs(NAVIGATE_TO_HOME_FRAGMENT, false)
-        }
-    }
-
-    private fun addTextChangedAndEndIconListener(editText: EditText, submitButton: Button, til: TextInputLayout) {
-    private fun addRecordVoiceButtonListener(recordButton: ImageButton, editText: EditText, speechToText: SpeechToText, position: String) {
-        recordButton.setOnClickListener {
-            if(recordButton.tag == "2") {
-                speechToText.stopListening()
-                recordButton.setImageResource(R.drawable.ic_mic)
-                editText.hint = ""
-                editText.setText(viewModel?.getFromPrefs("PHONE_NUMBER_${position}", ""))
-                recordButton.tag = "1"
-            }
-            else {
-                var userText = ""
-                recordButton.tag = "2"
-                recordButton.setImageResource(R.drawable.ic_mic_record)
-                editText.setText("")
-                editText.hint = "Listening..."
-
-                speechToText.tryRecognize(this) {
-                    userText = it
-                    recordButton.setImageResource(R.drawable.ic_mic)
-                    if (userText != "") {
-                        userText = userText.replace(" ", "")
-                        if(userText.trim()[0] == '0') {
-                            editText.setText(userText)
-                            editText.hint = ""
-                        } else {
-                            val toast = Toast.makeText(activity, "'$userText' ei ole sopiva puhelinnumero", Toast.LENGTH_LONG)
-                            toast.setGravity(Gravity.CENTER, 0, 0)
-                            toast.show()
-                            editText!!.hint = ""
-                            editText.setText(viewModel?.getFromPrefs("PHONE_NUMBER_${position}", ""))
-                        }
-                        recordButton.setImageResource(R.drawable.ic_mic)
-                        recordButton.tag = "1"
-                    }
-                }
-
-            }
         }
     }
 
@@ -200,13 +158,52 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
             }
             override fun afterTextChanged(p0: Editable?) {}
         })
-
-        // TODO: SpeecRecognizer stuff
-        //  i.e. add addRecordVoiceButtonListener() here
+    }
+    private fun addRecordVoiceButtonListener(til: TextInputLayout, editText: EditText, speechToText: SpeechToText, position: String) {
         til.setEndIconOnClickListener {
-            // TODO: til.setEndIconDrawable() to change the drawable
-        }
+            if(til.tag == "2") {
+                speechToText.stopListening()
+                til.setEndIconDrawable(R.drawable.ic_mic)
+                til.setEndIconTintList(ColorStateList.valueOf(resources.getColor(R.color.dark_gray)))
+                editText.hint = ""
+                editText.clearFocus()
+                editText.setText(viewModel?.getFromPrefs("PHONE_NUMBER_${position}", ""))
+                til.tag = "1"
+            }
+            else {
+                var userText = ""
+                til.tag = "2"
+                til.setEndIconDrawable(R.drawable.ic_mic_record)
+                til.setEndIconTintList(ColorStateList.valueOf(resources.getColor(R.color.wine_red)))
+                editText.setText("")
+                editText.hint = "Listening..."
+                editText.requestFocus()
+                speechToText.tryRecognize(this) {
+                    userText = it
+                    til.setEndIconDrawable(R.drawable.ic_mic)
+                    til.setEndIconTintList(ColorStateList.valueOf(resources.getColor(R.color.dark_gray)))
+                    if (userText != "") {
+                        userText = userText.replace(" ", "")
+                        if(userText.trim()[0] == '0') {
+                            editText.setText(userText)
+                            editText.hint = ""
+                            editText.clearFocus()
+                        } else {
+                            val toast = Toast.makeText(activity, "'$userText' ei ole sopiva puhelinnumero", Toast.LENGTH_LONG)
+                            toast.setGravity(Gravity.CENTER, 0, 0)
+                            toast.show()
+                            editText.hint = ""
+                            editText.clearFocus()
+                            editText.setText(viewModel?.getFromPrefs("PHONE_NUMBER_${position}", ""))
+                        }
+                        til.setEndIconDrawable(R.drawable.ic_mic)
+                        til.setEndIconTintList(ColorStateList.valueOf(resources.getColor(R.color.dark_gray)))
+                        til.tag = "1"
+                    }
+                }
 
+            }
+        }
     }
 
     private fun addSubmitButtonListener(submitButton: Button, editText: EditText, phoneSet: Message, numberKey: String, numberKeySimple: String) {
