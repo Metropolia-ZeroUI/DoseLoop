@@ -14,6 +14,9 @@
             android:id="@+id/action_homeFragment_to_phoneNumberSettingFragment"
             app:destination="@id/phoneNumberSettingFragment" />
         <action
+            android:id="@+id/action_homeFragment_to_dateTimeSettingFragment"
+            app:destination="@id/dateTimeSettingFragment" />
+        <action
             android:id="@+id/action_homeFragment_to_deviceStatusFragment"
             app:destination="@id/deviceStatusFragment" />
     </fragment>
@@ -45,6 +48,15 @@
             app:destination="@id/phoneNumberSettingUnsavedChangesActivity" />
         <action
             android:id="@+id/action_phoneNumberSettingFragment_to_homeFragment2"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dateTimeSettingFragment"
+        android:name="com.example.doseloop.fragments.DateTimeSettingFragment"
+        android:label="fragment_date_time_setting"
+        tools:layout="@layout/fragment_date_time_setting" >
+        <action
+            android:id="@+id/action_dateTimeSettingFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
