@@ -46,6 +46,19 @@ class DeviceStatusFragment : AbstractFragment<DeviceStatusViewModel>(DeviceStatu
             this.findNavController().navigate(R.id.action_deviceStatusFragment_to_homeFragment)
         }
 
+        binding.deviceLockSwitch.setOnCheckedChangeListener { compoundButton, b ->
+            preventButtonClickSpam {
+                if (viewModel != null) {
+                    val msg = if (viewModel.deviceLockedState.value == true) Message.LOCK_DEVICE else Message.UNLOCK_DEVICE
+                    val info = getString(if(viewModel.deviceLockedState.value == true) R.string.device_lock_info else R.string.device_open_info)
+                    val action =
+                        DeviceStatusFragmentDirections
+                            .actionDeviceStatusFragmentToConfirmStatusActivity(msg, info)
+                    findNavController().navigate(action)
+                }
+            }
+        }
+
         return view
     }
 

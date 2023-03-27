@@ -54,4 +54,9 @@
     <string name="confirm_status_signal_strength">Haluatko varmasti tarkistaa signaalin vahvuuden?</string>
     <string name="confirm_status_door_times">Haluatko varmasti tarkistaa ovenavausajat?</string>
     <string name="confirm_status_time_correct">Haluatko varmasti asettaa kellonajan?</string>
+    <string name="locked">Lukittu</string>
+    <string name="open">Auki</string>
+    <string name="device_locked">Älydosetin lukitus</string>
+    <string name="device_lock_info">Olet lukitsemassa älydosetin.\nHyväksy muutos?</string>
+    <string name="device_open_info">Olet vapauttamassa älydosetin lukituksen.\nHyväksy muutos?</string>
 </resources>
