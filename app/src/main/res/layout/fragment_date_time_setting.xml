@@ -4,464 +4,672 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.DateTimeSettingFragment">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@drawable/bg_pill"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/date_time_input_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/date_time_description_text"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="@string/set_date_and_time" />
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/title_container"
+                    android:elevation="10dp">
+
+                    <ImageButton
+                        android:id="@+id/back_home_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_back"
+                        app:layout_constraintBottom_toTopOf="@+id/date_time_description_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/date_time_description_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:gravity="center"
+                        android:text="@string/set_date_and_time"
+                        android:textColor="?colorSecondaryVariant"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/back_home_button"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- Input one -->
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/time_1_input_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/date_time_description_text"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:gravity="center_horizontal">
-
-                <TextView
-                    android:id="@+id/time_1_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginTop="20dp"
-                    android:padding="5dp"
-                    android:text="1."
-                    android:textSize="16sp" />
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_margin="5dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/number_container"
+                android:elevation="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <!-- Input to add time in 24 hours format -->
 
                 <!-- Slider -->
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/time_1_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:padding="5dp"
+                    android:text="1."
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/day_slider"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.159" />
+
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/time_1_edit_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="22dp"
+                    android:layout_marginStart="104dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="13dp"
                     android:layout_toRightOf="@+id/time_1_text"
                     android:clickable="true"
                     android:hint="@string/set_format"
                     android:textSize="20sp"
                     android:timePickerMode="spinner"
-                    app:errorEnabled="true" />
+                    app:errorEnabled="true"
+                    app:layout_constraintBottom_toTopOf="@+id/time_1_delete_button"
+                    app:layout_constraintEnd_toStartOf="@+id/day_slider"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/day_slider"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="12dp"
                     android:layout_toRightOf="@+id/time_1_edit_text"
                     android:checked="false"
                     android:textOff="@string/every_day"
                     android:textOn="@string/day_after"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:showText="true" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/time_1_delete_button"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_slider"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="80dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/confirm_blue_button"
+                    android:text="@string/delete_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/time_1_submit_button"
+                    app:layout_constraintTop_toBottomOf="@+id/day_slider" />
+
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/time_1_submit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/day_slider"
-                    android:layout_alignParentLeft="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="62dp"
-                    android:text="@string/sent_button" />
+                    android:layout_marginStart="80dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_toRightOf="@+id/time_1_delete_button"
+                    android:background="@drawable/confirm_button"
+                    android:text="@string/sent_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                <Button
-                    android:id="@+id/time_1_delete_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/day_slider"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="28dp"
-                    android:layout_toRightOf="@+id/time_1_submit_button"
-                    android:backgroundTint="@color/bottom_nav_color"
-                    android:text="@string/delete_button" />
-
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <!-- Input two -->
-            <RelativeLayout
-                android:id="@+id/time_2_input_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/time_1_input_layout"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:gravity="center_horizontal">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/time_2_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/number_container"
+                    android:elevation="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/time_2_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginTop="20dp"
-                    android:padding="5dp"
-                    android:text="2."
-                    android:textSize="16sp" />
+                    <!-- Input to add time in 24 hours format -->
 
-                <!-- Input to add time in 24 hours format -->
-                <TextView
-                    android:id="@+id/time_2_edit_text"
-                    android:layout_width="wrap_content"
+                    <!-- Slider -->
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/time_2_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:padding="5dp"
+                        android:text="2."
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/day_2_slider"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.159" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/time_2_edit_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="104dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="13dp"
+                        android:layout_toRightOf="@+id/time_2_text"
+                        android:clickable="true"
+                        android:hint="@string/set_format"
+                        android:textSize="20sp"
+                        android:timePickerMode="spinner"
+                        app:errorEnabled="true"
+                        app:layout_constraintBottom_toTopOf="@+id/time_2_delete_button"
+                        app:layout_constraintEnd_toStartOf="@+id/day_2_slider"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/day_2_slider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_toRightOf="@+id/time_2_edit_text"
+                        android:checked="false"
+                        android:textOff="@string/every_day"
+                        android:textOn="@string/day_after"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:showText="true" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/time_2_delete_button"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_2_slider"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="22dp"
-                    android:layout_toRightOf="@+id/time_2_text"
-                    android:clickable="true"
-                    android:hint="@string/set_format"
-                    android:textSize="20sp"
-                    android:timePickerMode="spinner"
-                    app:errorEnabled="true" />
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="80dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/confirm_blue_button"
+                    android:text="@string/delete_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/time_2_submit_button"
+                    app:layout_constraintTop_toBottomOf="@+id/day_2_slider" />
 
-                <!-- Slider -->
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/day_2_slider"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_toRightOf="@+id/time_2_edit_text"
-                    android:checked="false"
-                    android:textOff="@string/every_day"
-                    android:textOn="@string/day_after"
-                    app:showText="true" />
-
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/time_2_submit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/day_2_slider"
-                    android:layout_alignParentLeft="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="62dp"
-                    android:text="@string/sent_button" />
+                    android:layout_marginStart="80dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_toRightOf="@+id/time_2_delete_button"
+                    android:background="@drawable/confirm_button"
+                    android:text="@string/sent_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                <Button
-                    android:id="@+id/time_2_delete_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/day_2_slider"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="28dp"
-                    android:layout_toRightOf="@+id/time_2_submit_button"
-                    android:backgroundTint="@color/bottom_nav_color"
-                    android:text="@string/delete_button" />
-
-            </RelativeLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             <!-- Input three -->
-            <RelativeLayout
-                android:id="@+id/time_3_input_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/time_2_input_layout"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:gravity="center_horizontal">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/time_3_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/number_container"
+                    android:elevation="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/time_3_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginTop="20dp"
-                    android:padding="5dp"
-                    android:text="3."
-                    android:textSize="16sp" />
+                    <!-- Input to add time in 24 hours format -->
 
-                <!-- Input to add time in 24 hours format -->
-                <TextView
-                    android:id="@+id/time_3_edit_text"
-                    android:layout_width="wrap_content"
+                    <!-- Slider -->
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/time_3_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:padding="5dp"
+                        android:text="3."
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/day_3_slider"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.159" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/time_3_edit_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="104dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="13dp"
+                        android:layout_toRightOf="@+id/time_3_text"
+                        android:clickable="true"
+                        android:hint="@string/set_format"
+                        android:textSize="20sp"
+                        android:timePickerMode="spinner"
+                        app:errorEnabled="true"
+                        app:layout_constraintBottom_toTopOf="@+id/time_3_delete_button"
+                        app:layout_constraintEnd_toStartOf="@+id/day_3_slider"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/day_3_slider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_toRightOf="@+id/time_3_edit_text"
+                        android:checked="false"
+                        android:textOff="@string/every_day"
+                        android:textOn="@string/day_after"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:showText="true" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/time_3_delete_button"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_3_slider"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="22dp"
-                    android:layout_toRightOf="@+id/time_3_text"
-                    android:clickable="true"
-                    android:hint="@string/set_format"
-                    android:textSize="20sp"
-                    android:timePickerMode="spinner"
-                    app:errorEnabled="true" />
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="80dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/confirm_blue_button"
+                    android:text="@string/delete_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/time_3_submit_button"
+                    app:layout_constraintTop_toBottomOf="@+id/day_3_slider" />
 
-                <!-- Slider -->
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/day_3_slider"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_toRightOf="@+id/time_3_edit_text"
-                    android:checked="false"
-                    android:textOff="@string/every_day"
-                    android:textOn="@string/day_after"
-                    app:showText="true" />
-
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/time_3_submit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/day_3_slider"
-                    android:layout_alignParentLeft="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="62dp"
-                    android:text="@string/sent_button" />
+                    android:layout_marginStart="80dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_toRightOf="@+id/time_3_delete_button"
+                    android:background="@drawable/confirm_button"
+                    android:text="@string/sent_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                <Button
-                    android:id="@+id/time_3_delete_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/day_3_slider"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="28dp"
-                    android:layout_toRightOf="@+id/time_3_submit_button"
-                    android:backgroundTint="@color/bottom_nav_color"
-                    android:text="@string/delete_button" />
-
-            </RelativeLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             <!-- Input four -->
-            <RelativeLayout
-                android:id="@+id/time_4_input_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/time_3_input_layout"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:gravity="center_horizontal">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/time_4_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/number_container"
+                    android:elevation="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/time_4_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:padding="5dp"
-                    android:text="4."
-                    android:textSize="16dp" />
+                    <!-- Input to add time in 24 hours format -->
 
-                <!-- Input to add time in 24 hours format -->
-                <TextView
-                    android:id="@+id/time_4_edit_text"
-                    android:layout_width="wrap_content"
+                    <!-- Slider -->
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/time_4_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:padding="5dp"
+                        android:text="4."
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/day_4_slider"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.159" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/time_4_edit_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="104dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="13dp"
+                        android:layout_toRightOf="@+id/time_4_text"
+                        android:clickable="true"
+                        android:hint="@string/set_format"
+                        android:textSize="20sp"
+                        android:timePickerMode="spinner"
+                        app:errorEnabled="true"
+                        app:layout_constraintBottom_toTopOf="@+id/time_4_delete_button"
+                        app:layout_constraintEnd_toStartOf="@+id/day_4_slider"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/day_4_slider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_toRightOf="@+id/time_4_edit_text"
+                        android:checked="false"
+                        android:textOff="@string/every_day"
+                        android:textOn="@string/day_after"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:showText="true" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/time_4_delete_button"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_4_slider"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="22dp"
-                    android:layout_toRightOf="@+id/time_4_text"
-                    android:clickable="true"
-                    android:hint="@string/set_format"
-                    android:textSize="20sp"
-                    android:timePickerMode="spinner"
-                    app:errorEnabled="true" />
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="80dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/confirm_blue_button"
+                    android:text="@string/delete_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/time_4_submit_button"
+                    app:layout_constraintTop_toBottomOf="@+id/day_4_slider" />
 
-                <!-- Slider -->
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/day_4_slider"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_toRightOf="@+id/time_4_edit_text"
-                    android:checked="false"
-                    android:textOff="@string/every_day"
-                    android:textOn="@string/day_after"
-                    app:showText="true" />
-
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/time_4_submit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/day_4_slider"
-                    android:layout_alignParentLeft="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="62dp"
-                    android:text="@string/sent_button" />
+                    android:layout_marginStart="80dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_toRightOf="@+id/time_4_delete_button"
+                    android:background="@drawable/confirm_button"
+                    android:text="@string/sent_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                <Button
-                    android:id="@+id/time_4_delete_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/day_4_slider"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="28dp"
-                    android:layout_toRightOf="@+id/time_4_submit_button"
-                    android:backgroundTint="@color/bottom_nav_color"
-                    android:text="@string/delete_button" />
-
-            </RelativeLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             <!-- Input four -->
-            <RelativeLayout
-                android:id="@+id/time_5_input_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/time_4_input_layout"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:gravity="center_horizontal">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/time_5_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/number_container"
+                    android:elevation="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/time_5_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:padding="5dp"
-                    android:text="5."
-                    android:textSize="16dp" />
+                    <!-- Input to add time in 24 hours format -->
 
-                <!-- Input to add time in 24 hours format -->
-                <TextView
-                    android:id="@+id/time_5_edit_text"
-                    android:layout_width="wrap_content"
+                    <!-- Slider -->
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/time_5_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:padding="5dp"
+                        android:text="5."
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/day_5_slider"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.159" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/time_5_edit_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="104dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="13dp"
+                        android:layout_toRightOf="@+id/time_5_text"
+                        android:clickable="true"
+                        android:hint="@string/set_format"
+                        android:textSize="20sp"
+                        android:timePickerMode="spinner"
+                        app:errorEnabled="true"
+                        app:layout_constraintBottom_toTopOf="@+id/time_5_delete_button"
+                        app:layout_constraintEnd_toStartOf="@+id/day_5_slider"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/day_5_slider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_toRightOf="@+id/time_5_edit_text"
+                        android:checked="false"
+                        android:textOff="@string/every_day"
+                        android:textOn="@string/day_after"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:showText="true" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/time_5_delete_button"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_5_slider"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="22dp"
-                    android:layout_toRightOf="@+id/time_5_text"
-                    android:clickable="true"
-                    android:hint="@string/set_format"
-                    android:textSize="20sp"
-                    android:timePickerMode="spinner"
-                    app:errorEnabled="true" />
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="80dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/confirm_blue_button"
+                    android:text="@string/delete_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/time_5_submit_button"
+                    app:layout_constraintTop_toBottomOf="@+id/day_5_slider" />
 
-                <!-- Slider -->
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/day_5_slider"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_toRightOf="@+id/time_5_edit_text"
-                    android:checked="false"
-                    android:textOff="@string/every_day"
-                    android:textOn="@string/day_after"
-                    app:showText="true" />
-
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/time_5_submit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/day_5_slider"
-                    android:layout_alignParentLeft="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="62dp"
-                    android:text="@string/sent_button" />
+                    android:layout_marginStart="80dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_toRightOf="@+id/time_5_delete_button"
+                    android:background="@drawable/confirm_button"
+                    android:text="@string/sent_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                <Button
-                    android:id="@+id/time_5_delete_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/day_5_slider"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="28dp"
-                    android:layout_toRightOf="@+id/time_5_submit_button"
-                    android:backgroundTint="@color/bottom_nav_color"
-                    android:text="@string/delete_button" />
-
-            </RelativeLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             <!-- Input six -->
-            <RelativeLayout
-                android:id="@+id/time_6_input_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/time_5_input_layout"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:gravity="center_horizontal">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/time_6_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/number_container"
+                    android:elevation="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/time_6_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:padding="5dp"
-                    android:text="6."
-                    android:textSize="16dp" />
+                    <!-- Input to add time in 24 hours format -->
 
-                <!-- Input to add time in 24 hours format -->
-                <TextView
-                    android:id="@+id/time_6_edit_text"
-                    android:layout_width="wrap_content"
+                    <!-- Slider -->
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/time_6_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:padding="5dp"
+                        android:text="6."
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/day_6_slider"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.159" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/time_6_edit_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="104dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="13dp"
+                        android:layout_toRightOf="@+id/time_6_text"
+                        android:clickable="true"
+                        android:hint="@string/set_format"
+                        android:textSize="20sp"
+                        android:timePickerMode="spinner"
+                        app:errorEnabled="true"
+                        app:layout_constraintBottom_toTopOf="@+id/time_6_delete_button"
+                        app:layout_constraintEnd_toStartOf="@+id/day_6_slider"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/day_6_slider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_toRightOf="@+id/time_6_edit_text"
+                        android:checked="false"
+                        android:textOff="@string/every_day"
+                        android:textOn="@string/day_after"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:showText="true" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/time_6_delete_button"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_6_slider"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="22dp"
-                    android:layout_toRightOf="@+id/time_6_text"
-                    android:clickable="true"
-                    android:hint="@string/set_format"
-                    android:textSize="20sp"
-                    android:timePickerMode="spinner"
-                    app:errorEnabled="true" />
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="80dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/confirm_blue_button"
+                    android:text="@string/delete_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/time_6_submit_button"
+                    app:layout_constraintTop_toBottomOf="@+id/day_6_slider" />
 
-                <!-- Slider -->
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/day_6_slider"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_toRightOf="@+id/time_6_edit_text"
-                    android:checked="false"
-                    android:textOff="@string/every_day"
-                    android:textOn="@string/day_after"
-                    app:showText="true" />
-
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/time_6_submit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/day_6_slider"
-                    android:layout_alignParentLeft="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="62dp"
-                    android:text="@string/sent_button" />
+                    android:layout_marginStart="80dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_toRightOf="@+id/time_6_delete_button"
+                    android:background="@drawable/confirm_button"
+                    android:text="@string/sent_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                <Button
-                    android:id="@+id/time_6_delete_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/day_6_slider"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="28dp"
-                    android:layout_toRightOf="@+id/time_6_submit_button"
-                    android:backgroundTint="@color/bottom_nav_color"
-                    android:text="@string/delete_button" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-        <ImageButton
-            android:id="@+id/back_home_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_back"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="20dp"
-            />
-    </RelativeLayout>
+=
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
