@@ -40,6 +40,15 @@
         <action
             android:id="@+id/action_phoneNumberSettingFragment_to_confirmWindowActivity"
             app:destination="@id/confirmWindowActivity" />
+        <action
+            android:id="@+id/action_phoneNumberSettingFragment_to_confirmNotificationChangeActivity"
+            app:destination="@id/confirmNotificationChangeActivity" />
+        <action
+            android:id="@+id/action_phoneNumberSettingFragment_to_phoneNumberSettingUnsavedChangesActivity"
+            app:destination="@id/phoneNumberSettingUnsavedChangesActivity" />
+        <action
+            android:id="@+id/action_phoneNumberSettingFragment_to_homeFragment2"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/dateTimeSettingFragment"
@@ -78,6 +87,38 @@
             app:argType="com.example.doseloop.comms.impl.Message" />
         <argument
             android:name="numberKeySimple"
+            app:argType="string" />
+        <argument
+            android:name="phoneNumberSettingViewModel"
+            app:argType="com.example.doseloop.viewmodel.PhoneNumberSettingViewModel" />
+    </activity>
+    <activity
+        android:id="@+id/confirmNotificationChangeActivity"
+        android:name="com.example.doseloop.activities.ConfirmNotificationChangeActivity"
+        android:label="activity_confirm_notification_change"
+        tools:layout="@layout/activity_confirm_notification_change" >
+        <argument
+            android:name="n1"
+            app:argType="boolean" />
+        <argument
+            android:name="n2"
+            app:argType="boolean" />
+        <argument
+            android:name="n3"
+            app:argType="boolean" />
+        <argument
+            android:name="n4"
+            app:argType="boolean" />
+        <argument
+            android:name="n5"
+            app:argType="boolean" />
+    </activity>
+    <activity
+        android:id="@+id/phoneNumberSettingUnsavedChangesActivity"
+        android:name="com.example.doseloop.activities.PhoneNumberSettingUnsavedChangesActivity"
+        android:label="PhoneNumberSettingUnsavedChangesActivity" >
+        <argument
+            android:name="unsavedChanges"
             app:argType="string" />
     </activity>
     <activity

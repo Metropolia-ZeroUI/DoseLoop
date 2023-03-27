@@ -1,31 +1,32 @@
-package com.example.doseloop
+package com.example.doseloop.activities
 
 import android.os.Bundle
 import android.util.Log
 import androidx.navigation.navArgs
+import com.example.doseloop.PopupActivity
+import com.example.doseloop.R
 import com.example.doseloop.databinding.ActivityConfirmPhoneNumberChangeBinding
 import com.example.doseloop.viewmodel.PhoneNumberSettingViewModel
 
-/**
- * Creates a confirmation popup window when saving a new number in the PhoneNumberSettingFragment.
- */
-class ConfirmPhoneNumberChangeActivity : PopupActivity<PhoneNumberSettingViewModel>() {
+class ConfirmNotificationChangeActivity : PopupActivity<PhoneNumberSettingViewModel>(
+    PhoneNumberSettingViewModel()
+) {
 
     private lateinit var binding: ActivityConfirmPhoneNumberChangeBinding
-    private val args : ConfirmPhoneNumberChangeActivityArgs by navArgs()
+    private val args : ConfirmNotificationChangeActivityArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = args.phoneNumberSettingViewModel
         binding = ActivityConfirmPhoneNumberChangeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setButtons()
-        binding.confirmWindowTitle.text = getString(R.string.change_number, args.numberKeySimple, args.number)
+        viewModel?.updateNotifyReceivers(args.n1, args.n2, args.n3, args.n4, args.n5)
+        binding.confirmWindowTitle.text = getString(R.string.notify_changes, viewModel?.getNotifiedNumbersToString(), viewModel?.getNotNotifiedNumbersToString())
     }
 
     private fun setButtons() {
         binding.popupConfirmButton.setOnClickListener {
-            viewModel?.onPopupConfirm(args.msg, args.numberKey, args.number)
+            viewModel?.updateNotificationReceiversToDevice()
             finish()
         }
         binding.popupCancelButton.setOnClickListener {

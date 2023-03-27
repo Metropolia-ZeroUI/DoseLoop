@@ -2,17 +2,16 @@ package com.example.doseloop.repository
 
 import android.content.Context
 import com.example.doseloop.DoseLoopApplication
+import com.example.doseloop.util.PREF_KEY
 
 /**
  * Provides access to SharedPreferences.
  */
 class SharedPreferencesRepository {
 
-    private val PREF_KEY = "MAIN_PREF"
     private val app = DoseLoopApplication.instance
-
-    val prefs = app.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
-    val editor = prefs.edit()
+    private val prefs = app.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
+    private val editor = prefs.edit()
 
     companion object {
         val instance: SharedPreferencesRepository = SharedPreferencesRepository()
