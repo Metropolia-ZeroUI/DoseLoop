@@ -71,7 +71,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/number1_layout"
+                    android:id="@+id/device_lock_layout"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_margin="5dp"
@@ -109,7 +109,7 @@
                         app:startIconDrawable="@drawable/phone">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/number_1_edit_text"
+                            android:id="@+id/number1_edit_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -124,14 +124,14 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
-                        android:layout_toEndOf="@id/number_1_text_input_layout"
+                        android:layout_toEndOf="@id/device_owner_inputlayout"
                         android:background="@drawable/confirm_button"
                         android:text="@string/save"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/number_1_text_input_layout" />
+                        app:layout_constraintTop_toBottomOf="@+id/device_owner_inputlayout" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

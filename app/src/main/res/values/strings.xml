@@ -59,4 +59,10 @@
     <string name="device_locked">Älydosetin lukitus</string>
     <string name="device_lock_info">Olet lukitsemassa älydosetin.\nHyväksy muutos?</string>
     <string name="device_open_info">Olet vapauttamassa älydosetin lukituksen.\nHyväksy muutos?</string>
+    <string name="device_status_save_info">Tallenna muutokset?\n\n%1$s</string>
+    <string name="device_owner_number">Älydosetin omistajan numero</string>
+    <string name="device_owner_reminder">Käyttäjän muistutus puhelimitse</string>
+    <string name="alarm_off">Hälytys pois</string>
+    <string name="alarm_sms">Muistutus tekstiviestillä</string>
+    <string name="alarm_call">Muistutus soittamalla</string>
 </resources>

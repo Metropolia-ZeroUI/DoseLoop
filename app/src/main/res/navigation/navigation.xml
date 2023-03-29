@@ -70,6 +70,9 @@
         <action
             android:id="@+id/action_deviceStatusFragment_to_confirmStatusActivity"
             app:destination="@id/confirmStatusActivity" />
+        <action
+            android:id="@+id/action_deviceStatusFragment_to_confirmDeviceLockChangesActivity2"
+            app:destination="@id/confirmDeviceLockChangesActivity2" />
     </fragment>
     <activity
         android:id="@+id/confirmWindowActivity"
@@ -132,5 +135,14 @@
         <argument
             android:name="confirmText"
             app:argType="string" />
+    </activity>
+    <activity
+        android:id="@+id/confirmDeviceLockChangesActivity2"
+        android:name="com.example.doseloop.activities.ConfirmDeviceChangesActivity"
+        android:label="activity_confirm_device_lock_changes"
+        tools:layout="@layout/activity_confirm_device_lock_changes" >
+        <argument
+            android:name="lockedState"
+            app:argType="boolean" />
     </activity>
 </navigation>

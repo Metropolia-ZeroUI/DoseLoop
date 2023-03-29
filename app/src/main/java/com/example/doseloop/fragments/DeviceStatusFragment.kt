@@ -1,7 +1,6 @@
 package com.example.doseloop.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +8,8 @@ import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.example.doseloop.R
 import com.example.doseloop.comms.impl.Message
-import com.example.doseloop.comms.impl.PhoneNumber
-import com.example.doseloop.comms.impl.SmsMessageService
 import com.example.doseloop.databinding.FragmentDeviceStatusBinding
-import com.example.doseloop.util.DEVICE_PHONE_NUMBER
 import com.example.doseloop.viewmodel.DeviceStatusViewModel
-import com.example.doseloop.viewmodel.PhoneNumberSettingViewModel
 
 /**
  * Fragment for sending query SMS' to the device
@@ -28,11 +23,10 @@ class DeviceStatusFragment : AbstractFragment<DeviceStatusViewModel>(DeviceStatu
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentDeviceStatusBinding.inflate(inflater, container, false)
-
-        val view = binding.root
+        binding.viewModel = viewModel
 
         setOnButtonPress(binding.statusButtonPhoneNumbers, Message.ADMIN_PHONE_NUMBER_QUERY, getString(R.string.confirm_status_phone_numbers))
         setOnButtonPress(binding.statusButtonSmsNumbers, Message.ADMIN_SMS_QUERY, getString(R.string.confirm_status_numbers_settings))
@@ -46,20 +40,18 @@ class DeviceStatusFragment : AbstractFragment<DeviceStatusViewModel>(DeviceStatu
             this.findNavController().navigate(R.id.action_deviceStatusFragment_to_homeFragment)
         }
 
-        binding.deviceLockSwitch.setOnCheckedChangeListener { compoundButton, b ->
+        binding.deviceLockSwitch.isChecked = viewModel?.getLockedState()!!
+
+        binding.saveDeviceChangesButton.setOnClickListener {
             preventButtonClickSpam {
-                if (viewModel != null) {
-                    val msg = if (viewModel.deviceLockedState.value == true) Message.LOCK_DEVICE else Message.UNLOCK_DEVICE
-                    val info = getString(if(viewModel.deviceLockedState.value == true) R.string.device_lock_info else R.string.device_open_info)
-                    val action =
-                        DeviceStatusFragmentDirections
-                            .actionDeviceStatusFragmentToConfirmStatusActivity(msg, info)
-                    findNavController().navigate(action)
-                }
+                val action =
+                    DeviceStatusFragmentDirections
+                        .actionDeviceStatusFragmentToConfirmDeviceLockChangesActivity2(binding.deviceLockSwitch.isChecked)
+                findNavController().navigate(action)
             }
         }
 
-        return view
+        return binding.root
     }
 
     private fun setOnButtonPress(button: Button, msg: Message, confirmText: String) {

@@ -1,30 +1,27 @@
 package com.example.doseloop.viewmodel
 
 import android.util.Log
-import android.widget.CompoundButton
-import androidx.lifecycle.MutableLiveData
 import com.example.doseloop.comms.impl.Message
 import com.example.doseloop.util.DEVICE_LOCKED_STATE
 
 class DeviceStatusViewModel: AbstractViewModel() {
 
-    // TODO: Add Locking and unlocking functionality
     // TODO: Add Setting sms/call alert for the device user
-    val deviceLockedState = MutableLiveData(false)
 
-    fun saveDeviceLockedState() {
+    fun saveDeviceLockedState(deviceLocked: Boolean) {
         try {
-            val deviceLocked = getFromPrefs(DEVICE_LOCKED_STATE, false)
-            var msg = if (deviceLocked) Message.UNLOCK_DEVICE else Message.LOCK_DEVICE
+            val msg = if (deviceLocked) Message.UNLOCK_DEVICE else Message.LOCK_DEVICE
             msgService.sendMessage(msg)
-         //  TODO: Save to prefs
+            saveToPrefs(DEVICE_LOCKED_STATE, deviceLocked)
             Log.d("MESSAGE_SEND", "Message OK")
         } catch(e: Exception) {
             Log.d("MESSAGE_SEND", "Send failed: $e")
         }
     }
 
-    fun toggleDeviceLockedState(buttonView: CompoundButton, b: Boolean) {
-        deviceLockedState.value = b
+    fun getLockedState() = getFromPrefs(DEVICE_LOCKED_STATE, false)
+
+    fun getChanges(): String {
+        return if (getFromPrefs(DEVICE_LOCKED_STATE, false)) "Älydosetin lukitus: pois" else "Älydosetin lukitus: päällä"
     }
 }

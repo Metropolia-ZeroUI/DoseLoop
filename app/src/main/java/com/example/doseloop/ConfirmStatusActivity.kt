@@ -1,9 +1,7 @@
 package com.example.doseloop
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.navArgs
-import com.example.doseloop.databinding.ActivityConfirmPhoneNumberChangeBinding
 import com.example.doseloop.databinding.ActivityConfirmStatusBinding
 import com.example.doseloop.viewmodel.DeviceStatusViewModel
 
