@@ -7,6 +7,9 @@ import com.example.doseloop.R
 import com.example.doseloop.databinding.ActivityConfirmDeviceLockChangesBinding
 import com.example.doseloop.viewmodel.DeviceStatusViewModel
 
+/**
+ * Confirmation window for applying device locked mode changes to prefs and the device itself.
+ */
 class ConfirmDeviceChangesActivity : PopupActivity<DeviceStatusViewModel>(
     DeviceStatusViewModel()
 ) {
@@ -21,7 +24,7 @@ class ConfirmDeviceChangesActivity : PopupActivity<DeviceStatusViewModel>(
         setContentView(binding.root)
         lockedState = args.lockedState
         setButtons()
-        binding.confirmWindowTitle.text = getString(R.string.device_status_save_info, viewModel?.getChanges())
+        binding.confirmWindowTitle.text = if (args.lockedState) getString(R.string.set_locked_on) else getString(R.string.set_locked_off)
     }
 
     private fun setButtons() {

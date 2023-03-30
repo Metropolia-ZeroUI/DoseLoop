@@ -30,3 +30,4 @@ const val DAY_5 = "DAY_5"
 const val DAY_6 = "DAY_6"
 
 const val DEVICE_LOCKED_STATE = "DEVICE_LOCKED_STATE"
+const val DEVICE_USER_NUMBER = "DEVICE_USER_NUMBER"

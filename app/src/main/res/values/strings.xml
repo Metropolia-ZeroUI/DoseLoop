@@ -69,4 +69,8 @@
     <string name="alarm_call_confirm">Haluatko varmasti lisätä muistutukset (soitto) käyttäjän puhelimeen?</string>
     <string name="alarm_sms_confirm">Haluatko varmasti lisätä muistutukset (tekstiviesti) käyttäjän puhelimeen?</string>
     <string name="device_info">Hae tietoja älydosetista</string>
+    <string name="device_status_toolbar">Älydosetin käyttäjän asetukset</string>
+    <string name="set_locked_on">Aseta älydosetin lukitus päälle?</string>
+    <string name="set_locked_off">Poista älydosetin lukitus?</string>
+    <string name="set_user_number">Olet asettamassa laitteen käyttäjän numeroksi. %1$s. Hyväksy muutos?</string>
 </resources>

@@ -12,10 +12,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.example.doseloop.comms.impl.SmsMessageService
 
 class MainActivity : AppCompatActivity() {

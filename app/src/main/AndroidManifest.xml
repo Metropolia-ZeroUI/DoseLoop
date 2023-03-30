@@ -19,10 +19,20 @@
         android:theme="@style/Theme.DoseLoop"
         tools:targetApi="31">
         <activity
+            android:name=".activities.ConfirmUserNumberChangeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.DoseLoop.PopupTheme" />
+        <activity
+            android:name=".activities.DeviceStatusUnsavedChangesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.DoseLoop.PopupTheme" />
+        <activity
             android:name=".activities.ConfirmDeviceChangesActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.DoseLoop.PopupTheme"  />
+            android:theme="@style/Theme.DoseLoop.PopupTheme" />
         <activity
             android:name=".ConfirmStatusActivity"
             android:exported="false"
