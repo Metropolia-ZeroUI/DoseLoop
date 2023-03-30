@@ -2,6 +2,7 @@ package com.example.doseloop
 
 import android.os.Bundle
 import androidx.navigation.navArgs
+import com.example.doseloop.comms.impl.Message
 import com.example.doseloop.databinding.ActivityConfirmStatusBinding
 import com.example.doseloop.viewmodel.DeviceStatusViewModel
 

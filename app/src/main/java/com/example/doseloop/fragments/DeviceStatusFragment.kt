@@ -1,7 +1,9 @@
 package com.example.doseloop.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -35,10 +37,11 @@ class DeviceStatusFragment : AbstractFragment<DeviceStatusViewModel>(DeviceStatu
         setOnButtonPress(binding.statusButtonSignalStrength, Message.ADMIN_SIGNAL_STRENGTH, getString(R.string.confirm_status_signal_strength))
         setOnButtonPress(binding.statusButtonBatteryLevel, Message.ADMIN_BATTERY_LIFE, getString(R.string.confirm_status_battery))
         setOnButtonPress(binding.statusButtonDoorTimes, Message.ADMIN_DOOR_OPENING_TIMES, getString(R.string.confirm_status_door_times))
+        setOnButtonPress(binding.alarmRemove, Message.USER_PHONE_DISABLE, getString(R.string.alarm_off_confirm))
+        setOnButtonPress(binding.alarmCall, Message.USER_PHONE_MEDS_REMINDER_CALL, getString(R.string.alarm_call_confirm))
+        setOnButtonPress(binding.alarmSms, Message.USER_PHONE_MEDS_REMINDER_SMS, getString(R.string.alarm_sms_confirm))
 
-        binding.statusBackButton.setOnClickListener {
-            this.findNavController().navigate(R.id.action_deviceStatusFragment_to_homeFragment)
-        }
+        setToolBarBackButton(binding.deviceToolbar)
 
         binding.deviceLockSwitch.isChecked = viewModel?.getLockedState()!!
 

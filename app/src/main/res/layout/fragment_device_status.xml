@@ -15,259 +15,394 @@
         android:background="@drawable/bg_pill"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <Button
-                android:id="@+id/status_button_phone_numbers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="@string/get_saved_phone_numbers" />
-
-            <Button
-                android:id="@+id/status_button_sms_numbers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/status_button_phone_numbers"
-                android:layout_centerHorizontal="true"
-                android:text="@string/get_phone_numbers_settings_sms" />
-
-            <Button
-                android:id="@+id/status_button_set_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/status_button_sms_numbers"
-                android:layout_centerHorizontal="true"
-                android:text="@string/set_time_correct" />
-
-            <Button
-                android:id="@+id/status_button_medicine_times"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/status_button_set_time"
-                android:layout_centerHorizontal="true"
-                android:text="@string/get_medicine_times" />
-
-            <Button
-                android:id="@+id/status_button_signal_strength"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/status_button_medicine_times"
-                android:layout_centerHorizontal="true"
-                android:text="@string/get_signal_strength" />
-
-            <Button
-                android:id="@+id/status_button_battery_level"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/status_button_signal_strength"
-                android:layout_centerHorizontal="true"
-                android:text="@string/get_battery_level" />
-
-            <Button
-                android:id="@+id/status_button_door_times"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/status_button_battery_level"
-                android:layout_centerHorizontal="true"
-                android:text="@string/get_door_opening_times" />
-        </RelativeLayout>
-
-        <ImageButton
-            android:id="@+id/status_back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/device_lock_layout"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_margin="5dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/number_container"
-            android:elevation="8dp"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/device_lock_switch"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:hint="@string/device_locked"
-                android:textColor="?colorSecondaryVariant"
-                android:textOff="@string/open"
-                android:textOn="@string/locked"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:thumb="@drawable/custom_switch"
-                app:layout_constraintBottom_toTopOf="@+id/save_device_changes_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:showText="true"
-                app:track="@drawable/custom_switchtrack" />
+                android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/save_device_changes_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/confirm_button"
-                android:text="@string/save"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/device_lock_switch" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/device_owner_number_layout"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_margin="5dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/number_container"
-            android:elevation="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/device_lock_layout">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/device_owner_inputlayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="386dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:hint="@string/device_owner_number"
-                app:boxStrokeColor="@color/light_green"
-                app:counterEnabled="true"
-                app:counterMaxLength="10"
-                app:endIconDrawable="@drawable/ic_mic"
-                app:endIconMode="custom"
-                app:errorEnabled="true"
-                app:helperTextTextColor="?colorSecondaryVariant"
-                app:hintTextColor="@color/light_green"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:startIconDrawable="@drawable/phone">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/device_owner_edittext"
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/deviceToolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="phone" />
+                    android:background="@drawable/title_container"
+                    android:elevation="10dp"
+                    android:visibility="visible">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:gravity="center"
+                        android:text="@string/device_info"
+                        android:textColor="?colorSecondaryVariant"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/phone_number_back_button" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/owner_number_submit_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+
+                </androidx.appcompat.widget.Toolbar>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/device_lock_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/number_container"
+                    android:elevation="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/device_lock_switch"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:hint="@string/device_locked"
+                        android:textColor="?colorSecondaryVariant"
+                        android:textOff="@string/open"
+                        android:textOn="@string/locked"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:thumb="@drawable/custom_switch"
+                        app:layout_constraintBottom_toTopOf="@+id/save_device_changes_button"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:showText="true"
+                        app:track="@drawable/custom_switchtrack" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/save_device_changes_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/confirm_button"
+                        android:text="@string/save"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/device_lock_switch" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/device_owner_number_layout"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="5dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_toEndOf="@id/device_owner_inputlayout"
-                android:background="@drawable/confirm_button"
-                android:text="@string/save"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/number_container"
+                android:elevation="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/device_owner_inputlayout" />
+                app:layout_constraintTop_toBottomOf="@+id/device_lock_layout">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/device_owner_inputlayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="386dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:hint="@string/device_owner_number"
+                    app:boxStrokeColor="@color/light_green"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="10"
+                    app:endIconDrawable="@drawable/ic_mic"
+                    app:endIconMode="custom"
+                    app:errorEnabled="true"
+                    app:helperTextTextColor="?colorSecondaryVariant"
+                    app:hintTextColor="@color/light_green"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:startIconDrawable="@drawable/phone">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/device_owner_edittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="phone" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/owner_number_submit_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toEndOf="@id/device_owner_inputlayout"
+                    android:background="@drawable/confirm_button"
+                    android:text="@string/save"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/device_owner_inputlayout" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/device_owner_number_setting_layout"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_margin="5dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/number_container"
-            android:elevation="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/device_owner_number_layout">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/alarm_remove"
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/device_owner_number_setting_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/confirm_button"
-                android:text="@string/alarm_off"
+                android:layout_margin="5dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/number_container"
+                android:elevation="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/alarm_sms"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/alarm_sms"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/confirm_button"
-                android:text="@string/alarm_sms"
-                app:layout_constraintEnd_toStartOf="@+id/alarm_remove"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/alarm_call"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/alarm_call"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/confirm_button"
-                android:text="@string/alarm_call"
-                app:layout_constraintEnd_toStartOf="@+id/alarm_sms"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/device_owner_number_layout">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/device_owner_reminder"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/alarm_call"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/alarm_remove"
+                    android:layout_width="386dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/confirm_button"
+                    android:text="@string/alarm_off"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/alarm_sms" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/alarm_sms"
+                    android:layout_width="386dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/confirm_button"
+                    android:text="@string/alarm_sms"
+                    app:layout_constraintBottom_toTopOf="@+id/alarm_remove"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/alarm_call" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/alarm_call"
+                    android:layout_width="386dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/confirm_button"
+                    android:text="@string/alarm_call"
+                    app:layout_constraintBottom_toTopOf="@+id/alarm_sms"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/device_status_buttons_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/number_container"
+                    android:elevation="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/device_lock_layout">
+
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/device_info"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/status_button_phone_numbers"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/status_button_phone_numbers"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/confirm_button"
+                        android:text="@string/get_saved_phone_numbers"
+                        app:layout_constraintBottom_toTopOf="@+id/status_button_sms_numbers"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/status_button_sms_numbers"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/status_button_phone_numbers"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/confirm_button"
+                        android:text="@string/get_phone_numbers_settings_sms"
+                        app:layout_constraintBottom_toTopOf="@+id/status_button_set_time"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/status_button_phone_numbers" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/status_button_set_time"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/status_button_sms_numbers"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/confirm_button"
+                        android:text="@string/set_time_correct"
+                        app:layout_constraintBottom_toTopOf="@+id/status_button_medicine_times"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/status_button_sms_numbers" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/status_button_medicine_times"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/status_button_set_time"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/confirm_button"
+                        android:text="@string/get_medicine_times"
+                        app:layout_constraintBottom_toTopOf="@+id/status_button_signal_strength"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/status_button_set_time" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/status_button_signal_strength"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/status_button_medicine_times"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/confirm_button"
+                        android:text="@string/get_signal_strength"
+                        app:layout_constraintBottom_toTopOf="@+id/status_button_battery_level"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/status_button_medicine_times" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/status_button_battery_level"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/status_button_signal_strength"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/confirm_button"
+                        android:text="@string/get_battery_level"
+                        app:layout_constraintBottom_toTopOf="@+id/status_button_door_times"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/status_button_signal_strength" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/status_button_door_times"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/status_button_battery_level"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/confirm_button"
+                        android:text="@string/get_door_opening_times"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/status_button_battery_level" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.doseloop.R
-import com.example.doseloop.viewmodel.HomeFragmentViewModel
 import com.example.doseloop.databinding.FragmentHomeBinding
+import com.example.doseloop.viewmodel.HomeFragmentViewModel
+
 
 class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewModel()) {
 
@@ -47,5 +48,4 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
         super.onDestroyView()
         _binding = null
     }
-
 }

@@ -1,7 +1,6 @@
 package com.example.doseloop.fragments
 
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -122,10 +121,7 @@ class PhoneNumberSettingFragment : AbstractFragment<PhoneNumberSettingViewModel>
             }
         })
 
-        binding.phoneNumberBackButton.setOnClickListener {
-            //    this.findNavController().navigate(R.id.action_phoneNumberSettingFragment_to_homeFragment)
-            activity?.onBackPressed()
-        }
+        setToolBarBackButton(binding.settingsTolbar)
 
         // Set record button listeners for each field
         binding.number1TextInputLayout.tag = "1"

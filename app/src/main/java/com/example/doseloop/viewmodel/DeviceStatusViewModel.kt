@@ -6,17 +6,8 @@ import com.example.doseloop.util.DEVICE_LOCKED_STATE
 
 class DeviceStatusViewModel: AbstractViewModel() {
 
-    // TODO: Add Setting sms/call alert for the device user
-
     fun saveDeviceLockedState(deviceLocked: Boolean) {
-        try {
-            val msg = if (deviceLocked) Message.UNLOCK_DEVICE else Message.LOCK_DEVICE
-            msgService.sendMessage(msg)
-            saveToPrefs(DEVICE_LOCKED_STATE, deviceLocked)
-            Log.d("MESSAGE_SEND", "Message OK")
-        } catch(e: Exception) {
-            Log.d("MESSAGE_SEND", "Send failed: $e")
-        }
+        saveToPrefs(DEVICE_LOCKED_STATE, deviceLocked)
     }
 
     fun getLockedState() = getFromPrefs(DEVICE_LOCKED_STATE, false)
