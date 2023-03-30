@@ -29,7 +29,7 @@
     <string name="get_medicine_times">Lääkkeiden ottoajat</string>
     <string name="get_signal_strength">Signaalin vahvuus</string>
     <string name="get_battery_level">Akun varaus</string>
-    <string name="get_door_opening_times">Kolme edellistä ovenavausajat</string>
+    <string name="get_door_opening_times">Kolme edellistä ovenavausaikaa</string>
     <string name="check_device_settings">Laitteen nykyiset asetukset</string>
     <string name="cancel">Peru</string>
     <string name="accept">Hyväksy</string>

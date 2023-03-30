@@ -11,7 +11,14 @@ class DeviceStatusViewModel: AbstractViewModel() {
 
 
     fun saveDeviceLockedState(deviceLocked: Boolean) {
-        saveToPrefs(DEVICE_LOCKED_STATE, deviceLocked)
+        try {
+            msgService.sendMessage(if (deviceLocked) Message.LOCK_DEVICE else Message.UNLOCK_DEVICE)
+            saveToPrefs(DEVICE_LOCKED_STATE, deviceLocked)
+            Log.d("MESSAGE_SEND", "Message OK")
+        } catch(e: Exception) {
+            Log.d("MESSAGE_SEND", "Send failed: $e")
+        }
+
     }
 
     fun onPopupConfirmUserNumber(number: String) {
