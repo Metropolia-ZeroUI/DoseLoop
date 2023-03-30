@@ -44,7 +44,7 @@
     <string name="number5">5. Numero</string>
     <string name="notifications">Ilmoitukset</string>
     <string name="notify_changes">Seuraaville numeroille lisätään ilmoitukset: %1$s\n\nSeuraavilta numeroilta poistetaan ilmoitukset: %2$s</string>
-    <string name="unsaved_changes">Sinulla on tallentamattomia muutoksia:\n\n%1$s\nSiirry pois siitä huolimatta?</string>
+    <string name="unsaved_changes">Sinulla on tallentamattomia muutoksia:\n\n%1$s\n\nSiirry pois siitä huolimatta?</string>
     <string name="move">Siirry</string>
     <string name="unsaved_disclaimer">Siirtyessä tallentamattomat muutokset menetetään</string>
     <string name="confirm_status_battery">Haluatko varmasti tarkistaa laitteen akkutason?</string>
