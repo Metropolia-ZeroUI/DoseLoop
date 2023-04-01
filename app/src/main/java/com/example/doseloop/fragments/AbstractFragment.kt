@@ -18,6 +18,7 @@ import com.example.doseloop.R
 import com.example.doseloop.speech.SpeechListener
 import com.example.doseloop.speech.SpeechToText
 import com.example.doseloop.util.DEVICE_USER_NUMBER
+import com.example.doseloop.util.NOTIFICATION_TEXT_MAX_LENGTH
 import com.example.doseloop.viewmodel.AbstractViewModel
 import com.google.android.material.textfield.TextInputLayout
 
@@ -91,6 +92,36 @@ abstract class AbstractFragment<T: AbstractViewModel?>(protected val viewModel :
             override fun afterTextChanged(p0: Editable?) {}
         })
     }
+
+    private fun handleStringTextErrors(button: Button, text: CharSequence, til: TextInputLayout) {
+        var error: Boolean
+
+        if (text.toString().trim().length > NOTIFICATION_TEXT_MAX_LENGTH) {
+            til.error = getString(R.string.error_too_long_text)
+            error = true
+        } else {
+            til.error = null
+            error = false
+        }
+
+        // Disable button but no error if field is empty
+        if (text.toString().trim().isEmpty()) {
+            error = true
+        }
+        button.isEnabled = !error
+    }
+
+    fun addStringTextChangedListener(editText: EditText, submitButton: Button, til: TextInputLayout) {
+        editText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                val charSequence = p0 ?: ""
+                handleStringTextErrors(submitButton, charSequence, til)
+            }
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+    }
+
 
     /**
      * Setup the functionality of speech recognizer in a TextInputLayout.

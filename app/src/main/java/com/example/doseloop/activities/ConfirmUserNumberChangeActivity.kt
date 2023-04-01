@@ -15,13 +15,13 @@ class ConfirmUserNumberChangeActivity : PopupActivity<DeviceStatusViewModel>(Dev
         super.onCreate(savedInstanceState)
         binding = ActivityConfirmUserNumberChangeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setButtons()
-        binding.confirmWindowTitle.text = getString(R.string.set_user_number, args.number)
+            setButtons()
+        binding.confirmWindowTitle.text = getString(args.descId, args.payload)
     }
 
     private fun setButtons() {
         binding.popupConfirmButton.setOnClickListener {
-            viewModel?.onPopupConfirmUserNumber(args.number)
+            viewModel?.onPopupConfirmUserNumber(args.msg, args.payload, args.prefKey)
             finish()
         }
         binding.popupCancelButton.setOnClickListener {

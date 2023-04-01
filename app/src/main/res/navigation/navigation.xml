@@ -166,7 +166,16 @@
         android:label="activity_confirm_user_number_change"
         tools:layout="@layout/activity_confirm_user_number_change" >
         <argument
-            android:name="number"
+            android:name="msg"
+            app:argType="com.example.doseloop.comms.impl.Message" />
+        <argument
+            android:name="payload"
             app:argType="string" />
+        <argument
+            android:name="prefKey"
+            app:argType="string" />
+        <argument
+            android:name="descId"
+            app:argType="integer" />
     </activity>
 </navigation>
