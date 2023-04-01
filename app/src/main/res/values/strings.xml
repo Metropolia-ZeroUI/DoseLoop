@@ -83,4 +83,5 @@
     <string name="device_alarm_button_hint">Hälytysteksti hälytysnapista/RF painikkeesta</string>
     <string name="fire_alarm_hint">Palovaroitin/vesiovuotovahti hälytysteksti</string>
     <string name="meal_alarm_hint">Ruoka syömättä hälytysteksti</string>
+    <string name="kuunnellaan">Kuunnellaan...</string>
 </resources>

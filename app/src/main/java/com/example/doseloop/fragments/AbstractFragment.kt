@@ -148,7 +148,7 @@ abstract class AbstractFragment<T: AbstractViewModel?>(protected val viewModel :
                 til.setEndIconDrawable(R.drawable.ic_mic_record)
                 til.setEndIconTintList(ColorStateList.valueOf(resources.getColor(R.color.wine_red)))
                 editText.setText("")
-                editText.hint = "Listening..."
+                editText.hint = getString(R.string.kuunnellaan)
                 editText.requestFocus()
                 speechToText.tryRecognize(this) {
                     userText = it
