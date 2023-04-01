@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
-
     <application
         android:name=".DoseLoopApplication"
         android:allowBackup="true"
@@ -20,6 +19,21 @@
         android:theme="@style/Theme.DoseLoop"
         tools:targetApi="31">
         <activity
+            android:name=".activities.ConfirmUserNumberChangeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.DoseLoop.PopupTheme" />
+        <activity
+            android:name=".activities.DeviceStatusUnsavedChangesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.DoseLoop.PopupTheme" />
+        <activity
+            android:name=".activities.ConfirmDeviceChangesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.DoseLoop.PopupTheme" />
+        <activity
             android:name=".ConfirmStatusActivity"
             android:exported="false"
             android:theme="@style/Theme.DoseLoop.PopupTheme" />
@@ -27,7 +41,7 @@
             android:name=".activities.PhoneNumberSettingUnsavedChangesActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.DoseLoop.PopupTheme"  />
+            android:theme="@style/Theme.DoseLoop.PopupTheme" />
         <activity
             android:name=".activities.ConfirmNotificationChangeActivity"
             android:exported="false"

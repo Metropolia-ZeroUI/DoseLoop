@@ -10,7 +10,7 @@ import com.example.doseloop.repository.SharedPreferencesRepository
 import com.example.doseloop.util.DEVICE_PHONE_NUMBER
 
 /**
- * Add common view model logic here, i.e. commonly used repositories, sharedprefs, etc.
+ * Common view model logic, i.e. commonly used repositories, sharedprefs, etc.
  */
 abstract class AbstractViewModel : ViewModel() {
 

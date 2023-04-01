@@ -70,6 +70,15 @@
         <action
             android:id="@+id/action_deviceStatusFragment_to_confirmStatusActivity"
             app:destination="@id/confirmStatusActivity" />
+        <action
+            android:id="@+id/action_deviceStatusFragment_to_confirmDeviceLockChangesActivity2"
+            app:destination="@id/confirmDeviceLockChangesActivity2" />
+        <action
+            android:id="@+id/action_deviceStatusFragment_to_deviceStatusUnsavedChangesActivity"
+            app:destination="@id/deviceStatusUnsavedChangesActivity" />
+        <action
+            android:id="@+id/action_deviceStatusFragment_to_confirmUserNumberChangeActivity"
+            app:destination="@id/confirmUserNumberChangeActivity" />
     </fragment>
     <activity
         android:id="@+id/confirmWindowActivity"
@@ -131,6 +140,33 @@
             app:argType="com.example.doseloop.comms.impl.Message" />
         <argument
             android:name="confirmText"
+            app:argType="string" />
+    </activity>
+    <activity
+        android:id="@+id/confirmDeviceLockChangesActivity2"
+        android:name="com.example.doseloop.activities.ConfirmDeviceChangesActivity"
+        android:label="activity_confirm_device_lock_changes"
+        tools:layout="@layout/activity_confirm_device_lock_changes" >
+        <argument
+            android:name="lockedState"
+            app:argType="boolean" />
+    </activity>
+    <activity
+        android:id="@+id/deviceStatusUnsavedChangesActivity"
+        android:name="com.example.doseloop.activities.DeviceStatusUnsavedChangesActivity"
+        android:label="activity_device_status_unsaved_changes"
+        tools:layout="@layout/activity_device_status_unsaved_changes" >
+        <argument
+            android:name="changes"
+            app:argType="string" />
+    </activity>
+    <activity
+        android:id="@+id/confirmUserNumberChangeActivity"
+        android:name="com.example.doseloop.activities.ConfirmUserNumberChangeActivity"
+        android:label="activity_confirm_user_number_change"
+        tools:layout="@layout/activity_confirm_user_number_change" >
+        <argument
+            android:name="number"
             app:argType="string" />
     </activity>
 </navigation>
