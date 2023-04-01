@@ -7,11 +7,12 @@
     <string name="enter_phone">Lisää laitteen puhelinnumero:</string>
     <string name="submit_button">Jatka</string>
     <string name="zero">0</string>
-    <string name="set_numbers">Numeroiden ja ilmoitusten asetus</string>
+    <string name="set_numbers">Ilmoitusten vastaanottajien asetukset</string>
     <string name="change">Vaihda</string>
     <string name="save">Tallenna</string>
     <string name="error_country_code">Syötä numero ilman maatunnusta! (esim. 040...)</string>
     <string name="error_too_long_number">Numero on liian pitkä! (max. 10 merkkiä)</string>
+    <string name="error_too_long_text">Teksti on liian pitkä! (max. 30 merkkiä)</string>
     <string name="error_invalid_first_number">Varmista että ensimmäinen merkki on 0!</string>
     <string name="error_not_digit">Syötä pelkkiä numeroita!</string>
     <!-- Strings for Date and Time Fragment -->
@@ -69,8 +70,18 @@
     <string name="alarm_call_confirm">Haluatko varmasti lisätä muistutukset (soitto) käyttäjän puhelimeen?</string>
     <string name="alarm_sms_confirm">Haluatko varmasti lisätä muistutukset (tekstiviesti) käyttäjän puhelimeen?</string>
     <string name="device_info">Hae tietoja älydosetista</string>
-    <string name="device_status_toolbar">Älydosetin tiedot ja käyttäjän asetukset</string>
+    <string name="device_status_toolbar">Älydosetin ja käyttäjän asetukset</string>
     <string name="set_locked_on">Aseta älydosetin lukitus päälle?</string>
     <string name="set_locked_off">Poista älydosetin lukitus?</string>
-    <string name="set_user_number">Olet asettamassa laitteen käyttäjän numeroksi. %1$s. Hyväksy muutos?</string>
+    <string name="set_user_number">Olet asettamassa laitteen käyttäjän numeroksi %1$s. Hyväksy muutos?</string>
+    <string name="set_meds_alert_text">Olet asettamassa unohtuneiden lääkkeiden hälytystekstiksi %1$s. Hyväksy muutos?</string>
+    <string name="set_alarm_button_alert_text">Olet asettamassa hälytysnapin hälytystekstiksi %1$s. Hyväksy muutos?</string>
+    <string name="set_fire_water_text">Olet asettamassa palovaroittimen/vesivuotovaihdin hälytystekstiksi %1$s. Hyväksy muutos?</string>
+    <string name="set_meal_alarm_text">Olet asettamassa syömättä jääneiden aterioiden hälytystekstiksi %1$s. Hyväksy muutos?</string>
+    <string name="set_alarm_texts_title">Hälytys tekstiviestin asetukset</string>
+    <string name="medicine_alarm_hint">Ottamattomien lääkkeiden hälytysteksti</string>
+    <string name="device_alarm_button_hint">Hälytysteksti hälytysnapista/RF painikkeesta</string>
+    <string name="fire_alarm_hint">Palovaroitin/vesiovuotovahti hälytysteksti</string>
+    <string name="meal_alarm_hint">Ruoka syömättä hälytysteksti</string>
+    <string name="kuunnellaan">Kuunnellaan...</string>
 </resources>

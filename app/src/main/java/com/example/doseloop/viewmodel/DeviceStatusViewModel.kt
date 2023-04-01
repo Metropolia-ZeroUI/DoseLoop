@@ -21,10 +21,10 @@ class DeviceStatusViewModel: AbstractViewModel() {
 
     }
 
-    fun onPopupConfirmUserNumber(number: String) {
+    fun onPopupConfirmUserNumber(msg: Message, payload: String, prefKey: String) {
         try {
-            msgService.sendMessage(Message.USER_PHONE_ADD.withPayload(number))
-            saveToPrefs(DEVICE_USER_NUMBER, number)
+            msgService.sendMessage(msg)
+            saveToPrefs(prefKey, payload)
             Log.d("MESSAGE_SEND", "Message OK")
         } catch(e: Exception) {
             Log.d("MESSAGE_SEND", "Send failed: $e")

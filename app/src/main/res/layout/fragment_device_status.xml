@@ -57,10 +57,64 @@
                         app:layout_constraintTop_toBottomOf="@+id/phone_number_back_button" />
 
 
-                </androidx.appcompat.widget.Toolbar>
+                    </androidx.appcompat.widget.Toolbar>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/device_lock_layout"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/device_lock_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_margin="5dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/number_container"
+                        android:elevation="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/device_lock_switch"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:hint="@string/device_locked"
+                            android:textColor="?colorSecondaryVariant"
+                            android:textOff="@string/open"
+                            android:textOn="@string/locked"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:thumb="@drawable/custom_switch"
+                            app:layout_constraintBottom_toTopOf="@+id/save_device_changes_button"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:showText="true"
+                            app:track="@drawable/custom_switchtrack" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/save_device_changes_button"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/confirm_button"
+                            android:text="@string/save"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/device_lock_switch" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/device_owner_number_layout"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_margin="5dp"
@@ -70,33 +124,92 @@
                     android:background="@drawable/number_container"
                     android:elevation="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toBottomOf="@+id/device_lock_layout">
 
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/device_lock_switch"
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/device_owner_inputlayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:hint="@string/device_owner_number"
+                            app:boxStrokeColor="@color/light_green"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="10"
+                            app:endIconDrawable="@drawable/ic_mic"
+                            app:endIconMode="custom"
+                            app:errorEnabled="true"
+                            app:helperTextTextColor="?colorSecondaryVariant"
+                            app:hintTextColor="@color/light_green"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:startIconDrawable="@drawable/phone">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/device_owner_edittext"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:inputType="phone" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/owner_number_submit_button"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
-                        android:hint="@string/device_locked"
-                        android:textColor="?colorSecondaryVariant"
-                        android:textOff="@string/open"
-                        android:textOn="@string/locked"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:thumb="@drawable/custom_switch"
-                        app:layout_constraintBottom_toTopOf="@+id/save_device_changes_button"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@id/device_owner_inputlayout"
+                        android:background="@drawable/confirm_button"
+                        android:text="@string/save"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:showText="true"
-                        app:track="@drawable/custom_switchtrack" />
+                        app:layout_constraintTop_toBottomOf="@+id/device_owner_inputlayout" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/device_owner_number_setting_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/number_container"
+                    android:elevation="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/device_owner_number_layout">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/device_owner_reminder"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/alarm_call"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/save_device_changes_button"
+                        android:id="@+id/alarm_remove"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -104,42 +217,64 @@
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
                         android:background="@drawable/confirm_button"
-                        android:text="@string/save"
+                        android:text="@string/alarm_off"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/device_lock_switch" />
+                        app:layout_constraintTop_toBottomOf="@+id/alarm_sms" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/alarm_sms"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/confirm_button"
+                        android:text="@string/alarm_sms"
+                        app:layout_constraintBottom_toTopOf="@+id/alarm_remove"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/alarm_call" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/alarm_call"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/confirm_button"
+                        android:text="@string/alarm_call"
+                        app:layout_constraintBottom_toTopOf="@+id/alarm_sms"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/device_owner_number_layout"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_margin="5dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/number_container"
-                android:elevation="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/device_lock_layout">
+                    android:id="@+id/alarm_text_setting_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/number_container"
+                    android:elevation="8dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/device_owner_inputlayout"
+                        android:id="@+id/medicine_alarm_text_layout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
-                        android:hint="@string/device_owner_number"
+                        android:hint="@string/medicine_alarm_hint"
                         app:boxStrokeColor="@color/light_green"
                         app:counterEnabled="true"
-                        app:counterMaxLength="10"
+                        app:counterMaxLength="30"
                         app:endIconDrawable="@drawable/ic_mic"
                         app:endIconMode="custom"
                         app:errorEnabled="true"
@@ -148,111 +283,209 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:startIconDrawable="@drawable/phone">
+                        app:startIconDrawable="@drawable/notification">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/device_owner_edittext"
+                            android:id="@+id/medicine_alarm_edittext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:inputType="phone" />
+                            android:ems="10" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/owner_number_submit_button"
-                    android:layout_width="0dp"
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/medicine_alarm_submit_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@id/medicine_alarm_text_layout"
+                        android:background="@drawable/confirm_button"
+                        android:text="@string/save"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/medicine_alarm_text_layout" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/device_alarm_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_toEndOf="@id/device_owner_inputlayout"
-                    android:background="@drawable/confirm_button"
-                    android:text="@string/save"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/device_owner_inputlayout" />
+                    android:background="@drawable/number_container"
+                    android:elevation="8dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/device_alarm_button_text_layout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:hint="@string/device_alarm_button_hint"
+                        app:boxStrokeColor="@color/light_green"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="30"
+                        app:endIconDrawable="@drawable/ic_mic"
+                        app:endIconMode="custom"
+                        app:errorEnabled="true"
+                        app:helperTextTextColor="?colorSecondaryVariant"
+                        app:hintTextColor="@color/light_green"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:startIconDrawable="@drawable/notification">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/device_alarm_button_edittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/device_alarm_button_submit_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@id/device_alarm_button_text_layout"
+                        android:background="@drawable/confirm_button"
+                        android:text="@string/save"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/device_alarm_button_text_layout" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/device_owner_number_setting_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/number_container"
-                android:elevation="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/device_owner_number_layout">
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="0dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fire_alarm_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/device_owner_reminder"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/alarm_call"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:background="@drawable/number_container"
+                    android:elevation="8dp">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/alarm_remove"
-                    android:layout_width="0dp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/fire_alarm_text_layout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:hint="@string/fire_alarm_hint"
+                        app:boxStrokeColor="@color/light_green"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="30"
+                        app:endIconDrawable="@drawable/ic_mic"
+                        app:endIconMode="custom"
+                        app:errorEnabled="true"
+                        app:helperTextTextColor="?colorSecondaryVariant"
+                        app:hintTextColor="@color/light_green"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:startIconDrawable="@drawable/notification">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/fire_alarm_edittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/fire_alarm_submit_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@id/fire_alarm_text_layout"
+                        android:background="@drawable/confirm_button"
+                        android:text="@string/save"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fire_alarm_text_layout" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/meal_not_eaten_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/confirm_button"
-                    android:text="@string/alarm_off"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/alarm_sms" />
+                    android:background="@drawable/number_container"
+                    android:elevation="8dp">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/alarm_sms"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/confirm_button"
-                    android:text="@string/alarm_sms"
-                    app:layout_constraintBottom_toTopOf="@+id/alarm_remove"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/alarm_call" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/meal_not_eaten_text_layout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:hint="@string/meal_alarm_hint"
+                        app:boxStrokeColor="@color/light_green"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="30"
+                        app:endIconDrawable="@drawable/ic_mic"
+                        app:endIconMode="custom"
+                        app:errorEnabled="true"
+                        app:helperTextTextColor="?colorSecondaryVariant"
+                        app:hintTextColor="@color/light_green"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:startIconDrawable="@drawable/notification">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/alarm_call"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/confirm_button"
-                    android:text="@string/alarm_call"
-                    app:layout_constraintBottom_toTopOf="@+id/alarm_sms"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/meal_not_eaten_edittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"/>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/meal_not_eaten_submit_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@id/meal_not_eaten_text_layout"
+                        android:background="@drawable/confirm_button"
+                        android:text="@string/save"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/meal_not_eaten_text_layout" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/device_status_buttons_layout"

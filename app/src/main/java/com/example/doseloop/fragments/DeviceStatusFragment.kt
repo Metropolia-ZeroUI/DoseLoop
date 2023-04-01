@@ -3,7 +3,6 @@ package com.example.doseloop.fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -12,13 +11,10 @@ import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import com.example.doseloop.R
 import com.example.doseloop.comms.impl.Message
-import com.example.doseloop.comms.impl.PhoneNumber
 import com.example.doseloop.databinding.FragmentDeviceStatusBinding
 import com.example.doseloop.speech.SpeechListener
 import com.example.doseloop.speech.SpeechToText
-import com.example.doseloop.util.DEVICE_USER_NUMBER
-import com.example.doseloop.util.NAVIGATE_TO_HOME_FRAGMENT
-import com.example.doseloop.util.PHONE_NUMBER_1
+import com.example.doseloop.util.*
 import com.example.doseloop.viewmodel.DeviceStatusViewModel
 
 /**
@@ -59,8 +55,23 @@ class DeviceStatusFragment : AbstractFragment<DeviceStatusViewModel>(DeviceStatu
         ))
 
         addTextChangedListener(binding.deviceOwnerEdittext, binding.ownerNumberSubmitButton, binding.deviceOwnerInputlayout)
-        addSubmitButtonListener(binding.ownerNumberSubmitButton, binding.deviceOwnerEdittext)
+        addStringTextChangedListener(binding.mealNotEatenEdittext, binding.mealNotEatenSubmitButton, binding.mealNotEatenTextLayout)
+        addStringTextChangedListener(binding.fireAlarmEdittext, binding.fireAlarmSubmitButton, binding.fireAlarmTextLayout)
+        addStringTextChangedListener(binding.deviceAlarmButtonEdittext, binding.deviceAlarmButtonSubmitButton, binding.deviceAlarmButtonTextLayout)
+        addStringTextChangedListener(binding.medicineAlarmEdittext, binding.medicineAlarmSubmitButton, binding.medicineAlarmTextLayout)
+
+        addSubmitButtonListener(binding.ownerNumberSubmitButton, binding.deviceOwnerEdittext, DEVICE_USER_NUMBER, Message.USER_PHONE_ADD, R.string.set_user_number)
+        addSubmitButtonListener(binding.medicineAlarmSubmitButton, binding.medicineAlarmEdittext, MEDICINE_ALERT_TEXT, Message.ALARM_MISSED_MEDS, R.string.set_meds_alert_text)
+        addSubmitButtonListener(binding.deviceAlarmButtonSubmitButton, binding.deviceAlarmButtonEdittext, ALARM_BUTTON_ALERT_TEXT, Message.ALARM_BUTTON_PRESS, R.string.set_alarm_button_alert_text)
+        addSubmitButtonListener(binding.fireAlarmSubmitButton, binding.fireAlarmEdittext, WATER_FIRE_ALERT_TEXT, Message.ALARM_FIRE_WATER, R.string.set_fire_water_text)
+        addSubmitButtonListener(binding.mealNotEatenSubmitButton, binding.mealNotEatenEdittext, MEAL_ALERT_TEXT, Message.ALARM_MISSED_FOOD, R.string.set_meal_alarm_text)
+
         binding.deviceOwnerEdittext.setText(viewModel?.getFromPrefs(DEVICE_USER_NUMBER, ""))
+        binding.medicineAlarmEdittext.setText(viewModel?.getFromPrefs(MEDICINE_ALERT_TEXT, ""))
+        binding.deviceAlarmButtonEdittext.setText(viewModel?.getFromPrefs(ALARM_BUTTON_ALERT_TEXT, ""))
+        binding.fireAlarmEdittext.setText(viewModel?.getFromPrefs(WATER_FIRE_ALERT_TEXT, ""))
+        binding.mealNotEatenEdittext.setText(viewModel?.getFromPrefs(MEAL_ALERT_TEXT, ""))
+
         binding.deviceOwnerInputlayout.tag = "1"
         addRecordVoiceButtonListener(binding.deviceOwnerInputlayout, binding.deviceOwnerEdittext, speechToTxt, "6")
 
@@ -113,15 +124,15 @@ class DeviceStatusFragment : AbstractFragment<DeviceStatusViewModel>(DeviceStatu
         }
     }
 
-    private fun addSubmitButtonListener(submitButton: Button, editText: EditText) {
+    private fun addSubmitButtonListener(submitButton: Button, editText: EditText, prefKey: String, msg: Message, desc: Int) {
         submitButton.setOnClickListener {
-            val number = editText.text.toString()
+            val payload = editText.text.toString()
             preventButtonClickSpam {
                 if (viewModel != null) {
                     editText.clearFocus()
                     val action =
                         DeviceStatusFragmentDirections
-                            .actionDeviceStatusFragmentToConfirmUserNumberChangeActivity(number)
+                            .actionDeviceStatusFragmentToConfirmUserNumberChangeActivity(msg.withPayload(payload), payload, prefKey, desc)
                     findNavController().navigate(action)
                 }
             }
