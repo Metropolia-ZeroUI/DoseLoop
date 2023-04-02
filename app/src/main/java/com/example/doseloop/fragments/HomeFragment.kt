@@ -4,10 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.doseloop.R
 import com.example.doseloop.viewmodel.HomeFragmentViewModel
 import com.example.doseloop.databinding.FragmentHomeBinding
+import com.example.doseloop.util.*
+import com.example.doseloop.viewmodel.DateTimeSettingViewModel
+import java.time.Duration
+import java.time.LocalTime
+import java.time.format.DateTimeFormatterBuilder
 
 class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewModel()) {
 
@@ -24,6 +30,44 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
 
         val view = binding.root
 
+        /**
+         * A CardView that displays the next upcoming time for taking medication in close proximity.
+         *
+         */
+
+        val formatter = DateTimeFormatterBuilder()
+            .appendPattern("HH:mm")
+            .toFormatter()
+        val currentTime = LocalTime.now()
+
+        val viewModel = ViewModelProvider(this).get(DateTimeSettingViewModel::class.java)
+
+        val inputList = listOf(DATE_TIME_1, DATE_TIME_2, DATE_TIME_3, DATE_TIME_4, DATE_TIME_5, DATE_TIME_6)
+        val inputTimeList = mutableListOf<LocalTime>()
+        inputList.forEach { key ->
+            viewModel.getFromPrefs(key, "")
+                .takeIf { it!!.isNotBlank() }
+                ?.let { LocalTime.parse(it, formatter) }
+                ?.takeIf { !it.isBefore(currentTime) }
+                ?.let { inputTimeList.add(it) }
+        }
+
+        // Sort the list based on time difference
+        val sortedInputDataList = inputTimeList.sortedBy { Duration.between(it, currentTime).abs() }
+
+        // Choose the one with the smallest time difference
+        val closestInputData = sortedInputDataList.firstOrNull()
+
+        // Show the closest input data
+        if (closestInputData != null) {
+            binding.currentData.visibility = View.VISIBLE
+            binding.tvTime.text = closestInputData.format(formatter)
+        } else {
+            binding.currentData.visibility = View.GONE
+        }
+
+
+        // Drawers
         val medicineTimeDrawer = binding.medicineTimeDrawer.binding
         medicineTimeDrawer.drawerMenuButton.setOnClickListener {
             this.findNavController().navigate(R.id.action_homeFragment_to_dateTimeSettingFragment)
@@ -41,7 +85,6 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
 
         return view
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

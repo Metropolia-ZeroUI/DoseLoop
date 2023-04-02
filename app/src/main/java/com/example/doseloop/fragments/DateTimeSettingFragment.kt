@@ -184,7 +184,7 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
         val msgService = SmsMessageService(PhoneNumber(deviceNumber!!), requireContext())
 
         deleteButton.setOnClickListener {
-            textView.setText("")
+            textView.text=""
             val time = textView.text.toString()
             switch.isChecked = false
             val isSwitchChecked = switch.isChecked
@@ -195,6 +195,7 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
                 DateTimeSettingViewModel().saveToPrefs(timeKey, time)
                 // Save switch state in SharedPreferences
                 DateTimeSettingViewModel().saveToPrefs(dayKey, isSwitchChecked)
+                msg.emptyPayload()
             }
         }
     }
