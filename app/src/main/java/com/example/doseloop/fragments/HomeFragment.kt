@@ -35,13 +35,12 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
          * A CardView that displays the next upcoming time for taking medication in close proximity.
          *
          */
-
         val formatter = DateTimeFormatterBuilder()
             .appendPattern("HH:mm")
             .toFormatter()
         val currentTime = LocalTime.now()
 
-        val viewModel = ViewModelProvider(this).get(DateTimeSettingViewModel::class.java)
+        val viewModel = ViewModelProvider(this)[DateTimeSettingViewModel::class.java]
 
         val inputList = listOf(DATE_TIME_1, DATE_TIME_2, DATE_TIME_3, DATE_TIME_4, DATE_TIME_5, DATE_TIME_6)
         val inputTimeList = mutableListOf<LocalTime>()
