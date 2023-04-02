@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.doseloop.R
-import com.example.doseloop.viewmodel.HomeFragmentViewModel
 import com.example.doseloop.databinding.FragmentHomeBinding
 import com.example.doseloop.util.*
 import com.example.doseloop.viewmodel.DateTimeSettingViewModel
 import java.time.Duration
 import java.time.LocalTime
 import java.time.format.DateTimeFormatterBuilder
+import com.example.doseloop.viewmodel.HomeFragmentViewModel
+
 
 class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewModel()) {
 

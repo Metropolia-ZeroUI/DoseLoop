@@ -12,43 +12,43 @@ enum class Message(private val code: Int, private var payload: String = "")  {
      * Text alert that appears on device when medications
      * are not taken on time.
      */
-    ALARM_MISSED_MEDS(120),
+    ALARM_MISSED_MEDS(20),
     /**
      * Text alert that appears on device when alarm button
      * is pressed.
      */
-    ALARM_BUTTON_PRESS(121),
+    ALARM_BUTTON_PRESS(21),
     /**
      * Text alert that appears when Firealarm or leak detection
      * is triggered.
      */
-    ALARM_FIRE_WATER(122),
+    ALARM_FIRE_WATER(22),
     /**
      * Text alert that appears when food is not eaten on
      * time.
      */
-    ALARM_MISSED_FOOD(123),
+    ALARM_MISSED_FOOD(23),
 
     /**
      * Set following phone number as phone number 1
      */
-    PHONE_SET_1(110),
+    PHONE_SET_1(10),
     /**
      * Set following phone number as phone number 2
      */
-    PHONE_SET_2(111),
+    PHONE_SET_2(11),
     /**
      * Set following phone number as phone number 3
      */
-    PHONE_SET_3(112),
+    PHONE_SET_3(12),
     /**
      * Set following phone number as phone number 4
      */
-    PHONE_SET_4(113),
+    PHONE_SET_4(13),
     /**
      * Set following phone number as phone number 5
      */
-    PHONE_SET_5(114),
+    PHONE_SET_5(14),
 
     /**
      * Set which phones are alerted on possible alarm.
@@ -120,15 +120,15 @@ enum class Message(private val code: Int, private var payload: String = "")  {
      * Factory defaults
      */
     FACTORY_ALARM_FOR_PHONES(40, payload = "1,2,3,4,5"),
-    FACTORY_ALARM_MISSED_MEDS(120, payload = "Lääkkeitä ei ole otettu"),
-    FACTORY_ALARM_BUTTON_PRESS(121, payload = "Dosetti muistuttajan hälytys viesti"),
-    FACTORY_ALARM_FIRE_WATER(122, payload = "Palovaroitin hälytys"),
-    FACTORY_ALARM_MISSED_FOOD(123, payload = "Ruokaa ei ole syöty määräajassa"),
-    FACTORY_PHONE_SET_1(110, payload = "+358..."), // TODO: This is still a ??
-    FACTORY_PHONE_SET_2(111, payload = "+358..."),
-    FACTORY_PHONE_SET_3(112, payload = "+358..."),
-    FACTORY_PHONE_SET_4(113, payload = "+358..."),
-    FACTORY_PHONE_SET_5(114, payload = "+358..."),
+    FACTORY_ALARM_MISSED_MEDS(20, payload = "Lääkkeitä ei ole otettu"),
+    FACTORY_ALARM_BUTTON_PRESS(21, payload = "Dosetti muistuttajan hälytys viesti"),
+    FACTORY_ALARM_FIRE_WATER(22, payload = "Palovaroitin hälytys"),
+    FACTORY_ALARM_MISSED_FOOD(23, payload = "Ruokaa ei ole syöty määräajassa"),
+    FACTORY_PHONE_SET_1(10, payload = "+358..."), // TODO: This is still a ??
+    FACTORY_PHONE_SET_2(11, payload = "+358..."),
+    FACTORY_PHONE_SET_3(12, payload = "+358..."),
+    FACTORY_PHONE_SET_4(13, payload = "+358..."),
+    FACTORY_PHONE_SET_5(14, payload = "+358..."),
 
     /**
      *  Query phone numbers associated with the device.
