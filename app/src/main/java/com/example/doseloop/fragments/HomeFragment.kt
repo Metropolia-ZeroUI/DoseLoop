@@ -14,6 +14,7 @@ import java.time.Duration
 import java.time.LocalTime
 import java.time.format.DateTimeFormatterBuilder
 import com.example.doseloop.viewmodel.HomeFragmentViewModel
+import java.time.temporal.ChronoField
 
 
 class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewModel()) {
@@ -36,8 +37,18 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
          *
          */
         val formatter = DateTimeFormatterBuilder()
-            .appendPattern("HH:mm")
+            .optionalStart()
+            .appendPattern("H:mm")
+            .optionalEnd()
+//            .optionalStart()
+//            .appendPattern("H:m")
+//            .optionalEnd()
+//            .optionalStart()
+//            .appendPattern("HH:mm")
+//            .optionalEnd()
+            .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
             .toFormatter()
+
         val currentTime = LocalTime.now()
 
         val viewModel = ViewModelProvider(this)[DateTimeSettingViewModel::class.java]
@@ -52,11 +63,9 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
                 ?.let { inputTimeList.add(it) }
         }
 
-        // Sort the list based on time difference
-        val sortedInputDataList = inputTimeList.sortedBy { Duration.between(it, currentTime).abs() }
-
         // Choose the one with the smallest time difference
-        val closestInputData = sortedInputDataList.firstOrNull()
+        val closestInputData = inputTimeList
+            .minByOrNull { Duration.between(it, currentTime).abs() } // find closest time
 
         // Show the closest input data
         if (closestInputData != null) {
