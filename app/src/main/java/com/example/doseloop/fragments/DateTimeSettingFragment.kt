@@ -121,9 +121,12 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
         picker.addOnPositiveButtonClickListener{
             val hour = picker.hour
             val minute = picker.minute
+            // the format "%02d" specifies that the argument should be formatted as a decimal integer
+            val formattedMinute = String.format("%02d", minute)
 
-            Log.d("Show time", "$hour:$minute")
-            textView.text = "$hour:$minute"
+            Log.d("Show time", "$hour:$formattedMinute")
+            textView.text = "$hour:$formattedMinute"
+
         }
     }
 
