@@ -157,7 +157,7 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
         submitButton.setOnClickListener {
             val time = textView.text.toString()
             val isSwitchChecked = switch.isChecked // if switch is checked then true else false
-            val day =  if (isSwitchChecked) 0 else 1
+            val day =  if (isSwitchChecked) Message.MEDS_EVERY_DAY else Message.MEDS_EVERY_OTHER_DAY
             val msg = phoneSet.withPayload("$time,$day")
 
             preventButtonClickSpam {
