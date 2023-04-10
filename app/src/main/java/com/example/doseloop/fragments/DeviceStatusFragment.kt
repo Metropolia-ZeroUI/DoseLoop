@@ -74,7 +74,10 @@ class DeviceStatusFragment : AbstractFragment<DeviceStatusViewModel>(DeviceStatu
 
         binding.deviceOwnerInputlayout.tag = "1"
         addRecordVoiceButtonListener(binding.deviceOwnerInputlayout, binding.deviceOwnerEdittext, speechToTxt, "6")
-
+        addRecordVoiceButtonTextListener(binding.medicineAlarmTextLayout,binding.medicineAlarmEdittext, speechToTxt, MEDICINE_ALERT_TEXT)
+        addRecordVoiceButtonTextListener(binding.deviceAlarmButtonTextLayout, binding.deviceAlarmButtonEdittext, speechToTxt, ALARM_BUTTON_ALERT_TEXT)
+        addRecordVoiceButtonTextListener(binding.fireAlarmTextLayout, binding.fireAlarmEdittext, speechToTxt, WATER_FIRE_ALERT_TEXT)
+        addRecordVoiceButtonTextListener(binding.mealNotEatenTextLayout, binding.mealNotEatenEdittext, speechToTxt, MEAL_ALERT_TEXT)
         binding.deviceLockSwitch.isChecked = viewModel?.getLockedState()!!
 
         binding.saveDeviceChangesButton.setOnClickListener {

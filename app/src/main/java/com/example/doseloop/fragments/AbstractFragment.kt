@@ -176,4 +176,40 @@ abstract class AbstractFragment<T: AbstractViewModel?>(protected val viewModel :
             }
         }
     }
+
+    fun addRecordVoiceButtonTextListener(til: TextInputLayout, editText: EditText, speechToText: SpeechToText, prefs: String) {
+        til.setEndIconOnClickListener {
+            if(til.tag == "2") {
+                speechToText.stopListening()
+                til.setEndIconDrawable(R.drawable.ic_mic)
+                til.setEndIconTintList(ColorStateList.valueOf(resources.getColor(R.color.dark_gray)))
+                editText.hint = ""
+                editText.clearFocus()
+                editText.setText(viewModel?.getFromPrefs("$prefs", ""))
+                til.tag = "1"
+            }
+            else {
+                var userText = ""
+                til.tag = "2"
+                til.setEndIconDrawable(R.drawable.ic_mic_record)
+                til.setEndIconTintList(ColorStateList.valueOf(resources.getColor(R.color.wine_red)))
+                editText.setText("")
+                editText.hint = getString(R.string.kuunnellaan)
+                editText.requestFocus()
+                speechToText.tryRecognize(this) {
+                    userText = it
+                    til.setEndIconDrawable(R.drawable.ic_mic)
+                    til.setEndIconTintList(ColorStateList.valueOf(resources.getColor(R.color.dark_gray)))
+                    if (userText != "") {
+                        editText.setText(userText)
+                        editText.hint = ""
+                        editText.clearFocus()
+                        til.setEndIconDrawable(R.drawable.ic_mic)
+                        til.setEndIconTintList(ColorStateList.valueOf(resources.getColor(R.color.dark_gray)))
+                        til.tag = "1"
+                    }
+                }
+            }
+        }
+    }
 }
