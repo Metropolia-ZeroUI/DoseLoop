@@ -58,6 +58,9 @@
         <action
             android:id="@+id/action_dateTimeSettingFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_dateTimeSettingFragment_to_confirmMedicineTimesActivity"
+            app:destination="@id/confirmMedicineTimesActivity" />
     </fragment>
     <fragment
         android:id="@+id/deviceStatusFragment"
@@ -177,5 +180,32 @@
         <argument
             android:name="descId"
             app:argType="integer" />
+    </activity>
+    <activity
+        android:id="@+id/confirmMedicineTimesActivity"
+        android:name="com.example.doseloop.ConfirmMedicineTimesActivity"
+        android:label="activity_confirm_medicine_times"
+        tools:layout="@layout/activity_confirm_medicine_times" >
+        <argument
+            android:name="time"
+            app:argType="string" />
+        <argument
+            android:name="period"
+            app:argType="boolean" />
+        <argument
+            android:name="timeKey"
+            app:argType="string" />
+        <argument
+            android:name="timeKeySimple"
+            app:argType="string" />
+        <argument
+            android:name="dayKey"
+            app:argType="string" />
+        <argument
+            android:name="msg"
+            app:argType="com.example.doseloop.comms.impl.Message" />
+        <argument
+            android:name="delete"
+            app:argType="boolean" />
     </activity>
 </navigation>
