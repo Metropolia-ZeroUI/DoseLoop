@@ -37,13 +37,6 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
     private var _binding: FragmentDateTimeSettingBinding? = null
     private val binding get() = _binding!!
 
-    private var day1 = Message.MEDS_EVERY_DAY
-    private var day2 = Message.MEDS_EVERY_DAY
-    private var day3 = Message.MEDS_EVERY_DAY
-    private var day4 = Message.MEDS_EVERY_DAY
-    private var day5 = Message.MEDS_EVERY_DAY
-    private var day6 = Message.MEDS_EVERY_DAY
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -156,24 +149,6 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
                 handleTextErrors(submitButton, charSequence, mess)
             }
         })
-
-        // Listener function for the Day Switcher
-
-        switch.setOnCheckedChangeListener { _, isChecked ->
-            setDayParam(day, isChecked)
-//            showToast(day.toString()) // shows chosen parameter MEDS_EVERY_DAY = 1 and MEDS_EVERY_OTHER_DAY = 0
-        }
-    }
-
-    private fun setDayParam(dayKey: Int, isChecked: Boolean) {
-        when(dayKey) {
-            1 -> day1 = if (isChecked) Message.MEDS_EVERY_OTHER_DAY else Message.MEDS_EVERY_DAY
-            2 -> day2 = if (isChecked) Message.MEDS_EVERY_OTHER_DAY else Message.MEDS_EVERY_DAY
-            3 -> day3 = if (isChecked) Message.MEDS_EVERY_OTHER_DAY else Message.MEDS_EVERY_DAY
-            4 -> day4 = if (isChecked) Message.MEDS_EVERY_OTHER_DAY else Message.MEDS_EVERY_DAY
-            5 -> day5 = if (isChecked) Message.MEDS_EVERY_OTHER_DAY else Message.MEDS_EVERY_DAY
-            6 -> day6 = if (isChecked) Message.MEDS_EVERY_OTHER_DAY else Message.MEDS_EVERY_DAY
-        }
     }
     private fun addSubmitButtonListener(
         submitButton: Button, textView: TextView, switch: SwitchCompat,
@@ -182,17 +157,7 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
         submitButton.setOnClickListener {
             val time = textView.text.toString()
             val isSwitchChecked = switch.isChecked // if switch is checked then true else false
-            Log.d("DAY_KEY", dayKey)
-            val day =  when(dayKey) {
-                DAY_1 -> day1
-                DAY_2 -> day2
-                DAY_3 -> day3
-                DAY_4 -> day4
-                DAY_5 -> day5
-                DAY_6 -> day6
-                else -> day1
-            }
-            Log.d("DAY", day.toString());
+            val day =  if (isSwitchChecked) 0 else 1
             val msg = phoneSet.withPayload("$time,$day")
 
             preventButtonClickSpam {
