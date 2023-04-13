@@ -1,5 +1,6 @@
 package com.example.doseloop.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.example.doseloop.databinding.FragmentDeviceStatusBinding
 import com.example.doseloop.speech.SpeechListener
 import com.example.doseloop.speech.SpeechToText
 import com.example.doseloop.util.*
+import com.example.doseloop.viewmodel.DateTimeSettingViewModel
 import com.example.doseloop.viewmodel.DeviceStatusViewModel
 
 /**
@@ -34,16 +36,16 @@ class DeviceStatusFragment : AbstractFragment<DeviceStatusViewModel>(DeviceStatu
         _binding = FragmentDeviceStatusBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
 
-        setOnButtonPress(binding.statusButtonPhoneNumbers, Message.ADMIN_PHONE_NUMBER_QUERY, getString(R.string.confirm_status_phone_numbers))
-        setOnButtonPress(binding.statusButtonSmsNumbers, Message.ADMIN_SMS_QUERY, getString(R.string.confirm_status_numbers_settings))
-        setOnButtonPress(binding.statusButtonSetTime, Message.ADMIN_SET_TIME, getString(R.string.confirm_status_time_correct))
-        setOnButtonPress(binding.statusButtonMedicineTimes, Message.ADMIN_LIST_MEDS, getString(R.string.confirm_status_medicine_times))
-        setOnButtonPress(binding.statusButtonSignalStrength, Message.ADMIN_SIGNAL_STRENGTH, getString(R.string.confirm_status_signal_strength))
-        setOnButtonPress(binding.statusButtonBatteryLevel, Message.ADMIN_BATTERY_LIFE, getString(R.string.confirm_status_battery))
-        setOnButtonPress(binding.statusButtonDoorTimes, Message.ADMIN_DOOR_OPENING_TIMES, getString(R.string.confirm_status_door_times))
-        setOnButtonPress(binding.alarmRemove, Message.USER_PHONE_DISABLE, getString(R.string.alarm_off_confirm))
-        setOnButtonPress(binding.alarmCall, Message.USER_PHONE_MEDS_REMINDER_CALL, getString(R.string.alarm_call_confirm))
-        setOnButtonPress(binding.alarmSms, Message.USER_PHONE_MEDS_REMINDER_SMS, getString(R.string.alarm_sms_confirm))
+        setOnButtonPress(binding.statusButtonPhoneNumbers, Message.ADMIN_PHONE_NUMBER_QUERY, getString(R.string.confirm_status_phone_numbers),null)
+        setOnButtonPress(binding.statusButtonSmsNumbers, Message.ADMIN_SMS_QUERY, getString(R.string.confirm_status_numbers_settings), null)
+        setOnButtonPress(binding.statusButtonSetTime, Message.ADMIN_SET_TIME, getString(R.string.confirm_status_time_correct), null)
+        setOnButtonPress(binding.statusButtonMedicineTimes, Message.ADMIN_LIST_MEDS, getString(R.string.confirm_status_medicine_times), null)
+        setOnButtonPress(binding.statusButtonSignalStrength, Message.ADMIN_SIGNAL_STRENGTH, getString(R.string.confirm_status_signal_strength), null)
+        setOnButtonPress(binding.statusButtonBatteryLevel, Message.ADMIN_BATTERY_LIFE, getString(R.string.confirm_status_battery), null)
+        setOnButtonPress(binding.statusButtonDoorTimes, Message.ADMIN_DOOR_OPENING_TIMES, getString(R.string.confirm_status_door_times), null)
+        setOnButtonPress(binding.alarmCall, Message.USER_PHONE_MEDS_REMINDER_CALL, getString(R.string.alarm_call_confirm), "call_alarm")
+        setOnButtonPress(binding.alarmSms, Message.USER_PHONE_MEDS_REMINDER_SMS, getString(R.string.alarm_sms_confirm), "sms_alarm")
+        setOnButtonPress(binding.alarmRemove, Message.USER_PHONE_DISABLE, getString(R.string.alarm_off_confirm), "remove_alarm")
 
         setToolBarBackButton(binding.deviceToolbar)
 
@@ -111,18 +113,58 @@ class DeviceStatusFragment : AbstractFragment<DeviceStatusViewModel>(DeviceStatu
         }
     }
 
-    private fun setOnButtonPress(button: Button, msg: Message, confirmText: String) {
+//    private fun setOnButtonPress(button: Button, msg: Message, confirmText: String) {
+//        button.setOnClickListener {
+//            preventButtonClickSpam {
+//                if (viewModel != null) {
+//                    val action =
+//                        DeviceStatusFragmentDirections
+//                            .actionDeviceStatusFragmentToConfirmStatusActivity(msg, confirmText)
+//                    findNavController().navigate(action)
+//                }
+//            }
+//        }
+//    }
+
+    private fun setOnButtonPress(button: Button, msg: Message, confirmText: String, tag: String?) {
         button.setOnClickListener {
             preventButtonClickSpam {
                 if (viewModel != null) {
-                    val action =
-                        DeviceStatusFragmentDirections
-                            .actionDeviceStatusFragmentToConfirmStatusActivity(msg, confirmText)
+                    val action = DeviceStatusFragmentDirections
+                        .actionDeviceStatusFragmentToConfirmStatusActivity(msg, confirmText)
                     findNavController().navigate(action)
+
+                    // Save button state in SharedPreferences
+                    tag?.let { nonNullTag ->
+                        val sharedPreferences = requireContext().getSharedPreferences("my_app_shared_prefs", Context.MODE_PRIVATE)
+                        val clickedTags = HashSet(sharedPreferences.getStringSet("clicked_tags", HashSet<String>()))
+                        clickedTags.add(nonNullTag)
+                        sharedPreferences.edit().putStringSet("clicked_tags", clickedTags).apply()
+
+                        when (nonNullTag) {
+                            "remove_alarm" -> {
+                                DeviceStatusViewModel().saveToPrefs(ALARM_STATE_CALL,"")
+                                DeviceStatusViewModel().saveToPrefs(ALARM_STATE_SMS,"")
+                                DeviceStatusViewModel().saveToPrefs(ALARM_STATE_REMOVE,"remove")
+                            }
+                            "call_alarm" -> {
+                                DeviceStatusViewModel().saveToPrefs(ALARM_STATE_CALL,"call")
+                                DeviceStatusViewModel().saveToPrefs(ALARM_STATE_REMOVE,"")
+                            }
+                            "sms_alarm" -> {
+                                DeviceStatusViewModel().saveToPrefs(ALARM_STATE_SMS,"sms")
+                                DeviceStatusViewModel().saveToPrefs(ALARM_STATE_REMOVE,"")
+                            }
+                            else -> {
+                                DeviceStatusViewModel().saveToPrefs(ALARM_STATE_REMOVE,"remove")
+                            }
+                        }
+                    }
                 }
             }
         }
     }
+
 
     private fun addSubmitButtonListener(submitButton: Button, editText: EditText, prefKey: String, msg: Message, desc: Int) {
         submitButton.setOnClickListener {

@@ -4,112 +4,174 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.HomeFragment">
 
-
     <RelativeLayout
         android:id="@+id/drawer_menu_group"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
         <com.example.doseloop.components.DrawerMenu
             android:id="@+id/medicine_time_drawer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:menuButtonRef="@drawable/ic_edit"
             app:cardStyle="2"
-            app:menuText="@string/set_date_and_time"
-            app:menuImageRef="@drawable/ic_add"/>
+            app:menuButtonRef="@drawable/ic_edit"
+            app:menuImageRef="@drawable/ic_add"
+            app:menuText="@string/set_date_and_time"/>
+
         <com.example.doseloop.components.DrawerMenu
             android:id="@+id/phone_number_drawer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:menuButtonRef="@drawable/ic_edit"
-            app:cardStyle="0"
             android:layout_below="@id/medicine_time_drawer"
-            app:menuText="@string/set_numbers"
-            app:menuImageRef="@drawable/ic_phone_msg"/>
+            app:cardStyle="0"
+            app:menuButtonRef="@drawable/ic_edit"
+            app:menuImageRef="@drawable/ic_phone_msg"
+            app:menuText="@string/set_numbers" />
+
         <com.example.doseloop.components.DrawerMenu
             android:id="@+id/device_status_drawer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/phone_number_drawer"
-            app:menuButtonRef="@drawable/ic_status"
             app:cardStyle="1"
-            app:menuText="@string/check_device_settings"
-            app:menuImageRef="@drawable/ic_status"
             app:menuButtonColorRef="@color/purple_500"
+            app:menuButtonRef="@drawable/ic_status"
             app:menuImageColorRef="@color/purple_500"
+            app:menuImageRef="@drawable/ic_status"
+            app:menuText="@string/check_device_settings"
             app:menuTextColorRef="@color/white" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/current_data"
-            android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="22dp"
-            app:cardBackgroundColor="@color/white"
-            android:background="@drawable/number_container"
-            app:cardElevation="2dp"
-            android:visibility="gone">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
 
-            <RelativeLayout
-                android:id="@+id/bottom_sheet"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dp">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/current_data"
+                android:layout_width="320dp"
+                android:layout_height="160dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="22dp"
+                app:cardElevation="4dp">
 
-                <RelativeLayout
-                    android:id="@+id/tv_card_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/bottom_sheet"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentStart="true"
-                    android:padding="20dp">
+                    android:padding="8dp">
 
                     <ImageView
-                        android:id="@+id/img_bottom_sheet"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:id="@+id/clock_icon"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
                         android:src="@drawable/clock_m"
-                        android:scaleType="centerCrop"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/current_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:layout_marginTop="14dp"
-                    android:layout_toEndOf="@+id/tv_card_img"
-                    android:layout_alignTop="@+id/tv_card_img"
-                    android:layout_alignBottom="@+id/tv_card_img"
-                    android:layout_centerVertical="true">
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/primary_blue_color" />
 
                     <TextView
                         android:id="@+id/tv_title"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/name_of_the_med"
-                        android:textSize="16sp"
-                        android:textStyle="bold"/>
+                        android:layout_marginStart="28dp"
+                        android:text="@string/next_med"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/tv_time"
+                        app:layout_constraintStart_toEndOf="@id/clock_icon"
+                        app:layout_constraintTop_toTopOf="@+id/clock_icon" />
 
                     <TextView
                         android:id="@+id/tv_time"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_title"
-                        android:layout_marginStart="50dp"
-                        android:layout_marginTop="4dp"
-                        android:paddingBottom="10dp"
-                        android:textSize="22sp"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="1dp"
+                        android:background="@drawable/input_backgr_blue"
+                        android:hint=""
+                        android:textSize="18sp"
                         android:textStyle="bold"
-                        android:layout_alignParentEnd="true" />
+                        app:layout_constraintBottom_toBottomOf="@+id/clock_icon"
+                        app:layout_constraintStart_toEndOf="@id/clock_icon"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
-                </RelativeLayout>
+                    <TextView
+                        android:id="@+id/tv_day"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="96dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/input_backgr_blue"
+                        android:hint=""
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/clock_icon"
+                        app:layout_constraintStart_toEndOf="@id/clock_icon"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+                        app:layout_constraintVertical_bias="0.111" />
 
-            </RelativeLayout>
+                    <ImageView
+                        android:id="@+id/alarm_icon"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="12dp"
+                        android:src="@drawable/alarm_on"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/clock_icon"
+                        app:tint="@color/primary_blue_color" />
 
-        </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/tv_lock_status"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="30dp"
+                        android:background="@drawable/input_backgr_blue"
+                        android:text=""
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/alarm_icon"
+                        app:layout_constraintStart_toEndOf="@id/alarm_icon"
+                        app:layout_constraintTop_toTopOf="@+id/alarm_icon"/>
+
+                    <ImageView
+                        android:id="@+id/reminder_icon"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="12dp"
+                        android:src="@drawable/phone_alarm"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/alarm_icon"
+                        app:tint="@color/primary_blue_color" />
+
+                    <TextView
+                        android:id="@+id/tv_reminder_by"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/input_backgr_blue"
+                        android:text=""
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/reminder_icon"
+                        app:layout_constraintStart_toEndOf="@id/reminder_icon"
+                        app:layout_constraintTop_toTopOf="@+id/reminder_icon" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
     </RelativeLayout>
 </layout>

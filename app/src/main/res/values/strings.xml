@@ -38,7 +38,7 @@
     <string name="change_number_info">Muutos maksaa liittymäkohtaisen tekstiviestin hinnan</string>
     <string name="off">Pois</string>
     <string name="on">Päällä</string>
-    <string name="name_of_the_med">Seuraava lääkkeen otto</string>
+    <string name="next_med">Seuraava lääkkeen otto</string>
     <string name="number1">1. Numero</string>
     <string name="number2">2. Numero</string>
     <string name="number3">3. Numero</string>
@@ -57,6 +57,8 @@
     <string name="confirm_status_door_times">Haluatko varmasti tarkistaa ovenavausajat?</string>
     <string name="confirm_status_time_correct">Haluatko varmasti asettaa kellonajan?</string>
     <string name="locked">Lukittu</string>
+    <string name="on_lock">Älydosetti on lukittu</string>
+    <string name="unlocked">Älydosetti ei lukittu</string>
     <string name="open">Auki</string>
     <string name="device_locked">Älydosetin lukitus</string>
     <string name="device_lock_info">Olet lukitsemassa älydosetin.\nHyväksy muutos?</string>
@@ -67,6 +69,7 @@
     <string name="alarm_off">Hälytys pois</string>
     <string name="alarm_sms">Muistutus tekstiviestillä</string>
     <string name="alarm_call">Muistutus soittamalla</string>
+    <string name="sms_call_alarm">Muistutus soittamalla ja viestillä</string>
     <string name="alarm_off_confirm">Haluatko varmasti poistaa muistutukset käyttäjän puhelimesta?</string>
     <string name="alarm_call_confirm">Haluatko varmasti lisätä muistutukset (soitto) käyttäjän puhelimeen?</string>
     <string name="alarm_sms_confirm">Haluatko varmasti lisätä muistutukset (tekstiviesti) käyttäjän puhelimeen?</string>

@@ -13,7 +13,7 @@
         <!-- TOOD: Change according to selected colors -->
         <item name="colorContainer">@color/dark_gray</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/bottom_nav_color</item>
+        <item name="android:statusBarColor">@color/primary_blue_color</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

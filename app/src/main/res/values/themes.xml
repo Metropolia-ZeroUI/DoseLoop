@@ -9,10 +9,17 @@
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/dark_gray</item>
         <item name="colorContainer">@color/white</item>
-        <item name="android:statusBarColor">@color/bottom_nav_color</item>
+        <item name="android:statusBarColor">@color/primary_blue_color</item>
     </style>
     <style name="Theme.DoseLoop.PopupTheme">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
+
+    <style name="CustomTimePickerTheme" parent="ThemeOverlay.MaterialComponents.TimePicker">
+        <item name="colorPrimary">@color/primary_blue_color</item>
+        <item name="colorOnPrimary">@color/teal_200</item>
+        <item name="colorControlActivated">@color/purple_700</item>
+    </style>
+
 </resources>
