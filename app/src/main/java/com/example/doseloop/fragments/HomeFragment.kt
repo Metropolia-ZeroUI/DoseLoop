@@ -1,6 +1,5 @@
 package com.example.doseloop.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,8 +15,6 @@ import java.time.Duration
 import java.time.LocalTime
 import java.time.format.DateTimeFormatterBuilder
 import com.example.doseloop.viewmodel.HomeFragmentViewModel
-import java.time.LocalDateTime
-import java.time.temporal.ChronoField
 
 
 class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewModel()) {
@@ -39,8 +36,6 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
          * A CardView that displays the next upcoming time for taking medication in close proximity.
          *
          */
-
-//        binding.currentData.radius = 22F
 
         // Lock
         val deviceLockedState = DeviceStatusViewModel().getFromPrefs("DEVICE_LOCKED_STATE", false)
@@ -77,16 +72,9 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
         val closestInputData = sortedInputDataList.firstOrNull()
 
         // Show the closest input data
-        if (closestInputData != null) {
-            binding.currentData.visibility = View.VISIBLE
-            binding.tvTime.text = closestInputData.format(formatter)
-        } else {
-            binding.currentData.visibility = View.GONE
-        }
+        binding.tvTime.text = closestInputData?.format(formatter) ?: getString(R.string.set_format)
 
         // Call or message
-//      binding.tvReminderBy.text = getString(R.string.sms_call_alarm)
-
         val alarmStateCall = DeviceStatusViewModel().getFromPrefs("ALARM_STATE_CALL", "")
         val alarmStateSMS = DeviceStatusViewModel().getFromPrefs("ALARM_STATE_SMS", "")
         val alarmStateRemove = DeviceStatusViewModel().getFromPrefs("ALARM_STATE_REMOVE", "")
@@ -106,11 +94,10 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
                 binding.tvReminderBy.text = getString(R.string.alarm_sms)
             }
             else -> {
-                binding.tvReminderBy.text = "Not required"
+                binding.tvReminderBy.text = getString(R.string.alarm_off)
                 binding.reminderIcon.setImageResource(R.drawable.notific_off)
             }
         }
-
 
         // Drawers
         val medicineTimeDrawer = binding.medicineTimeDrawer.binding

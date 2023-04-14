@@ -80,20 +80,20 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
         binding.day6Slider.isChecked = DateTimeSettingViewModel().getFromPrefs(DAY_6, false)
 
         // Set submit button listeners for each field
-        addSubmitButtonListener(binding.time1SubmitButton, binding.time1EditText, binding.daySlider, Message.TIME_FOR_MEDS_1, DATE_TIME_1, DAY_1, NEXT_DATE_KEY_1)
-        addSubmitButtonListener(binding.time2SubmitButton, binding.time2EditText, binding.day2Slider, Message.TIME_FOR_MEDS_2, DATE_TIME_2, DAY_2, NEXT_DATE_KEY_2)
-        addSubmitButtonListener(binding.time3SubmitButton, binding.time3EditText, binding.day3Slider, Message.TIME_FOR_MEDS_3, DATE_TIME_3, DAY_3, NEXT_DATE_KEY_3)
-        addSubmitButtonListener(binding.time4SubmitButton, binding.time4EditText, binding.day4Slider, Message.TIME_FOR_MEDS_4, DATE_TIME_4, DAY_4, NEXT_DATE_KEY_4)
-        addSubmitButtonListener(binding.time5SubmitButton, binding.time5EditText, binding.day5Slider, Message.TIME_FOR_MEDS_5, DATE_TIME_5, DAY_5, NEXT_DATE_KEY_5)
-        addSubmitButtonListener(binding.time6SubmitButton, binding.time6EditText, binding.day6Slider, Message.TIME_FOR_MEDS_6, DATE_TIME_6, DAY_6, NEXT_DATE_KEY_6)
+        addSubmitButtonListener(binding.time1SubmitButton, binding.time1EditText, binding.daySlider, Message.TIME_FOR_MEDS_1, DATE_TIME_1, DAY_1)
+        addSubmitButtonListener(binding.time2SubmitButton, binding.time2EditText, binding.day2Slider, Message.TIME_FOR_MEDS_2, DATE_TIME_2, DAY_2)
+        addSubmitButtonListener(binding.time3SubmitButton, binding.time3EditText, binding.day3Slider, Message.TIME_FOR_MEDS_3, DATE_TIME_3, DAY_3)
+        addSubmitButtonListener(binding.time4SubmitButton, binding.time4EditText, binding.day4Slider, Message.TIME_FOR_MEDS_4, DATE_TIME_4, DAY_4)
+        addSubmitButtonListener(binding.time5SubmitButton, binding.time5EditText, binding.day5Slider, Message.TIME_FOR_MEDS_5, DATE_TIME_5, DAY_5)
+        addSubmitButtonListener(binding.time6SubmitButton, binding.time6EditText, binding.day6Slider, Message.TIME_FOR_MEDS_6, DATE_TIME_6, DAY_6)
 
         // Set delete button listeners for each field
-        addDeleteButtonListener(binding.time1DeleteButton, binding.time1EditText, binding.daySlider, Message.TIME_FOR_MEDS_1, DATE_TIME_1, DAY_1, NEXT_DATE_KEY_1)
-        addDeleteButtonListener(binding.time2DeleteButton, binding.time2EditText, binding.day2Slider, Message.TIME_FOR_MEDS_2, DATE_TIME_2, DAY_2, NEXT_DATE_KEY_2)
-        addDeleteButtonListener(binding.time3DeleteButton, binding.time3EditText, binding.day3Slider, Message.TIME_FOR_MEDS_3, DATE_TIME_3, DAY_3, NEXT_DATE_KEY_3)
-        addDeleteButtonListener(binding.time4DeleteButton, binding.time4EditText, binding.day4Slider, Message.TIME_FOR_MEDS_4, DATE_TIME_4, DAY_4, NEXT_DATE_KEY_4)
-        addDeleteButtonListener(binding.time5DeleteButton, binding.time5EditText, binding.day5Slider, Message.TIME_FOR_MEDS_5, DATE_TIME_5, DAY_5, NEXT_DATE_KEY_5)
-        addDeleteButtonListener(binding.time6DeleteButton, binding.time6EditText, binding.day6Slider, Message.TIME_FOR_MEDS_6, DATE_TIME_6, DAY_6, NEXT_DATE_KEY_6)
+        addDeleteButtonListener(binding.time1DeleteButton, binding.time1EditText, binding.daySlider, Message.TIME_FOR_MEDS_1, DATE_TIME_1, DAY_1)
+        addDeleteButtonListener(binding.time2DeleteButton, binding.time2EditText, binding.day2Slider, Message.TIME_FOR_MEDS_2, DATE_TIME_2, DAY_2)
+        addDeleteButtonListener(binding.time3DeleteButton, binding.time3EditText, binding.day3Slider, Message.TIME_FOR_MEDS_3, DATE_TIME_3, DAY_3)
+        addDeleteButtonListener(binding.time4DeleteButton, binding.time4EditText, binding.day4Slider, Message.TIME_FOR_MEDS_4, DATE_TIME_4, DAY_4)
+        addDeleteButtonListener(binding.time5DeleteButton, binding.time5EditText, binding.day5Slider, Message.TIME_FOR_MEDS_5, DATE_TIME_5, DAY_5)
+        addDeleteButtonListener(binding.time6DeleteButton, binding.time6EditText, binding.day6Slider, Message.TIME_FOR_MEDS_6, DATE_TIME_6, DAY_6)
 
 
 
@@ -164,7 +164,7 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
 
     private fun addSubmitButtonListener(
         submitButton: Button, textView: TextView, switch: SwitchCompat,
-        phoneSet: Message, timeKey: String, dayKey: String, dayState: String) {
+        phoneSet: Message, timeKey: String, dayKey: String) {
         val deviceNumber = PhoneNumberSettingViewModel().getFromPrefs(DEVICE_PHONE_NUMBER, "")
         val msgService = SmsMessageService(PhoneNumber(deviceNumber!!), requireContext())
 
@@ -173,27 +173,19 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
             val isSwitchChecked = switch.isChecked // if switch is checked then true else false
             val msg = phoneSet.withPayload("$time,$day")
 
-            val currentDate = LocalDate.now() // get current date
-            val daysToAdd = if (isSwitchChecked) 1L else 2L // set the number of days to add based on the switch state
-            val nextDate = currentDate.plusDays(daysToAdd) // add days to the current date
-
             msgService.sendMessage(msg) {
                 Log.d("MESSAGE_SEND", "Message OK")
                 // Save time state in SharedPreferences
                 DateTimeSettingViewModel().saveToPrefs(timeKey, time)
                 // Save switch state in SharedPreferences
                 DateTimeSettingViewModel().saveToPrefs(dayKey, isSwitchChecked)
-
-                // Save next date to SharedPreferences
-//                val formatter = DateTimeFormatter.ISO_DATE
-//                DateTimeSettingViewModel().saveToPrefs(dayState, formatter.format(nextDate))
-//                msg.emptyPayload()
+                msg.emptyPayload()
             }
         }
     }
 
     private fun addDeleteButtonListener(deleteButton: Button, textView: TextView, switch: SwitchCompat,
-                                        phoneSet: Message, timeKey: String, dayKey: String, dayState: String) {
+                                        phoneSet: Message, timeKey: String, dayKey: String) {
         val deviceNumber = PhoneNumberSettingViewModel().getFromPrefs(DEVICE_PHONE_NUMBER, "")
         val msgService = SmsMessageService(PhoneNumber(deviceNumber!!), requireContext())
 
@@ -209,8 +201,6 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
                 DateTimeSettingViewModel().saveToPrefs(timeKey, time)
                 // Save switch state in SharedPreferences
                 DateTimeSettingViewModel().saveToPrefs(dayKey, isSwitchChecked)
-
-//                DateTimeSettingViewModel().saveToPrefs(dayState, "")
                 msg.emptyPayload()
             }
         }
@@ -238,9 +228,9 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
         button.isEnabled = !error
     }
 
-    private fun showToast(msg: String) {
-        Toast.makeText(activity?.applicationContext, msg, Toast.LENGTH_SHORT).show()
-    }
+//    private fun showToast(msg: String) {
+//        Toast.makeText(activity?.applicationContext, msg, Toast.LENGTH_SHORT).show()
+//    }
 
 }
 
