@@ -3,7 +3,7 @@
 
 This mobile application is designed to help users remember to take their medication on time every day. The application has a simple user interface that allows users to easily customize their medication schedules and set up reminders for each medication. The MVVM architecture ensures a clean separation of concerns, making maintenance and testing of the application much simpler. Overall, this medicine reminder mobile application provides an easy-to-use solution for managing medication schedules.
 
-The project was designed to be used in conjunction with an automatic dispenser, which releases the appropriate medication at the right time. SMS messages bind the application with the dispenser. The dispenser has a pre-installed SIM card that receives messages with commands to set various settings, such as time, phone numbers and etc. We utilized the Android SMS manager and SMS API for this purpose.</b></p>
+The project was designed to be used in conjunction with an automatic dispenser, which releases the appropriate medication at the right time. SMS messages bind the application with the dispenser. The dispenser has a pre-installed SIM card that receives messages with commands to set various settings, such as time, phone numbers and etc. We utilized the Android SmsManager with Sms API for this purpose.</b></p>
 
 ###  Tech and libraries
 - Kotlin
