@@ -14,7 +14,6 @@ The project was designed to be used in conjunction with an automatic dispenser, 
 - Voice Control
 - SharedPreferences
 - Data binding
-- Android SharedPreferences
 - [Lottie Animation](https://lottiefiles.com)
 
 ### Main Features
