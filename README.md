@@ -1,27 +1,28 @@
 # DoseLoop
 <p><b> Medicine Reminder Mobile App.
 
-This mobile application is designed to help users remember to take their medication on time every day.
-The application has a simple user interface that users to easily customize their medication schedules and set up reminders for each medication.
-The MVVM architecture ensures a clean separation of concerns, making maintenance and testing of the application much simpler.
-Overall, this medicine reminder mobile application provides an easy-to-use and solution for managing medication schedules.</b> </p>
+This mobile application is designed to help users remember to take their medication on time every day. The application has a simple user interface that allows users to easily customize their medication schedules and set up reminders for each medication. The MVVM architecture ensures a clean separation of concerns, making maintenance and testing of the application much simpler. Overall, this medicine reminder mobile application provides an easy-to-use solution for managing medication schedules.
+
+The project was designed to be used in conjunction with an automatic dispenser, which releases the appropriate medication at the right time. SMS messages bind the application with the dispenser. The dispenser has a pre-installed SIM card that receives messages with commands to set various settings, such as time, phone numbers and etc. We utilized the Android SMS manager and SMS API for this purpose.</b></p>
 
 ###  Tech and libraries
 - Kotlin
 - Minimum SDK Level 28
 - MVVM
-- SMS Manager
+- [Android SmsManager](https://developer.android.com/reference/android/telephony/SmsManager)
+- Sms Api
 - Voice Control
+- SharedPreferences
 - Data binding
 - Android SharedPreferences
-- Lottie Animation
+- [Lottie Animation](https://lottiefiles.com)
 
 ### Main Features
-- Zero UI
+- Zero UI:  
+    - Voice control allows users to add and change phone numbers by using their voices, which is particularly helpful for anyone who has difficulty manipulating a touch screen. However, there is room for improvement in the future.
 
 
 ### Dependencies
-
 <p><b> build.gradle(Module)</p></b>
 
     dependencies {
@@ -46,3 +47,5 @@ Overall, this medicine reminder mobile application provides an easy-to-use and s
         // Lottie Animation
         implementation 'com.airbnb.android:lottie:3.4.0'
     }
+    
+### Overview of the app
