@@ -19,6 +19,8 @@ import com.example.doseloop.comms.impl.PhoneNumber
 import com.example.doseloop.comms.impl.SmsMessageService
 import com.example.doseloop.comms.util.TimeOfDay24
 import com.example.doseloop.databinding.FragmentDateTimeSettingBinding
+import com.example.doseloop.speech.SpeechListener
+import com.example.doseloop.speech.SpeechToText
 import com.example.doseloop.viewmodel.DateTimeSettingViewModel
 import com.example.doseloop.viewmodel.PhoneNumberSettingViewModel
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -47,6 +49,14 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
         _binding = FragmentDateTimeSettingBinding.inflate(inflater, container, false)
 
         val view = binding.root
+
+        // Setup speech to text
+        val speechToTxt = SpeechToText(requireContext(), listener = SpeechListener(
+            onSuccess = { Log.i(SpeechListener::class.simpleName, "Speech got recognized") },
+            onError = { Log.e(SpeechListener::class.simpleName, "Failed to recognize speech") },
+            onReady = { Log.i(SpeechListener::class.simpleName, "Ready") },
+            onEnd = { Log.d(SpeechListener::class.simpleName, "End")}
+        ))
 
         addChangedListener(binding.time1EditText,  binding.time1SubmitButton, binding.daySlider, binding.time1EditText)
         addChangedListener(binding.time2EditText, binding.time2SubmitButton, binding.day2Slider, binding.time2EditText)
@@ -94,7 +104,7 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
         addDeleteButtonListener(binding.time5DeleteButton, binding.time5EditText, binding.day5Slider, Message.TIME_FOR_MEDS_5, DATE_TIME_5, DAY_5)
         addDeleteButtonListener(binding.time6DeleteButton, binding.time6EditText, binding.day6Slider, Message.TIME_FOR_MEDS_6, DATE_TIME_6, DAY_6)
 
-
+        addRecordVoiceButtonTimeListener(binding.time1RecordButton ,binding.time1EditText, speechToTxt, "1")
 
         binding.backHomeButton.setOnClickListener {
             this.findNavController().navigate(R.id.action_dateTimeSettingFragment_to_homeFragment)
@@ -168,6 +178,7 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
 
         submitButton.setOnClickListener {
             val time = textView.text.toString()
+            Log.i("test", time)
             val isSwitchChecked = switch.isChecked // if switch is checked then true else false
             val msg = phoneSet.withPayload("$time,$day")
             msgService.sendMessage(msg) {
