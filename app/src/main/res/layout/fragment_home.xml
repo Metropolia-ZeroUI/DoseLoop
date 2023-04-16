@@ -14,30 +14,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:menuButtonRef="@drawable/ic_edit"
-            app:cardStyle="2"
+            app:cardStyle="0"
             app:menuText="@string/set_date_and_time"
+            app:menuCardColorRef="@color/dosecontrol_blue"
+            app:menuTextColorRef="@color/white"
+            app:menuImageColorRef="@color/white"
+            app:menuButtonColorRef="@color/white"
             app:menuImageRef="@drawable/ic_add"/>
         <com.example.doseloop.components.DrawerMenu
             android:id="@+id/phone_number_drawer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:menuButtonRef="@drawable/ic_edit"
-            app:cardStyle="0"
+            app:cardStyle="1"
             android:layout_below="@id/medicine_time_drawer"
             app:menuText="@string/set_numbers"
-            app:menuImageRef="@drawable/ic_phone_msg"/>
+            app:menuImageRef="@drawable/ic_phone_msg"
+            app:menuCardColorRef="@color/dosecontrol_blue"
+            app:menuTextColorRef="@color/white"
+            app:menuImageColorRef="@color/white"
+            app:menuButtonColorRef="@color/white"/>
         <com.example.doseloop.components.DrawerMenu
             android:id="@+id/device_status_drawer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/phone_number_drawer"
             app:menuButtonRef="@drawable/ic_status"
-            app:cardStyle="1"
+            app:cardStyle="0"
             app:menuText="@string/check_device_settings"
             app:menuImageRef="@drawable/ic_status"
-            app:menuButtonColorRef="@color/purple_500"
-            app:menuImageColorRef="@color/purple_500"
-            app:menuTextColorRef="@color/white" />
+            app:menuCardColorRef="@color/dosecontrol_blue"
+            app:menuTextColorRef="@color/white"
+            app:menuImageColorRef="@color/white"
+            app:menuButtonColorRef="@color/white"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/current_data"
