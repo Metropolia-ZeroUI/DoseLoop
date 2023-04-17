@@ -1,19 +1,13 @@
 package com.example.doseloop.fragments
 
-import android.content.res.ColorStateList
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.OnBackPressedCallback
-import android.widget.Toast
-import androidx.core.text.isDigitsOnly
 import androidx.navigation.fragment.findNavController
 import com.example.doseloop.R
 import com.example.doseloop.comms.impl.Message
@@ -23,7 +17,6 @@ import com.example.doseloop.speech.SpeechListener
 import com.example.doseloop.speech.SpeechToText
 import com.example.doseloop.util.*
 import com.example.doseloop.viewmodel.PhoneNumberSettingViewModel
-import com.google.android.material.textfield.TextInputLayout
 
 
 /**

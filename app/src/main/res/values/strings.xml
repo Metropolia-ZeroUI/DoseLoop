@@ -59,6 +59,10 @@
     <string name="locked">Lukittu</string>
     <string name="on_lock">Älydosetti on lukittu</string>
     <string name="unlocked">Älydosetti on auki</string>
+    <string name="unknown_day">Tuntematon pv</string>
+    <string name="set_today">Tänään</string>
+    <string name="set_tomorrow">Huomenna</string>
+    <string name="set_after_tomorrow">Huomisen jälkeen</string>
     <string name="open">Auki</string>
     <string name="device_locked">Älydosetin lukitus</string>
     <string name="device_lock_info">Olet lukitsemassa älydosetin.\nHyväksy muutos?</string>
