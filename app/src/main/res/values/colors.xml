@@ -13,8 +13,10 @@
     <color name="wine_red">#750000</color>
 
     <!-- Custom colors -->
-    <color name="primary_blue_color">#4185EA</color>
-    <color name="primary_light_blue_color">#C2D9F6</color>
-    <color name="selected_item">#041730</color>
+    <color name="bottom_nav_color">#4185EA</color>
+    <color name="dosecontrol_blue">#3d91d8</color>
+    <color name="dosecontrol_red">#f40000</color>
+    <color name="bottom_nav_item">#C2D9F6</color>
+    <color name="bottom_nav_selected_item">#041730</color>
     <color name="fragment_bg_color">#E6EFFC</color>
 </resources>

@@ -92,4 +92,8 @@
     <string name="fire_alarm_hint">Palovaroitin/vesiovuotovahti hälytysteksti</string>
     <string name="meal_alarm_hint">Ruoka syömättä hälytysteksti</string>
     <string name="kuunnellaan">Kuunnellaan...</string>
+    <string name="change_time">Olet asettamassa %1$s. lääkkeen ottoajaksi klo %2$s. Lääke otetaan %3$s. Hyväksy muutos?</string>
+    <string name="every_day_small">joka päivä</string>
+    <string name="every_other_day_small">joka toinen päivä</string>
+    <string name="delete_time">Olet poistamassa %1$s. lääkkeen ottoajan laitteelta. Hyväksy muutos?</string>
 </resources>
