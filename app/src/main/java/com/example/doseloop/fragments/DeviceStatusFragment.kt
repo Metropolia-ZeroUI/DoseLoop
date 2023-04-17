@@ -113,19 +113,6 @@ class DeviceStatusFragment : AbstractFragment<DeviceStatusViewModel>(DeviceStatu
         }
     }
 
-//    private fun setOnButtonPress(button: Button, msg: Message, confirmText: String) {
-//        button.setOnClickListener {
-//            preventButtonClickSpam {
-//                if (viewModel != null) {
-//                    val action =
-//                        DeviceStatusFragmentDirections
-//                            .actionDeviceStatusFragmentToConfirmStatusActivity(msg, confirmText)
-//                    findNavController().navigate(action)
-//                }
-//            }
-//        }
-//    }
-
     private fun setOnButtonPress(button: Button, msg: Message, confirmText: String, tag: String?) {
         button.setOnClickListener {
             preventButtonClickSpam {

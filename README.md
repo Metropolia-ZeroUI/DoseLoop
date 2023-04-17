@@ -48,3 +48,13 @@ The project was designed to be used in conjunction with an automatic dispenser, 
     }
     
 ### Overview of the app
+
+
+- Assets used in the app
+  
+  - LottieFiles Animation
+  - Material Design Icons
+  - Self-drawn background (pattern illusion)
+
+
+### License

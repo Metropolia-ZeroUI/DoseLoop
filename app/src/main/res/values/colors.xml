@@ -15,6 +15,7 @@
     <!-- Custom colors -->
     <color name="bottom_nav_color">#4185EA</color>
     <color name="dosecontrol_blue">#3d91d8</color>
+    <color name="dosecontrol_light_blue">#CCE8FF</color>
     <color name="dosecontrol_red">#f40000</color>
     <color name="bottom_nav_item">#C2D9F6</color>
     <color name="bottom_nav_selected_item">#041730</color>

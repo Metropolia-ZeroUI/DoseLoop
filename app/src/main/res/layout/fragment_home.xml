@@ -80,7 +80,7 @@
                         android:src="@drawable/clock_m"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/primary_blue_color" />
+                        app:tint="@color/dosecontrol_blue" />
 
                     <TextView
                         android:id="@+id/tv_title"
@@ -99,7 +99,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
-                        android:layout_marginTop="1dp"
+                        android:padding="2dp"
                         android:background="@drawable/input_backgr_blue"
                         android:hint=""
                         android:textSize="18sp"
@@ -113,7 +113,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="96dp"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="8.4dp"
                         android:padding="2dp"
                         android:background="@drawable/input_backgr_blue"
                         android:hint=""
@@ -132,7 +132,7 @@
                         android:src="@drawable/alarm_on"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/clock_icon"
-                        app:tint="@color/primary_blue_color" />
+                        app:tint="@color/dosecontrol_blue" />
 
                     <TextView
                         android:id="@+id/tv_lock_status"
@@ -158,7 +158,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/alarm_icon"
-                        app:tint="@color/primary_blue_color" />
+                        app:tint="@color/dosecontrol_blue" />
 
                     <TextView
                         android:id="@+id/tv_reminder_by"

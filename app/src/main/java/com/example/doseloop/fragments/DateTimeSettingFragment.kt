@@ -14,16 +14,12 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.navigation.fragment.findNavController
 import com.example.doseloop.R
 import com.example.doseloop.comms.impl.Message
-import com.example.doseloop.comms.impl.PhoneNumber
-import com.example.doseloop.comms.impl.SmsMessageService
 import com.example.doseloop.comms.util.TimeOfDay24
 import com.example.doseloop.databinding.FragmentDateTimeSettingBinding
 import com.example.doseloop.viewmodel.DateTimeSettingViewModel
-import com.example.doseloop.viewmodel.PhoneNumberSettingViewModel
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 
 private const val TAG = "MainActivity"
@@ -38,8 +34,6 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
     private var _binding: FragmentDateTimeSettingBinding? = null
     private val binding get() = _binding!!
 
-    private var day = Message.MEDS_EVERY_DAY
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,12 +43,12 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
 
         val view = binding.root
 
-        addChangedListener(binding.time1EditText,  binding.time1SubmitButton, binding.daySlider, binding.time1EditText)
-        addChangedListener(binding.time2EditText, binding.time2SubmitButton, binding.day2Slider, binding.time2EditText)
-        addChangedListener(binding.time3EditText, binding.time3SubmitButton, binding.day3Slider, binding.time3EditText)
-        addChangedListener(binding.time4EditText, binding.time4SubmitButton, binding.day4Slider, binding.time4EditText)
-        addChangedListener(binding.time5EditText, binding.time5SubmitButton, binding.day5Slider, binding.time5EditText)
-        addChangedListener(binding.time6EditText, binding.time6SubmitButton, binding.day6Slider, binding.time6EditText)
+        addChangedListener(binding.time1EditText,  binding.time1SubmitButton, binding.daySlider, binding.time1EditText, 1)
+        addChangedListener(binding.time2EditText, binding.time2SubmitButton, binding.day2Slider, binding.time2EditText, 2)
+        addChangedListener(binding.time3EditText, binding.time3SubmitButton, binding.day3Slider, binding.time3EditText, 3)
+        addChangedListener(binding.time4EditText, binding.time4SubmitButton, binding.day4Slider, binding.time4EditText, 4)
+        addChangedListener(binding.time5EditText, binding.time5SubmitButton, binding.day5Slider, binding.time5EditText, 5)
+        addChangedListener(binding.time6EditText, binding.time6SubmitButton, binding.day6Slider, binding.time6EditText, 6)
 
         addTimePicker(binding.time1EditText)
         addTimePicker(binding.time2EditText)
@@ -80,21 +74,20 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
         binding.day6Slider.isChecked = DateTimeSettingViewModel().getFromPrefs(DAY_6, false)
 
         // Set submit button listeners for each field
-        addSubmitButtonListener(binding.time1SubmitButton, binding.time1EditText, binding.daySlider, Message.TIME_FOR_MEDS_1, DATE_TIME_1, DAY_1)
-        addSubmitButtonListener(binding.time2SubmitButton, binding.time2EditText, binding.day2Slider, Message.TIME_FOR_MEDS_2, DATE_TIME_2, DAY_2)
-        addSubmitButtonListener(binding.time3SubmitButton, binding.time3EditText, binding.day3Slider, Message.TIME_FOR_MEDS_3, DATE_TIME_3, DAY_3)
-        addSubmitButtonListener(binding.time4SubmitButton, binding.time4EditText, binding.day4Slider, Message.TIME_FOR_MEDS_4, DATE_TIME_4, DAY_4)
-        addSubmitButtonListener(binding.time5SubmitButton, binding.time5EditText, binding.day5Slider, Message.TIME_FOR_MEDS_5, DATE_TIME_5, DAY_5)
-        addSubmitButtonListener(binding.time6SubmitButton, binding.time6EditText, binding.day6Slider, Message.TIME_FOR_MEDS_6, DATE_TIME_6, DAY_6)
+        addSubmitButtonListener(binding.time1SubmitButton, binding.time1EditText, binding.daySlider, Message.TIME_FOR_MEDS_1, DATE_TIME_1, DAY_1, DATE_KEY_1, "1")
+        addSubmitButtonListener(binding.time2SubmitButton, binding.time2EditText, binding.day2Slider, Message.TIME_FOR_MEDS_2, DATE_TIME_2, DAY_2, DATE_KEY_2, "2")
+        addSubmitButtonListener(binding.time3SubmitButton, binding.time3EditText, binding.day3Slider, Message.TIME_FOR_MEDS_3, DATE_TIME_3, DAY_3, DATE_KEY_3, "3")
+        addSubmitButtonListener(binding.time4SubmitButton, binding.time4EditText, binding.day4Slider, Message.TIME_FOR_MEDS_4, DATE_TIME_4, DAY_4, DATE_KEY_4, "4")
+        addSubmitButtonListener(binding.time5SubmitButton, binding.time5EditText, binding.day5Slider, Message.TIME_FOR_MEDS_5, DATE_TIME_5, DAY_5, DATE_KEY_5, "5")
+        addSubmitButtonListener(binding.time6SubmitButton, binding.time6EditText, binding.day6Slider, Message.TIME_FOR_MEDS_6, DATE_TIME_6, DAY_6, DATE_KEY_6, "6")
 
         // Set delete button listeners for each field
-        addDeleteButtonListener(binding.time1DeleteButton, binding.time1EditText, binding.daySlider, Message.TIME_FOR_MEDS_1, DATE_TIME_1, DAY_1)
-        addDeleteButtonListener(binding.time2DeleteButton, binding.time2EditText, binding.day2Slider, Message.TIME_FOR_MEDS_2, DATE_TIME_2, DAY_2)
-        addDeleteButtonListener(binding.time3DeleteButton, binding.time3EditText, binding.day3Slider, Message.TIME_FOR_MEDS_3, DATE_TIME_3, DAY_3)
-        addDeleteButtonListener(binding.time4DeleteButton, binding.time4EditText, binding.day4Slider, Message.TIME_FOR_MEDS_4, DATE_TIME_4, DAY_4)
-        addDeleteButtonListener(binding.time5DeleteButton, binding.time5EditText, binding.day5Slider, Message.TIME_FOR_MEDS_5, DATE_TIME_5, DAY_5)
-        addDeleteButtonListener(binding.time6DeleteButton, binding.time6EditText, binding.day6Slider, Message.TIME_FOR_MEDS_6, DATE_TIME_6, DAY_6)
-
+        addDeleteButtonListener(binding.time1DeleteButton, binding.time1EditText, binding.daySlider, Message.TIME_FOR_MEDS_1, DATE_TIME_1, DAY_1, DATE_KEY_1, "1")
+        addDeleteButtonListener(binding.time2DeleteButton, binding.time2EditText, binding.day2Slider, Message.TIME_FOR_MEDS_2, DATE_TIME_2, DAY_2, DATE_KEY_2, "2")
+        addDeleteButtonListener(binding.time3DeleteButton, binding.time3EditText, binding.day3Slider, Message.TIME_FOR_MEDS_3, DATE_TIME_3, DAY_3, DATE_KEY_3, "3")
+        addDeleteButtonListener(binding.time4DeleteButton, binding.time4EditText, binding.day4Slider, Message.TIME_FOR_MEDS_4, DATE_TIME_4, DAY_4, DATE_KEY_4, "4")
+        addDeleteButtonListener(binding.time5DeleteButton, binding.time5EditText, binding.day5Slider, Message.TIME_FOR_MEDS_5, DATE_TIME_5, DAY_5, DATE_KEY_5, "5")
+        addDeleteButtonListener(binding.time6DeleteButton, binding.time6EditText, binding.day6Slider, Message.TIME_FOR_MEDS_6, DATE_TIME_6, DAY_6, DATE_KEY_6, "6")
 
 
         binding.backHomeButton.setOnClickListener {
@@ -132,7 +125,7 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
         }
     }
 
-    private fun addChangedListener(textView: TextView, submitButton: Button, switch: SwitchCompat, mess: TextView) {
+    private fun addChangedListener(textView: TextView, submitButton: Button, switch: SwitchCompat, mess: TextView, day: Int) {
 
         textView.addTextChangedListener(object : TextWatcher {
 
@@ -153,55 +146,51 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
                 handleTextErrors(submitButton, charSequence, mess)
             }
         })
-
-        // Listener function for the Day Switcher
-
-        switch.setOnCheckedChangeListener { _, isChecked ->
-            day = if (isChecked) Message.MEDS_EVERY_OTHER_DAY else Message.MEDS_EVERY_DAY
-//            showToast(day.toString()) // shows chosen parameter MEDS_EVERY_DAY = 1 and MEDS_EVERY_OTHER_DAY = 0
-        }
     }
 
     private fun addSubmitButtonListener(
         submitButton: Button, textView: TextView, switch: SwitchCompat,
-        phoneSet: Message, timeKey: String, dayKey: String) {
-        val deviceNumber = PhoneNumberSettingViewModel().getFromPrefs(DEVICE_PHONE_NUMBER, "")
-        val msgService = SmsMessageService(PhoneNumber(deviceNumber!!), requireContext())
+        phoneSet: Message, timeKey: String, dayKey: String, timeKeySimple: String, dateKey: String) {
 
         submitButton.setOnClickListener {
             val time = textView.text.toString()
             val isSwitchChecked = switch.isChecked // if switch is checked then true else false
+            val day =  if (isSwitchChecked) Message.MEDS_EVERY_DAY else Message.MEDS_EVERY_OTHER_DAY
+            val currentDate = LocalDate.now().toString()
             val msg = phoneSet.withPayload("$time,$day")
 
-            msgService.sendMessage(msg) {
-                Log.d("MESSAGE_SEND", "Message OK")
-                // Save time state in SharedPreferences
-                DateTimeSettingViewModel().saveToPrefs(timeKey, time)
-                // Save switch state in SharedPreferences
-                DateTimeSettingViewModel().saveToPrefs(dayKey, isSwitchChecked)
-                msg.emptyPayload()
+            preventButtonClickSpam {
+                if (viewModel != null) {
+                    val action =
+                        DateTimeSettingFragmentDirections
+                            .actionDateTimeSettingFragmentToConfirmMedicineTimesActivity(time, isSwitchChecked, timeKey, dayKey, timeKeySimple, msg, false)
+                    findNavController().navigate(action)
+                }
             }
         }
     }
 
     private fun addDeleteButtonListener(deleteButton: Button, textView: TextView, switch: SwitchCompat,
-                                        phoneSet: Message, timeKey: String, dayKey: String) {
-        val deviceNumber = PhoneNumberSettingViewModel().getFromPrefs(DEVICE_PHONE_NUMBER, "")
-        val msgService = SmsMessageService(PhoneNumber(deviceNumber!!), requireContext())
-
+                                        phoneSet: Message, timeKey: String, dayKey: String, dateKey: String, timeKeySimple: String) {
         deleteButton.setOnClickListener {
             textView.text=""
-            val time = textView.text.toString()
             switch.isChecked = false
-            val isSwitchChecked = switch.isChecked
             val msg = phoneSet.withPayload(TimeOfDay24.EMPTY)
-            msgService.sendMessage(msg) {
-                Log.d("MESSAGE_SEND", "Message OK")
-                // Save time state in SharedPreferences
-                DateTimeSettingViewModel().saveToPrefs(timeKey, time)
-                // Save switch state in SharedPreferences
-                DateTimeSettingViewModel().saveToPrefs(dayKey, isSwitchChecked)
-                msg.emptyPayload()
+            preventButtonClickSpam {
+                if (viewModel != null) {
+                    val action =
+                        DateTimeSettingFragmentDirections
+                            .actionDateTimeSettingFragmentToConfirmMedicineTimesActivity(
+                                "",
+                                false,
+                                dayKey,
+                                timeKey,
+                                timeKeySimple,
+                                msg,
+                                true
+                            )
+                    findNavController().navigate(action)
+                }
             }
         }
     }
