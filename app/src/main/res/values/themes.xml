@@ -9,7 +9,7 @@
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/dark_gray</item>
         <item name="colorContainer">@color/white</item>
-        <item name="android:statusBarColor">@color/primary_blue_color</item>
+        <item name="android:statusBarColor">@color/dosecontrol_blue</item>
     </style>
     <style name="Theme.DoseLoop.PopupTheme">
         <item name="android:windowIsTranslucent">true</item>
