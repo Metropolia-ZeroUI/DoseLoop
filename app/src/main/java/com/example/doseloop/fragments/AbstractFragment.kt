@@ -9,9 +9,11 @@ import android.view.Gravity
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.isDigitsOnly
 import androidx.fragment.app.Fragment
 import com.example.doseloop.R
@@ -172,6 +174,94 @@ abstract class AbstractFragment<T: AbstractViewModel?>(protected val viewModel :
                         til.setEndIconTintList(ColorStateList.valueOf(resources.getColor(R.color.dark_gray)))
                         til.tag = "1"
                     }
+                }
+            }
+        }
+    }
+
+    fun addRecordVoiceButtonTextListener(til: TextInputLayout, editText: EditText, speechToText: SpeechToText, prefs: String) {
+        til.setEndIconOnClickListener {
+            if(til.tag == "2") {
+                speechToText.stopListening()
+                til.setEndIconDrawable(R.drawable.ic_mic)
+                til.setEndIconTintList(ColorStateList.valueOf(resources.getColor(R.color.dark_gray)))
+                editText.hint = ""
+                editText.clearFocus()
+                editText.setText(viewModel?.getFromPrefs("$prefs", ""))
+                til.tag = "1"
+            }
+            else {
+                var userText = ""
+                til.tag = "2"
+                til.setEndIconDrawable(R.drawable.ic_mic_record)
+                til.setEndIconTintList(ColorStateList.valueOf(resources.getColor(R.color.wine_red)))
+                editText.setText("")
+                editText.hint = getString(R.string.kuunnellaan)
+                editText.requestFocus()
+                speechToText.tryRecognize(this) {
+                    userText = it
+                    til.setEndIconDrawable(R.drawable.ic_mic)
+                    til.setEndIconTintList(ColorStateList.valueOf(resources.getColor(R.color.dark_gray)))
+                    if (userText != "") {
+                        editText.setText(userText)
+                        editText.hint = ""
+                        editText.clearFocus()
+                        til.setEndIconDrawable(R.drawable.ic_mic)
+                        til.setEndIconTintList(ColorStateList.valueOf(resources.getColor(R.color.dark_gray)))
+                        til.tag = "1"
+                    }
+                }
+            }
+        }
+    }
+    fun addRecordVoiceButtonTimeListener(til: ImageButton, editText: AppCompatTextView, speechToText: SpeechToText, position: String) {
+        til.setOnClickListener {
+            if(til.tag == "2") {
+                speechToText.stopListening()
+                til.setImageResource(R.drawable.ic_mic)
+                editText.hint = ""
+                editText.clearFocus()
+
+                // get right value from prefs
+                // editText.setText(viewModel?.getFromPrefs(DEVICE_USER_NUMBER, ""))
+
+                til.tag = "1"
+            }
+            else {
+                var userText = ""
+                til.tag = "2"
+                til.setImageResource(R.drawable.ic_mic_record)
+                editText.setText("")
+                editText.hint = "..."
+                editText.requestFocus()
+                speechToText.tryRecognize(this) {
+                    userText = it
+                    til.setImageResource(R.drawable.ic_mic)
+                    if (userText != "" && userText.replace(".", "").isDigitsOnly()) {
+                        if(userText.length === 3) {
+                            val reformat = userText.replaceFirst("${userText[0]}", "${userText[0]}:" )
+                            editText.setText(reformat)
+                            editText.hint = ""
+                            editText.clearFocus()
+                        } else {
+                            userText = userText.replace(".", ":")
+                            editText.setText(userText)
+                            editText.hint = ""
+                            editText.clearFocus()
+                        }
+                    }
+                    else {
+                        val toast = Toast.makeText(activity, "'$userText' ei ole sopiva kellonaika", Toast.LENGTH_LONG)
+                        toast.setGravity(Gravity.CENTER, 0, 0)
+                        toast.show()
+                        editText.hint = ""
+                        editText.clearFocus()
+
+                        // Oikee prefs tähänki
+                        // editText.setText(viewModel?.getFromPrefs("PHONE_NUMBER_${position}", ""))
+                    }
+                    til.setImageResource(R.drawable.ic_mic)
+                    til.tag = "1"
                 }
             }
         }

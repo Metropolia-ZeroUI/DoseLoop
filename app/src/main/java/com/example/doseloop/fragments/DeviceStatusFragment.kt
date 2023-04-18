@@ -152,7 +152,6 @@ class DeviceStatusFragment : AbstractFragment<DeviceStatusViewModel>(DeviceStatu
         }
     }
 
-
     private fun addSubmitButtonListener(submitButton: Button, editText: EditText, prefKey: String, msg: Message, desc: Int) {
         submitButton.setOnClickListener {
             val payload = editText.text.toString()
