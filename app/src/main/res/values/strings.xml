@@ -4,7 +4,7 @@
     <string name="home">Home</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo eu ex sed ullamcorper.</string>
     <string name="donec">Donec interdum faucibus mi, eu eleifend tellus. Donec et dui pharetra, laoreet massa a, bibendum ex. Vivamus vehicula justo ac egestas maximus.</string>
-    <string name="enter_phone">Lisää laitteen puhelinnumero:</string>
+    <string name="enter_phone">Aloita syöttämällä älydosetin puhelinnumero</string>
     <string name="submit_button">Jatka</string>
     <string name="zero">0</string>
     <string name="set_numbers">Ilmoitusten vastaanottajien asetukset</string>
@@ -91,4 +91,5 @@
     <string name="every_day_small">joka päivä</string>
     <string name="every_other_day_small">joka toinen päivä</string>
     <string name="delete_time">Olet poistamassa %1$s. lääkkeen ottoajan laitteelta. Hyväksy muutos?</string>
+    <string name="start">Aloitetaan!</string>
 </resources>

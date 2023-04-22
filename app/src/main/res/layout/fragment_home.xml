@@ -8,6 +8,7 @@
     <RelativeLayout
         android:id="@+id/drawer_menu_group"
         android:layout_width="match_parent"
+        android:background="@drawable/bg_pill"
         android:layout_height="match_parent">
         <RelativeLayout
             android:id="@+id/dose_control_logo_container"
