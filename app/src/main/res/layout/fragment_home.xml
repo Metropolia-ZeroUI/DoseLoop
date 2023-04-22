@@ -9,6 +9,17 @@
         android:id="@+id/drawer_menu_group"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/dose_control_logo_container"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="@color/dosecontrol_blue">
+            <ImageView
+                android:id="@+id/dose_control_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/dose_control_logo"/>
+        </RelativeLayout>
         <com.example.doseloop.components.DrawerMenu
             android:id="@+id/medicine_time_drawer"
             android:layout_width="wrap_content"
@@ -16,6 +27,7 @@
             app:menuButtonRef="@drawable/ic_edit"
             app:cardStyle="0"
             app:menuText="@string/set_date_and_time"
+            android:layout_below="@id/dose_control_logo_container"
             app:menuCardColorRef="@color/dosecontrol_blue"
             app:menuTextColorRef="@color/white"
             app:menuImageColorRef="@color/white"

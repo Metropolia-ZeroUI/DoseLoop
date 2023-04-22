@@ -8,6 +8,7 @@ import com.example.doseloop.comms.util.TimeOfDay24
  */
 @Suppress("SpellCheckingInspection")
 enum class Message(private val code: Int, private var payload: String = "")  {
+    NULL_MESSAGE(0),
     /**
      * Text alert that appears on device when medications
      * are not taken on time.

@@ -115,6 +115,72 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/device_number_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_margin="5dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/number_container"
+                        android:elevation="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/device_lock_layout">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/device_number_inputlayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:hint="@string/device_number"
+                            app:boxStrokeColor="@color/dosecontrol_blue"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="10"
+                            app:endIconDrawable="@drawable/ic_mic"
+                            app:endIconMode="custom"
+                            app:errorEnabled="true"
+                            app:helperTextTextColor="?colorSecondaryVariant"
+                            app:hintTextColor="@color/dosecontrol_blue"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:startIconDrawable="@drawable/phone">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/device_number_edittext"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:inputType="phone" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/device_number_submit_button"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_toEndOf="@id/device_number_inputlayout"
+                            android:background="@drawable/confirm_button"
+                            android:text="@string/save"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/device_number_inputlayout" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/device_owner_number_layout"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
