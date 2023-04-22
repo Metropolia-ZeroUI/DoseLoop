@@ -1,6 +1,8 @@
 package com.example.doseloop.viewmodel
 
 import android.util.Log
+import androidx.navigation.findNavController
+import com.example.doseloop.R
 import com.example.doseloop.comms.impl.Message
 import com.example.doseloop.util.*
 
@@ -9,7 +11,9 @@ import com.example.doseloop.util.*
  */
 class DeviceStatusViewModel: AbstractViewModel() {
 
-
+    fun saveDeviceNumber(phoneNumber: String) {
+        saveToPrefs(DEVICE_PHONE_NUMBER, phoneNumber)
+    }
     fun saveDeviceLockedState(deviceLocked: Boolean) {
         try {
             msgService.sendMessage(if (deviceLocked) Message.LOCK_DEVICE else Message.UNLOCK_DEVICE)
@@ -33,14 +37,17 @@ class DeviceStatusViewModel: AbstractViewModel() {
 
     fun getLockedState() = getFromPrefs(DEVICE_LOCKED_STATE, false)
 
-    fun getChanges(editTextNumber: String, deviceLocked: Boolean): String {
+    fun getChanges(editTextNumber: String, deviceLocked: Boolean, deviceEditTextNumber: String): String {
         var s = ""
         if (getFromPrefs(DEVICE_LOCKED_STATE, false) != deviceLocked) {
             s += if (deviceLocked) "Älydosetin lukitus päällä\n"
             else "Älydosetin lukitus pois\n"
         }
         if (getFromPrefs(DEVICE_USER_NUMBER, "") != editTextNumber) {
-            s += "Älydosetin käyttäjän numero muokattu"
+            s += "Älydosetin käyttäjän numero muokattu\n"
+        }
+        if (getFromPrefs(DEVICE_PHONE_NUMBER, "") != deviceEditTextNumber) {
+            s += "Älydosetin numero muokattu"
         }
         return s
     }

@@ -34,6 +34,7 @@
     <string name="check_device_settings">Laitteen nykyiset asetukset</string>
     <string name="cancel">Peru</string>
     <string name="accept">Hyväksy</string>
+    <string name="change_device_number">Olet asettamassa älydosetin numeroksi %1$s. Hyväksy muutos?</string>
     <string name="change_number">Olet asettamassa %1$s. numeroksi %2$s. Hyväksy muutos?</string>
     <string name="change_number_info">Muutos maksaa liittymäkohtaisen tekstiviestin hinnan</string>
     <string name="off">Pois</string>
@@ -63,6 +64,7 @@
     <string name="device_open_info">Olet vapauttamassa älydosetin lukituksen.\nHyväksy muutos?</string>
     <string name="device_status_save_info">Tallenna muutokset?\n\n%1$s</string>
     <string name="device_owner_number">Älydosetin omistajan numero</string>
+    <string name="device_number">Älydosetin numero</string>
     <string name="device_owner_reminder">Käyttäjän muistutus puhelimitse</string>
     <string name="alarm_off">Hälytys pois</string>
     <string name="alarm_sms">Muistutus tekstiviestillä</string>
