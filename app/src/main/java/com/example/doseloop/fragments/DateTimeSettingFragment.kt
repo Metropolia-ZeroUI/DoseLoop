@@ -63,12 +63,12 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
             onEnd = { Log.d(SpeechListener::class.simpleName, "End")}
         ))
 
-        addChangedListener(binding.time1EditText,  binding.time1SubmitButton, binding.daySlider, binding.time1EditText)
-        addChangedListener(binding.time2EditText, binding.time2SubmitButton, binding.day2Slider, binding.time2EditText)
-        addChangedListener(binding.time3EditText, binding.time3SubmitButton, binding.day3Slider, binding.time3EditText)
-        addChangedListener(binding.time4EditText, binding.time4SubmitButton, binding.day4Slider, binding.time4EditText)
-        addChangedListener(binding.time5EditText, binding.time5SubmitButton, binding.day5Slider, binding.time5EditText)
-        addChangedListener(binding.time6EditText, binding.time6SubmitButton, binding.day6Slider, binding.time6EditText)
+        addChangedListener(binding.time1EditText,  binding.time1SubmitButton, binding.daySlider, binding.time1EditText, 1)
+        addChangedListener(binding.time2EditText, binding.time2SubmitButton, binding.day2Slider, binding.time2EditText, 2)
+        addChangedListener(binding.time3EditText, binding.time3SubmitButton, binding.day3Slider, binding.time3EditText, 3)
+        addChangedListener(binding.time4EditText, binding.time4SubmitButton, binding.day4Slider, binding.time4EditText, 4)
+        addChangedListener(binding.time5EditText, binding.time5SubmitButton, binding.day5Slider, binding.time5EditText, 5)
+        addChangedListener(binding.time6EditText, binding.time6SubmitButton, binding.day6Slider, binding.time6EditText, 6)
 
         addTimePicker(binding.time1EditText)
         addTimePicker(binding.time2EditText)
