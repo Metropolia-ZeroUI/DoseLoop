@@ -152,6 +152,7 @@
                     app:layout_constraintStart_toEndOf="@+id/day_slider"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.207"
+                    android:background="@color/white"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -262,6 +263,20 @@
                         app:showText="true"
                         app:track="@drawable/custom_switchtrack" />
 
+                <ImageButton
+                    android:id="@+id/time_2_record_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_mic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/day_2_slider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.207"
+                    android:background="@color/white"
+                    />
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/time_2_delete_button"
                     android:layout_width="100dp"
@@ -369,6 +384,20 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:showText="true"
                         app:track="@drawable/custom_switchtrack" />
+
+                <ImageButton
+                    android:id="@+id/time_3_record_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_mic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/day_3_slider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.207"
+                    android:background="@color/white"
+                    />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/time_3_delete_button"
@@ -478,6 +507,20 @@
                         app:showText="true"
                         app:track="@drawable/custom_switchtrack" />
 
+                <ImageButton
+                    android:id="@+id/time_4_record_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_mic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/day_4_slider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.207"
+                    android:background="@color/white"
+                    />
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/time_4_delete_button"
                     android:layout_width="100dp"
@@ -586,6 +629,20 @@
                         app:showText="true"
                         app:track="@drawable/custom_switchtrack" />
 
+                <ImageButton
+                    android:id="@+id/time_5_record_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_mic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/day_5_slider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.207"
+                    android:background="@color/white"
+                    />
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/time_5_delete_button"
                     android:layout_width="100dp"
@@ -693,6 +750,20 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:showText="true"
                         app:track="@drawable/custom_switchtrack" />
+
+                <ImageButton
+                    android:id="@+id/time_6_record_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_mic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/day_6_slider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.207"
+                    android:background="@color/white"
+                    />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/time_6_delete_button"

@@ -48,13 +48,6 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
 
         val view = binding.root
 
-        addChangedListener(binding.time1EditText,  binding.time1SubmitButton, binding.daySlider, binding.time1EditText, 1)
-        addChangedListener(binding.time2EditText, binding.time2SubmitButton, binding.day2Slider, binding.time2EditText, 2)
-        addChangedListener(binding.time3EditText, binding.time3SubmitButton, binding.day3Slider, binding.time3EditText, 3)
-        addChangedListener(binding.time4EditText, binding.time4SubmitButton, binding.day4Slider, binding.time4EditText, 4)
-        addChangedListener(binding.time5EditText, binding.time5SubmitButton, binding.day5Slider, binding.time5EditText, 5)
-        addChangedListener(binding.time6EditText, binding.time6SubmitButton, binding.day6Slider, binding.time6EditText, 6)
-
         // Setup speech to text
         val speechToTxt = SpeechToText(requireContext(), listener = SpeechListener(
             onSuccess = { Log.i(SpeechListener::class.simpleName, "Speech got recognized") },
@@ -110,6 +103,11 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
         addDeleteButtonListener(binding.time6DeleteButton, binding.time6EditText, binding.day6Slider, Message.TIME_FOR_MEDS_6, DATE_TIME_6, DAY_6, "6")
 
         addRecordVoiceButtonTimeListener(binding.time1RecordButton ,binding.time1EditText, speechToTxt, "1")
+        addRecordVoiceButtonTimeListener(binding.time2RecordButton ,binding.time2EditText, speechToTxt, "2")
+        addRecordVoiceButtonTimeListener(binding.time3RecordButton ,binding.time3EditText, speechToTxt, "3")
+        addRecordVoiceButtonTimeListener(binding.time4RecordButton ,binding.time4EditText, speechToTxt, "4")
+        addRecordVoiceButtonTimeListener(binding.time5RecordButton ,binding.time5EditText, speechToTxt, "5")
+        addRecordVoiceButtonTimeListener(binding.time6RecordButton ,binding.time6EditText, speechToTxt, "6")
 
         binding.backHomeButton.setOnClickListener {
             this.findNavController().navigate(R.id.action_dateTimeSettingFragment_to_homeFragment)

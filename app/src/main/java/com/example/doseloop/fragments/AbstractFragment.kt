@@ -15,9 +15,11 @@ import androidx.core.text.isDigitsOnly
 import androidx.fragment.app.Fragment
 import com.example.doseloop.R
 import com.example.doseloop.speech.SpeechToText
+import com.example.doseloop.util.DATE_TIME_1
 import com.example.doseloop.util.DEVICE_USER_NUMBER
 import com.example.doseloop.util.NOTIFICATION_TEXT_MAX_LENGTH
 import com.example.doseloop.viewmodel.AbstractViewModel
+import com.example.doseloop.viewmodel.DateTimeSettingViewModel
 import com.google.android.material.textfield.TextInputLayout
 
 /**
@@ -218,10 +220,7 @@ abstract class AbstractFragment<T: AbstractViewModel?>(protected val viewModel :
                 til.setImageResource(R.drawable.ic_mic)
                 editText.hint = ""
                 editText.clearFocus()
-
-                // get right value from prefs
-                // editText.setText(viewModel?.getFromPrefs(DEVICE_USER_NUMBER, ""))
-
+                editText.setText(viewModel?.getFromPrefs("DATE_TIME_${position}", ""))
                 til.tag = "1"
             }
             else {
@@ -253,9 +252,7 @@ abstract class AbstractFragment<T: AbstractViewModel?>(protected val viewModel :
                             toast.show()
                             editText.hint = ""
                             editText.clearFocus()
-
-                            // Oikee prefs tähänki
-                            // editText.setText(viewModel?.getFromPrefs("PHONE_NUMBER_${position}", ""))
+                            editText.setText(viewModel?.getFromPrefs("DATE_TIME_${position}", ""))
                         }
                     til.setImageResource(R.drawable.ic_mic)
                     til.tag = "1"
