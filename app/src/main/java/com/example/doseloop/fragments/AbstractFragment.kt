@@ -220,7 +220,7 @@ abstract class AbstractFragment<T: AbstractViewModel?>(protected val viewModel :
                 til.setImageResource(R.drawable.ic_mic)
                 editText.hint = ""
                 editText.clearFocus()
-                editText.setText(viewModel?.getFromPrefs("DATE_TIME_${position}", ""))
+                editText.setText(viewModel?.getFromPrefs("DATE_TIME_${position}", "0:00"))
                 til.tag = "1"
             }
             else {
@@ -233,7 +233,7 @@ abstract class AbstractFragment<T: AbstractViewModel?>(protected val viewModel :
                 speechToText.tryRecognize(this) {
                     userText = it
                     til.setImageResource(R.drawable.ic_mic)
-                    if (userText != "" && userText.replace(".", "").isDigitsOnly()) {
+                    if (userText != "" && userText.replace(".", "").isDigitsOnly() && userText.replace(".", "").length <= 4) {
                         if(userText.length === 3) {
                             val reformat = userText.replaceFirst("${userText[0]}", "${userText[0]}:" )
                             editText.setText(reformat)
@@ -252,7 +252,7 @@ abstract class AbstractFragment<T: AbstractViewModel?>(protected val viewModel :
                             toast.show()
                             editText.hint = ""
                             editText.clearFocus()
-                            editText.setText(viewModel?.getFromPrefs("DATE_TIME_${position}", ""))
+                            editText.setText(viewModel?.getFromPrefs("DATE_TIME_${position}", "0:00"))
                         }
                     til.setImageResource(R.drawable.ic_mic)
                     til.tag = "1"
