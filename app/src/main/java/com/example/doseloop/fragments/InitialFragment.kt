@@ -44,6 +44,8 @@ class InitialFragment : AbstractFragment<InitialFragmentViewModel>(InitialFragme
             it.findNavController().navigate(R.id.action_initialFragment_to_homeFragment)
         }
 
+        addTextChangedListener(binding.editTextPhone, binding.initialSubmitButton, binding.deviceNumberInputlayout)
+
         return binding.root
     }
 }

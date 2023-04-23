@@ -55,17 +55,20 @@ class DeviceStatusFragment : AbstractFragment<DeviceStatusViewModel>(DeviceStatu
         ))
 
         addTextChangedListener(binding.deviceOwnerEdittext, binding.ownerNumberSubmitButton, binding.deviceOwnerInputlayout)
+        addTextChangedListener(binding.deviceNumberEdittext, binding.deviceNumberSubmitButton, binding.deviceNumberInputlayout)
         addStringTextChangedListener(binding.mealNotEatenEdittext, binding.mealNotEatenSubmitButton, binding.mealNotEatenTextLayout)
         addStringTextChangedListener(binding.fireAlarmEdittext, binding.fireAlarmSubmitButton, binding.fireAlarmTextLayout)
         addStringTextChangedListener(binding.deviceAlarmButtonEdittext, binding.deviceAlarmButtonSubmitButton, binding.deviceAlarmButtonTextLayout)
         addStringTextChangedListener(binding.medicineAlarmEdittext, binding.medicineAlarmSubmitButton, binding.medicineAlarmTextLayout)
 
+        addSubmitButtonListener(binding.deviceNumberSubmitButton, binding.deviceNumberEdittext, DEVICE_PHONE_NUMBER, Message.NULL_MESSAGE, R.string.change_device_number, false)
         addSubmitButtonListener(binding.ownerNumberSubmitButton, binding.deviceOwnerEdittext, DEVICE_USER_NUMBER, Message.USER_PHONE_ADD, R.string.set_user_number)
         addSubmitButtonListener(binding.medicineAlarmSubmitButton, binding.medicineAlarmEdittext, MEDICINE_ALERT_TEXT, Message.ALARM_MISSED_MEDS, R.string.set_meds_alert_text)
         addSubmitButtonListener(binding.deviceAlarmButtonSubmitButton, binding.deviceAlarmButtonEdittext, ALARM_BUTTON_ALERT_TEXT, Message.ALARM_BUTTON_PRESS, R.string.set_alarm_button_alert_text)
         addSubmitButtonListener(binding.fireAlarmSubmitButton, binding.fireAlarmEdittext, WATER_FIRE_ALERT_TEXT, Message.ALARM_FIRE_WATER, R.string.set_fire_water_text)
         addSubmitButtonListener(binding.mealNotEatenSubmitButton, binding.mealNotEatenEdittext, MEAL_ALERT_TEXT, Message.ALARM_MISSED_FOOD, R.string.set_meal_alarm_text)
 
+        binding.deviceNumberEdittext.setText(viewModel?.getFromPrefs(DEVICE_PHONE_NUMBER, ""))
         binding.deviceOwnerEdittext.setText(viewModel?.getFromPrefs(DEVICE_USER_NUMBER, ""))
         binding.medicineAlarmEdittext.setText(viewModel?.getFromPrefs(MEDICINE_ALERT_TEXT, ""))
         binding.deviceAlarmButtonEdittext.setText(viewModel?.getFromPrefs(ALARM_BUTTON_ALERT_TEXT, ""))
@@ -91,7 +94,7 @@ class DeviceStatusFragment : AbstractFragment<DeviceStatusViewModel>(DeviceStatu
 
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                val unsavedChanges = viewModel.getChanges(binding.deviceOwnerEdittext.text.toString(), binding.deviceLockSwitch.isChecked)
+                val unsavedChanges = viewModel.getChanges(binding.deviceOwnerEdittext.text.toString(), binding.deviceLockSwitch.isChecked, binding.deviceNumberEdittext.text.toString())
                 if (unsavedChanges.isNotEmpty()) {
                     val action =
                         DeviceStatusFragmentDirections
@@ -127,7 +130,7 @@ class DeviceStatusFragment : AbstractFragment<DeviceStatusViewModel>(DeviceStatu
         }
     }
 
-    private fun addSubmitButtonListener(submitButton: Button, editText: EditText, prefKey: String, msg: Message, desc: Int) {
+    private fun addSubmitButtonListener(submitButton: Button, editText: EditText, prefKey: String, msg: Message, desc: Int, billable: Boolean = true) {
         submitButton.setOnClickListener {
             val payload = editText.text.toString()
             preventButtonClickSpam {
@@ -135,7 +138,7 @@ class DeviceStatusFragment : AbstractFragment<DeviceStatusViewModel>(DeviceStatu
                     editText.clearFocus()
                     val action =
                         DeviceStatusFragmentDirections
-                            .actionDeviceStatusFragmentToConfirmUserNumberChangeActivity(msg.withPayload(payload), payload, prefKey, desc)
+                            .actionDeviceStatusFragmentToConfirmUserNumberChangeActivity(msg.withPayload(payload), payload, prefKey, desc, billable)
                     findNavController().navigate(action)
                 }
             }

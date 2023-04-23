@@ -163,8 +163,9 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="80dp"
                     android:layout_marginBottom="16dp"
-                    android:background="@drawable/confirm_blue_button"
+                    android:background="@drawable/confirm_red_button"
                     android:text="@string/delete_button"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -182,6 +183,7 @@
                     android:layout_toRightOf="@+id/time_1_delete_button"
                     android:background="@drawable/confirm_button"
                     android:text="@string/sent_button"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -269,8 +271,9 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="80dp"
                     android:layout_marginBottom="16dp"
-                    android:background="@drawable/confirm_blue_button"
+                    android:background="@drawable/confirm_red_button"
                     android:text="@string/delete_button"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -288,6 +291,7 @@
                     android:layout_toRightOf="@+id/time_2_delete_button"
                     android:background="@drawable/confirm_button"
                     android:text="@string/sent_button"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -375,8 +379,9 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="80dp"
                     android:layout_marginBottom="16dp"
-                    android:background="@drawable/confirm_blue_button"
+                    android:background="@drawable/confirm_red_button"
                     android:text="@string/delete_button"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -394,6 +399,7 @@
                     android:layout_toRightOf="@+id/time_3_delete_button"
                     android:background="@drawable/confirm_button"
                     android:text="@string/sent_button"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -481,8 +487,9 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="80dp"
                     android:layout_marginBottom="16dp"
-                    android:background="@drawable/confirm_blue_button"
+                    android:background="@drawable/confirm_red_button"
                     android:text="@string/delete_button"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -500,6 +507,7 @@
                     android:layout_toEndOf="@+id/time_4_delete_button"
                     android:background="@drawable/confirm_button"
                     android:text="@string/sent_button"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -587,8 +595,9 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="80dp"
                     android:layout_marginBottom="16dp"
-                    android:background="@drawable/confirm_blue_button"
+                    android:background="@drawable/confirm_red_button"
                     android:text="@string/delete_button"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -606,6 +615,7 @@
                     android:layout_toEndOf="@+id/time_5_delete_button"
                     android:background="@drawable/confirm_button"
                     android:text="@string/sent_button"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -693,8 +703,9 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="80dp"
                     android:layout_marginBottom="16dp"
-                    android:background="@drawable/confirm_blue_button"
+                    android:background="@drawable/confirm_red_button"
                     android:text="@string/delete_button"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -712,6 +723,7 @@
                     android:layout_toEndOf="@+id/time_6_delete_button"
                     android:background="@drawable/confirm_button"
                     android:text="@string/sent_button"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 

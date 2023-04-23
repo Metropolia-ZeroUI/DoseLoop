@@ -180,6 +180,9 @@
         <argument
             android:name="descId"
             app:argType="integer" />
+        <argument
+            android:name="billable"
+            app:argType="boolean" />
     </activity>
     <activity
         android:id="@+id/confirmMedicineTimesActivity"
