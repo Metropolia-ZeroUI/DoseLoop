@@ -18,7 +18,7 @@ The project was designed to be used in conjunction with an automatic dispenser, 
 
 ### Main Features
 - Zero UI:  
-    - Voice control allows users to add and change phone numbers by using their voices, which is particularly helpful for anyone who has difficulty manipulating a touch screen. However, there is room for improvement in the future.
+    - Voice control allows users to add and change phone numbers and times for taking medicine by using their voices, which is particularly helpful for anyone who has difficulty manipulating a touch screen. However, there is room for improvement in the future.
 
 
 ### Dependencies
@@ -48,3 +48,13 @@ The project was designed to be used in conjunction with an automatic dispenser, 
     }
     
 ### Overview of the app
+
+
+- Assets used in the app
+  
+  - LottieFiles Animation
+  - Material Design Icons
+  - Self-drawn background (pattern illusion)
+
+
+### License

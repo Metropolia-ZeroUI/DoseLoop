@@ -29,6 +29,17 @@ const val DAY_4 = "DAY_4"
 const val DAY_5 = "DAY_5"
 const val DAY_6 = "DAY_6"
 
+const val DATE_KEY_1 = "DATE_KEY_1"
+const val DATE_KEY_2 = "DATE_KEY_2"
+const val DATE_KEY_3 = "DATE_KEY_3"
+const val DATE_KEY_4 = "DATE_KEY_4"
+const val DATE_KEY_5 = "DATE_KEY_5"
+const val DATE_KEY_6 = "DATE_KEY_6"
+
+const val ALARM_STATE_CALL = "ALARM_STATE_CALL"
+const val ALARM_STATE_SMS = "ALARM_STATE_SMS"
+const val ALARM_STATE_REMOVE = "ALARM_STATE_REMOVE"
+
 const val DEVICE_LOCKED_STATE = "DEVICE_LOCKED_STATE"
 const val DEVICE_USER_NUMBER = "DEVICE_USER_NUMBER"
 const val MEDICINE_ALERT_TEXT = "MEDICINE_ALERT_TEXT"

@@ -8,7 +8,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.doseloop.R
 import com.example.doseloop.databinding.FragmentInitialBinding
-import com.example.doseloop.repository.SharedPreferencesRepository
 import com.example.doseloop.util.DEVICE_PHONE_NUMBER
 import com.example.doseloop.util.INITIAL_LAUNCH
 import com.example.doseloop.viewmodel.InitialFragmentViewModel

@@ -13,6 +13,7 @@ import android.widget.EditText
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.doseloop.comms.impl.SmsMessageService
+import com.example.doseloop.fragments.HomeFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
