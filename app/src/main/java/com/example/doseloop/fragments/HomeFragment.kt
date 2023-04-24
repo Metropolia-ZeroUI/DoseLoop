@@ -48,11 +48,7 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
             binding.alarmIcon.setImageResource(R.drawable.alarm_off)
         }
 
-        /**
-         * First version
-         *
-         */
-
+        // Time & day
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
         val currentTime = LocalTime.now(ZoneId.systemDefault())
         val currentDate = LocalDate.now(ZoneId.systemDefault())
@@ -104,26 +100,19 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
             { Duration.between(currentTime, it.second) }
         ))
 
-        Log.d("TAG", "Sorted input data list:")
-        sortedInputDataList.forEach {
-            Log.d("inputlis", "${it.first} ${it.second} ${it.third}")
-        }
+//        Log.d("TAG", "Sorted input data list:")
+//        sortedInputDataList.forEach {
+//            Log.d("inputlis", "${it.first} ${it.second} ${it.third}")
+//        }
 
         sortedInputDataList.firstOrNull()?.let { (dateTime, time) ->
             binding.tvTime.text = time.format(DateTimeFormatter.ofPattern("HH:mm"))
-            Log.d("Listsorted", "$sortedInputDataList")
 
-            var daysUntilNext = ChronoUnit.DAYS.between(currentDate, dateTime.toLocalDate()).toInt()
-            if (daysUntilNext < 0) {
-                daysUntilNext = 0
-            }
-            Log.d("Listsorted", "$daysUntilNext")
-            val dayText = when {
-                daysUntilNext == 0 -> getString(R.string.set_today)
-                daysUntilNext == 1 -> getString(R.string.set_tomorrow)
-                daysUntilNext == 2 -> getString(R.string.set_after_tomorrow)
-                daysUntilNext > 2 -> dateTime.format(DateTimeFormatter.ofPattern("EEE"))
-                else -> getString(R.string.unknown_day)
+            val dayText = when (ChronoUnit.DAYS.between(currentDate, dateTime.toLocalDate()).toInt()) {
+                0 -> getString(R.string.set_today)
+                1 -> getString(R.string.set_tomorrow)
+                2 -> getString(R.string.set_after_tomorrow)
+                else -> dateTime.format(DateTimeFormatter.ofPattern("EEE"))
             }
             binding.tvDay.text = dayText
         }
