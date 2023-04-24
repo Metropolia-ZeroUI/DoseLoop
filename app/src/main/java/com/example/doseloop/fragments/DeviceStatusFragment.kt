@@ -124,8 +124,10 @@ class DeviceStatusFragment : AbstractFragment<DeviceStatusViewModel>(DeviceStatu
                     // Save button state in SharedPreferences
                     tag?.let { nonNullTag ->
                         val sharedPreferences = requireContext().getSharedPreferences("my_app_shared_prefs", Context.MODE_PRIVATE)
-                        val clickedTags = HashSet(sharedPreferences.getStringSet("clicked_tags", HashSet<String>()))
-                        clickedTags.add(nonNullTag)
+                        val clickedTags =
+                            sharedPreferences.getStringSet("clicked_tags", HashSet<String>())
+                                ?.let { it1 -> HashSet(it1) }
+                        clickedTags?.add(nonNullTag)
                         sharedPreferences.edit().putStringSet("clicked_tags", clickedTags).apply()
 
                         when (nonNullTag) {

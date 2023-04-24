@@ -63,6 +63,7 @@
     <string name="set_today">Tänään</string>
     <string name="set_tomorrow">Huomenna</string>
     <string name="set_after_tomorrow">Huomisen jälkeen</string>
+    <string name="set_on_day">Take medicine on %s</string>
     <string name="open">Auki</string>
     <string name="device_locked">Älydosetin lukitus</string>
     <string name="device_lock_info">Olet lukitsemassa älydosetin.\nHyväksy muutos?</string>

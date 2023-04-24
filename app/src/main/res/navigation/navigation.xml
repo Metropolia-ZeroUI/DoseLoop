@@ -202,6 +202,9 @@
             android:name="dayKey"
             app:argType="string" />
         <argument
+            android:name="dateKey"
+            app:argType="string" />
+        <argument
             android:name="msg"
             app:argType="com.example.doseloop.comms.impl.Message" />
         <argument

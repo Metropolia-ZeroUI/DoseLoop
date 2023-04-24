@@ -24,8 +24,6 @@ import com.google.android.material.timepicker.TimeFormat
 import java.time.LocalDate
 
 
-private const val TAG = "MainActivity"
-
 /**
  * Fragment for setting the date and time of taking medicine
  */
@@ -166,8 +164,7 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
         submitButton.setOnClickListener {
             val time = textView.text.toString()
             val isSwitchChecked = switch.isChecked // if switch is checked then true else false
-            val day =  if (isSwitchChecked) Message.MEDS_EVERY_DAY else Message.MEDS_EVERY_OTHER_DAY
-            val currentDate = LocalDate.now().toString()
+            val day =  if (isSwitchChecked) Message.MEDS_EVERY_OTHER_DAY else Message.MEDS_EVERY_DAY
             val msg = phoneSet.withPayload("$time,$day")
 
             preventButtonClickSpam {
@@ -175,13 +172,15 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
                     val action =
                         DateTimeSettingFragmentDirections
                             .actionDateTimeSettingFragmentToConfirmMedicineTimesActivity(
-                                time,
-                                isSwitchChecked,
-                                timeKey,
-                                dayKey,
-                                timeKeySimple,
-                                msg,
-                                false)
+                                /* time = */ time,
+                                /* period = */ isSwitchChecked,
+                                /* timeKey = */ timeKey,
+                                /* timeKeySimple = */ timeKeySimple,
+                                /* dayKey = */ dayKey,
+                                /* dateKey = */ dateKey,
+                                /* msg = */ msg,
+                                /* delete = */ false
+                            )
                     findNavController().navigate(action)
                 }
             }
@@ -199,20 +198,20 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
                     val action =
                         DateTimeSettingFragmentDirections
                             .actionDateTimeSettingFragmentToConfirmMedicineTimesActivity(
-                                "",
-                                false,
-                                dayKey,
-                                timeKey,
-                                timeKeySimple,
-                                msg,
-                                true
+                                /* time = */ "",
+                                /* period = */ false,
+                                /* timeKey = */ timeKey,
+                                /* timeKeySimple = */ timeKeySimple,
+                                /* dayKey = */ dayKey,
+                                /* dateKey = */ dateKey,
+                                /* msg = */ msg,
+                                /* delete = */ true
                             )
                     findNavController().navigate(action)
                 }
             }
         }
     }
-
     /**
      * Check for input
      *
@@ -234,10 +233,6 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
         }
         button.isEnabled = !error
     }
-
-//    private fun showToast(msg: String) {
-//        Toast.makeText(activity?.applicationContext, msg, Toast.LENGTH_SHORT).show()
-//    }
 
 }
 

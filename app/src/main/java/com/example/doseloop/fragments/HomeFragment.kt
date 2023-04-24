@@ -1,6 +1,7 @@
 package com.example.doseloop.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +12,8 @@ import com.example.doseloop.databinding.FragmentHomeBinding
 import com.example.doseloop.util.*
 import com.example.doseloop.viewmodel.DateTimeSettingViewModel
 import com.example.doseloop.viewmodel.DeviceStatusViewModel
-import java.time.Duration
-import java.time.LocalTime
 import com.example.doseloop.viewmodel.HomeFragmentViewModel
-import java.time.LocalDate
-import java.time.LocalDateTime
+import java.time.*
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
@@ -49,63 +47,15 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
             binding.tvLockStatus.text = getString(R.string.unlocked)
             binding.alarmIcon.setImageResource(R.drawable.alarm_off)
         }
-//
-//        // Time and day
-//        val formatter = DateTimeFormatterBuilder()
-//            .appendPattern("HH:mm")
-//            .toFormatter()
-//        val currentTime = LocalTime.now()
-//
-//        val viewModel = ViewModelProvider(this).get(DateTimeSettingViewModel::class.java)
-//
-//        val inputList = listOf(
-//            Pair(DATE_TIME_1, DAY_1),
-//            Pair(DATE_TIME_2, DAY_2),
-//            Pair(DATE_TIME_3, DAY_3),
-//            Pair(DATE_TIME_4, DAY_4),
-//            Pair(DATE_TIME_5, DAY_5),
-//            Pair(DATE_TIME_6, DAY_6)
-//        )
-//        val inputTimeList = mutableListOf<Pair<LocalTime, Boolean>>()
-//        inputList.forEach { (timeKey, dayKey) ->
-//            viewModel.getFromPrefs(timeKey, "")
-//                .takeIf { it!!.isNotBlank() }
-//                ?.let { LocalTime.parse(it, formatter) }
-//                ?.takeIf { !it.isBefore(currentTime) }
-//                ?.let { inputTimeList.add(Pair(it, viewModel.getFromPrefs(dayKey, false))) }
-//        }
-//
-//        // Filter the list based on the day setting
-//        val filteredInputDataList = if (inputTimeList.isNotEmpty()) {
-//            if (inputTimeList[0].second) {
-//                // Medicine should be taken every day
-//                inputTimeList
-//            } else {
-//                // Medicine should be taken every second day
-//                inputTimeList.filterIndexed { index, pair -> index % 2 == 0 }
-//            }
-//        } else {
-//            inputTimeList
-//        }
-//
-//        // Sort the list based on time difference
-//        val sortedInputDataList = filteredInputDataList.sortedBy { Duration.between(it.first, currentTime).abs() }
-//
-//        // Choose the one with the smallest time difference
-//        val closestInputData = sortedInputDataList.firstOrNull()
-//
-//        // Show the closest input data
-//        binding.tvTime.text = closestInputData?.first?.format(formatter) ?: getString(R.string.set_format)
-
 
         /**
-         * Second version
+         * First version
          *
          */
 
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
-        val currentTime = LocalTime.now()
-        val currentDate = LocalDate.now()
+        val currentTime = LocalTime.now(ZoneId.systemDefault())
+        val currentDate = LocalDate.now(ZoneId.systemDefault())
 
         val viewModel = ViewModelProvider(this).get(DateTimeSettingViewModel::class.java)
 
@@ -119,73 +69,66 @@ class HomeFragment : AbstractFragment<HomeFragmentViewModel>(HomeFragmentViewMod
         )
 
         val inputTimeList = mutableListOf<Triple<LocalDateTime, LocalTime, Boolean>>()
-
         inputList.forEach { (dateKey, timeKey, dayKey) ->
             val savedDate = viewModel.getFromPrefs(dateKey, "")
             val savedTime = viewModel.getFromPrefs(timeKey, "")
-            val savedDateTime = if (savedDate!!.isNotEmpty() && savedTime!!.isNotEmpty()) {
-                LocalDateTime.parse("$savedDate $savedTime", formatter)
+            val savedDateTime = if (savedDate?.isNotEmpty() == true && savedTime?.isNotEmpty() == true) {
+                LocalDateTime.parse("$savedDate ${savedTime.padStart(5, '0')}", formatter)
             } else {
                 null
             }
 
             val isEveryday = viewModel.getFromPrefs(dayKey, false)
-
             savedDateTime?.let { dateTime ->
                 var nextDateTime = dateTime
-                while (nextDateTime.isBefore(LocalDateTime.now())) {
-                    nextDateTime = if (isEveryday) {
-                        nextDateTime.plusDays(1)
-                    } else {
-                        nextDateTime.plusDays(2)
+                val daysUntilNext = ChronoUnit.DAYS.between(currentDate, dateTime.toLocalDate()).toInt()
+                if (isEveryday) {
+                    if (daysUntilNext <= 0) {
+                        nextDateTime = dateTime.plusDays(2)
+                    } else if (daysUntilNext == 1) {
+                        nextDateTime = dateTime.plusDays(1)
                     }
                 }
-
-                if (nextDateTime.toLocalDate() == currentDate && (isEveryday || viewModel.getFromPrefs(dateKey, "") == currentDate.toString())) {
-                    inputTimeList.add(Triple(nextDateTime, nextDateTime.toLocalTime(), isEveryday))
-                }
+                inputTimeList.add(Triple(nextDateTime, nextDateTime.toLocalTime(), isEveryday))
             }
         }
 
-        // Filter the list based on the day setting
-        val filteredInputDataList = if (inputTimeList.isNotEmpty()) {
-            if (inputTimeList[0].third) {
-                // Medicine should be taken every day
-                inputTimeList
-            } else {
-                // Medicine should be taken every second day
-                inputTimeList.filterIndexed { index, _ -> index % 2 == 0 }
-            }
-        } else {
-            inputTimeList
+        val sortedInputDataList = inputTimeList.sortedWith(compareBy(
+            // First, sort by the closest upcoming time
+            { ChronoUnit.MINUTES.between(LocalDateTime.now(), it.first) },
+            // Next sort by true or false.
+            // If the item is false and goes to the present time, move it to the end of the list.
+            // If the item is true, count how many days are left to show,
+            // if there are no other nearer times in that interval, show that, if there are others, move it to the end of the list.
+            { if (!it.third && it.first.isBefore(LocalDateTime.now())) Int.MAX_VALUE else if (it.third) ChronoUnit.DAYS.between(currentDate, it.first.toLocalDate()) else -1 },
+            { Duration.between(currentTime, it.second) }
+        ))
+
+        Log.d("TAG", "Sorted input data list:")
+        sortedInputDataList.forEach {
+            Log.d("inputlis", "${it.first} ${it.second} ${it.third}")
         }
 
-        // Sort the list based on time difference
-        val sortedInputDataList = filteredInputDataList.sortedBy { Duration.between(it.second, currentTime).abs() }
-
-        // Choose the one with the smallest time difference
-        val closestInputData = sortedInputDataList.firstOrNull()
-
-        closestInputData?.let { (dateTime, time, isEveryday) ->
-            // Show the closest input data
+        sortedInputDataList.firstOrNull()?.let { (dateTime, time) ->
             binding.tvTime.text = time.format(DateTimeFormatter.ofPattern("HH:mm"))
+            Log.d("Listsorted", "$sortedInputDataList")
 
-            val dayText = if (isEveryday) {
-                // Medicine should be taken every day
-                "today"
-            } else {
-                // Medicine should be taken every second day
-                val daysUntilNext = ChronoUnit.DAYS.between(currentDate, dateTime.toLocalDate()).toInt()
-                when {
-                    daysUntilNext == 0 -> getString(R.string.set_today)
-                    daysUntilNext == 1 -> getString(R.string.set_tomorrow)
-                    daysUntilNext == 2 -> getString(R.string.set_after_tomorrow)
-                    else -> null
-                }
+            var daysUntilNext = ChronoUnit.DAYS.between(currentDate, dateTime.toLocalDate()).toInt()
+            if (daysUntilNext < 0) {
+                daysUntilNext = 0
             }
-
-            binding.tvDay.text = dayText ?: getString(R.string.unknown_day)
-        } ?: run {
+            Log.d("Listsorted", "$daysUntilNext")
+            val dayText = when {
+                daysUntilNext == 0 -> getString(R.string.set_today)
+                daysUntilNext == 1 -> getString(R.string.set_tomorrow)
+                daysUntilNext == 2 -> getString(R.string.set_after_tomorrow)
+                daysUntilNext > 2 -> dateTime.format(DateTimeFormatter.ofPattern("EEE"))
+                else -> getString(R.string.unknown_day)
+            }
+            binding.tvDay.text = dayText
+        }
+        // if the list is empty
+        if (sortedInputDataList.isEmpty()) {
             binding.tvTime.text = getString(R.string.set_format)
             binding.tvDay.text = getString(R.string.unknown_day)
         }
