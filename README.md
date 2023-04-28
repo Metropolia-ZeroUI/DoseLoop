@@ -55,7 +55,7 @@ The project was designed to be used in conjunction with an automatic dispenser, 
   - LottieFiles Animation
   - Logo provided by customer
   - Material Design Icons
-  - Self-drawn background (pattern illusion)
+  - Self-drawn background (pattern illustration)
 
 
 ### License
