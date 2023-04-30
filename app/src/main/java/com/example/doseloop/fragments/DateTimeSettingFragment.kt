@@ -98,6 +98,11 @@ class DateTimeSettingFragment : AbstractFragment<DateTimeSettingViewModel>(
         addDeleteButtonListener(binding.time6DeleteButton, binding.time6EditText, binding.day6Slider, Message.TIME_FOR_MEDS_6, DATE_TIME_6, DAY_6, DATE_KEY_6, "6")
 
         addRecordVoiceButtonTimeListener(binding.time1RecordButton ,binding.time1EditText, speechToTxt, "1")
+        addRecordVoiceButtonTimeListener(binding.time2RecordButton ,binding.time2EditText, speechToTxt, "2")
+        addRecordVoiceButtonTimeListener(binding.time3RecordButton ,binding.time3EditText, speechToTxt, "3")
+        addRecordVoiceButtonTimeListener(binding.time4RecordButton ,binding.time4EditText, speechToTxt, "4")
+        addRecordVoiceButtonTimeListener(binding.time5RecordButton ,binding.time5EditText, speechToTxt, "5")
+        addRecordVoiceButtonTimeListener(binding.time6RecordButton ,binding.time6EditText, speechToTxt, "6")
 
         binding.backHomeButton.setOnClickListener {
             this.findNavController().navigate(R.id.action_dateTimeSettingFragment_to_homeFragment)

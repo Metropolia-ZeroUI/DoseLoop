@@ -6,22 +6,20 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.Gravity
-import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.isDigitsOnly
 import androidx.fragment.app.Fragment
 import com.example.doseloop.R
-import com.example.doseloop.speech.SpeechListener
 import com.example.doseloop.speech.SpeechToText
+import com.example.doseloop.util.DATE_TIME_1
 import com.example.doseloop.util.DEVICE_USER_NUMBER
 import com.example.doseloop.util.NOTIFICATION_TEXT_MAX_LENGTH
 import com.example.doseloop.viewmodel.AbstractViewModel
+import com.example.doseloop.viewmodel.DateTimeSettingViewModel
 import com.google.android.material.textfield.TextInputLayout
 
 /**
@@ -214,6 +212,7 @@ abstract class AbstractFragment<T: AbstractViewModel?>(protected val viewModel :
             }
         }
     }
+
     fun addRecordVoiceButtonTimeListener(til: ImageButton, editText: AppCompatTextView, speechToText: SpeechToText, position: String) {
         til.setOnClickListener {
             if(til.tag == "2") {
@@ -221,10 +220,7 @@ abstract class AbstractFragment<T: AbstractViewModel?>(protected val viewModel :
                 til.setImageResource(R.drawable.ic_mic)
                 editText.hint = ""
                 editText.clearFocus()
-
-                // get right value from prefs
-                // editText.setText(viewModel?.getFromPrefs(DEVICE_USER_NUMBER, ""))
-
+                editText.setText(viewModel?.getFromPrefs("DATE_TIME_${position}", "0:00"))
                 til.tag = "1"
             }
             else {
@@ -237,13 +233,37 @@ abstract class AbstractFragment<T: AbstractViewModel?>(protected val viewModel :
                 speechToText.tryRecognize(this) {
                     userText = it
                     til.setImageResource(R.drawable.ic_mic)
-                    if (userText != "" && userText.replace(".", "").isDigitsOnly()) {
+                    if (userText != "" && userText.replace(".", "").isDigitsOnly() && userText.replace(".", "").length <= 4) {
+                        if(userText.length === 1) {
+                            val reformat = userText.replaceFirst("${userText[0]}", "${userText[0]}:00" )
+                            editText.setText(reformat)
+                            editText.hint = ""
+                            editText.clearFocus()
+                        }
+                        if(userText.length === 2) {
+                            var reformat: String = ""
+                            reformat = if(userText[0] === userText[1]){
+                                userText.replace(userText, "${userText}:00" )
+                            } else{
+                                userText.replace("${userText[1]}", "${userText[1]}:00" )
+                            }
+                            editText.setText(reformat)
+                            editText.hint = ""
+                            editText.clearFocus()
+                        }
                         if(userText.length === 3) {
                             val reformat = userText.replaceFirst("${userText[0]}", "${userText[0]}:" )
                             editText.setText(reformat)
                             editText.hint = ""
                             editText.clearFocus()
-                        } else {
+                        }
+                        if(userText.length === 4) {
+                            val reformat = userText.replaceFirst("${userText[1]}", "${userText[1]}:" )
+                            editText.setText(reformat)
+                            editText.hint = ""
+                            editText.clearFocus()
+                        }
+                        else {
                             userText = userText.replace(".", ":")
                             editText.setText(userText)
                             editText.hint = ""
@@ -251,15 +271,13 @@ abstract class AbstractFragment<T: AbstractViewModel?>(protected val viewModel :
                         }
                     }
                     else {
-                        val toast = Toast.makeText(activity, "'$userText' ei ole sopiva kellonaika", Toast.LENGTH_LONG)
-                        toast.setGravity(Gravity.CENTER, 0, 0)
-                        toast.show()
-                        editText.hint = ""
-                        editText.clearFocus()
-
-                        // Oikee prefs tähänki
-                        // editText.setText(viewModel?.getFromPrefs("PHONE_NUMBER_${position}", ""))
-                    }
+                            val toast = Toast.makeText(activity, "'$userText' ei ole sopiva kellonaika", Toast.LENGTH_LONG)
+                            toast.setGravity(Gravity.CENTER, 0, 0)
+                            toast.show()
+                            editText.hint = ""
+                            editText.clearFocus()
+                            editText.setText(viewModel?.getFromPrefs("DATE_TIME_${position}", "0:00"))
+                        }
                     til.setImageResource(R.drawable.ic_mic)
                     til.tag = "1"
                 }
