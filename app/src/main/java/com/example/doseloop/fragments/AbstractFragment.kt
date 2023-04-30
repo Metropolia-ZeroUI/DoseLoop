@@ -234,12 +234,36 @@ abstract class AbstractFragment<T: AbstractViewModel?>(protected val viewModel :
                     userText = it
                     til.setImageResource(R.drawable.ic_mic)
                     if (userText != "" && userText.replace(".", "").isDigitsOnly() && userText.replace(".", "").length <= 4) {
+                        if(userText.length === 1) {
+                            val reformat = userText.replaceFirst("${userText[0]}", "${userText[0]}:00" )
+                            editText.setText(reformat)
+                            editText.hint = ""
+                            editText.clearFocus()
+                        }
+                        if(userText.length === 2) {
+                            var reformat: String = ""
+                            reformat = if(userText[0] === userText[1]){
+                                userText.replace(userText, "${userText}:00" )
+                            } else{
+                                userText.replace("${userText[1]}", "${userText[1]}:00" )
+                            }
+                            editText.setText(reformat)
+                            editText.hint = ""
+                            editText.clearFocus()
+                        }
                         if(userText.length === 3) {
                             val reformat = userText.replaceFirst("${userText[0]}", "${userText[0]}:" )
                             editText.setText(reformat)
                             editText.hint = ""
                             editText.clearFocus()
-                        } else {
+                        }
+                        if(userText.length === 4) {
+                            val reformat = userText.replaceFirst("${userText[1]}", "${userText[1]}:" )
+                            editText.setText(reformat)
+                            editText.hint = ""
+                            editText.clearFocus()
+                        }
+                        else {
                             userText = userText.replace(".", ":")
                             editText.setText(userText)
                             editText.hint = ""
