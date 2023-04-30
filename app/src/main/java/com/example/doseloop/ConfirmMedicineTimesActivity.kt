@@ -1,11 +1,9 @@
 package com.example.doseloop
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.navigation.navArgs
 import com.example.doseloop.databinding.ActivityConfirmMedicineTimesBinding
-import com.example.doseloop.databinding.ActivityConfirmStatusBinding
 import com.example.doseloop.viewmodel.DateTimeSettingViewModel
 
 class ConfirmMedicineTimesActivity : PopupActivity<DateTimeSettingViewModel>(DateTimeSettingViewModel()) {
@@ -24,7 +22,7 @@ class ConfirmMedicineTimesActivity : PopupActivity<DateTimeSettingViewModel>(Dat
     private fun setButtons() {
         binding.popupConfirmButton.setOnClickListener {
             Log.d("confirm", "confirming")
-            viewModel?.onPopupConfirm(args.msg, args.timeKey, args.time, args.dayKey, args.period)
+            viewModel?.onPopupConfirm(args.msg, args.timeKey, args.time, args.dayKey, args.dateKey, args.period)
             finish()
         }
         binding.popupCancelButton.setOnClickListener {
@@ -35,3 +33,4 @@ class ConfirmMedicineTimesActivity : PopupActivity<DateTimeSettingViewModel>(Dat
         }
     }
 }
+
