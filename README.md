@@ -8,12 +8,14 @@ The project was designed to be used in conjunction with an automatic dispenser, 
 ###  Tech and libraries
 - Kotlin
 - Minimum SDK Level 28
-- MVVM
+- ViewModel
 - [Android SmsManager](https://developer.android.com/reference/android/telephony/SmsManager)
 - Sms Api
 - Voice Control
+- Navigation
 - SharedPreferences
 - Data binding
+- MutableLiveData
 - [Lottie Animation](https://lottiefiles.com)
 
 ### Main Features
@@ -49,6 +51,9 @@ The project was designed to be used in conjunction with an automatic dispenser, 
     
 ### Overview of the app
 
+![dose_2](https://user-images.githubusercontent.com/43030856/235509457-b588b327-4abd-4eba-b0f8-9dcc18c50095.gif)
+![dose_3](https://user-images.githubusercontent.com/43030856/235509493-851f2ded-f647-4bcd-bedc-7fbfe0980dfe.gif)
+
 
 - Assets used in the app
   
@@ -59,3 +64,25 @@ The project was designed to be used in conjunction with an automatic dispenser, 
 
 
 ### License
+
+MIT License
+
+Copyright (c) 2023 Metropolia-ZeroUI
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
