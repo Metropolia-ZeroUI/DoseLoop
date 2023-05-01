@@ -53,6 +53,7 @@ The project was designed to be used in conjunction with an automatic dispenser, 
 
 
 <div align="left">
+    <img alt="dev.gif" width="260" align="center" src="https://user-images.githubusercontent.com/43030856/235527993-c7e2bbc9-c4fd-46ae-ad6c-9880662ea886.gif" />
     <img alt="dev.gif" width="260" align="center" src="https://user-images.githubusercontent.com/43030856/235509457-b588b327-4abd-4eba-b0f8-9dcc18c50095.gif" />
     <img alt="dev.gif" width="260" align="center" src="https://user-images.githubusercontent.com/43030856/235509493-851f2ded-f647-4bcd-bedc-7fbfe0980dfe.gif" />
 </div>
@@ -68,7 +69,7 @@ The project was designed to be used in conjunction with an automatic dispenser, 
 
 ### License
 
-MIT License
+[MIT License](https://github.com/Metropolia-ZeroUI/DoseLoop/blob/master/LICENSE.txt)
 
 Copyright (c) 2023 Metropolia-ZeroUI
 
