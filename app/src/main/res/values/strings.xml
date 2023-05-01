@@ -17,8 +17,8 @@
     <string name="error_not_digit">Syötä pelkkiä numeroita!</string>
     <!-- Strings for Date and Time Fragment -->
     <string name="set_date_and_time">Aseta lääkkeenoton kellonaika ja päivä</string>
-    <string name="set_day">Lääkkeiden otto päivä"</string>
-    <string name="sent_button">Lähetä</string>
+    <string name="set_day">Lääkkeiden otto päivä</string>
+    <string name="send_button">Lähetä</string>
     <string name="delete_button">Poista</string>
     <string name="every_day">Joka päivä</string>
     <string name="day_after">Joka toinen</string>

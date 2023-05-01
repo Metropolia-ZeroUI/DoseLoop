@@ -183,7 +183,7 @@
                     android:layout_marginBottom="12dp"
                     android:layout_toRightOf="@+id/time_1_delete_button"
                     android:background="@drawable/confirm_button"
-                    android:text="@string/sent_button"
+                    android:text="@string/send_button"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -305,7 +305,7 @@
                     android:layout_marginBottom="12dp"
                     android:layout_toRightOf="@+id/time_2_delete_button"
                     android:background="@drawable/confirm_button"
-                    android:text="@string/sent_button"
+                    android:text="@string/send_button"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -427,7 +427,7 @@
                     android:layout_marginBottom="12dp"
                     android:layout_toRightOf="@+id/time_3_delete_button"
                     android:background="@drawable/confirm_button"
-                    android:text="@string/sent_button"
+                    android:text="@string/send_button"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -549,7 +549,7 @@
                     android:layout_marginBottom="12dp"
                     android:layout_toEndOf="@+id/time_4_delete_button"
                     android:background="@drawable/confirm_button"
-                    android:text="@string/sent_button"
+                    android:text="@string/send_button"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -671,7 +671,7 @@
                     android:layout_marginBottom="12dp"
                     android:layout_toEndOf="@+id/time_5_delete_button"
                     android:background="@drawable/confirm_button"
-                    android:text="@string/sent_button"
+                    android:text="@string/send_button"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -793,7 +793,7 @@
                     android:layout_marginBottom="12dp"
                     android:layout_toEndOf="@+id/time_6_delete_button"
                     android:background="@drawable/confirm_button"
-                    android:text="@string/sent_button"
+                    android:text="@string/send_button"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
