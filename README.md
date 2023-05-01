@@ -51,8 +51,11 @@ The project was designed to be used in conjunction with an automatic dispenser, 
     
 ### Overview of the app
 
-![dose_2](https://user-images.githubusercontent.com/43030856/235509457-b588b327-4abd-4eba-b0f8-9dcc18c50095.gif)
-![dose_3](https://user-images.githubusercontent.com/43030856/235509493-851f2ded-f647-4bcd-bedc-7fbfe0980dfe.gif)
+
+<div align="left">
+    <img alt="dev.gif" width="260" align="center" src="https://user-images.githubusercontent.com/43030856/235509457-b588b327-4abd-4eba-b0f8-9dcc18c50095.gif" />
+    <img alt="dev.gif" width="260" align="center" src="https://user-images.githubusercontent.com/43030856/235509493-851f2ded-f647-4bcd-bedc-7fbfe0980dfe.gif" />
+</div>
 
 
 - Assets used in the app
